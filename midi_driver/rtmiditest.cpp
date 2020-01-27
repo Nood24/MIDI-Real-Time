@@ -1,4 +1,4 @@
-#include "../../rtmidi/RtMidi.h"
+#include "../rtmidi/RtMidi.h"
 #include <iostream>
 #include <cstdlib>
 
