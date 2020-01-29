@@ -15,6 +15,8 @@ Neil Wood: neilwood1997@gmail.com
 Seun Ajijola: sajijola@gmail.com
 Cameron Bennett:Cameron.b97.cb@gmail.com
 
+Twitter: https://twitter.com/OneManCeilidh
+
 Dependancies:
 
 sudo apt-get install libasound2-dev
