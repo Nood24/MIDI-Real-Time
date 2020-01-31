@@ -19,4 +19,5 @@ Twitter: https://twitter.com/OneManCeilidh
 
 Dependancies:
 
-sudo apt-get install libasound2-dev
+sudo apt-get install libasound2-dev : Allows RTMIDI to interacvt with ALSA
+sudo apt-get install fluidsynth : Synth MIDI into analogue output.
