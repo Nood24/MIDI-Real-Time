@@ -60,7 +60,7 @@ void usage( void ) {
   std::cout << "    where port = the device to use (first / default = 0).\n\n";
   exit( 0 );
 }
-RtMidiOut *midiout - new RtMidiOut();
+RtMidiOut *midiout = new RtMidiOut();
 //check available ports
 
 
