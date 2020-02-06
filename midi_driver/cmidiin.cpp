@@ -11,6 +11,48 @@
 #include <cstdlib>
 #include "../rtmidi/RtMidi.h"
 
+
+bool chooseMidiPort( RtMidiOut *rtmidi )
+{
+    std::cout << "\nWould you like to open a virtual output port? [y/N] ";
+
+    std::string keyHit;
+    std::getline( std::cin, keyHit );
+
+    if ( keyHit == "y" ) {
+        rtmidi->openVirtualPort("RtMidi");
+        return true;
+    }
+
+    std::string portName;
+    unsigned int i = 0, nPorts = rtmidi->getPortCount();
+    if ( nPorts == 0 ) {
+        std::cout << "No output ports available!" << std::endl;
+        return false;
+    }
+
+    if ( nPorts == 1 ) {
+        std::cout << "\nOpening " << rtmidi->getPortName() << std::endl;
+    }
+    else {
+        for ( i=0; i<nPorts; i++ ) {
+            portName = rtmidi->getPortName(i);
+            std::cout << "  Output port #" << i << ": " << portName << '\n';
+        }
+
+        do {
+            std::cout << "\nChoose a port number: ";
+            std::cin >> i;
+        } while ( i >= nPorts );
+    }
+
+    std::cout << "\n";
+    rtmidi->openPort( i );
+
+    return true;
+}
+
+
 void usage( void ) {
   // Error function in case of incorrect command-line
   // argument specifications.
@@ -25,6 +67,7 @@ RtMidiOut *midiout - new RtMidiOut();
 void mycallback( double deltatime, std::vector< unsigned char > *message, void */*userData*/ )
 {
   unsigned int nBytes = message->size();
+  midiout->sendMessage( &message );
   for ( unsigned int i=0; i<nBytes; i++ )
     std::cout << "Byte " << i << " = " << (int)message->at(i) << ", ";
   if ( nBytes > 0 )
@@ -39,8 +82,6 @@ bool chooseMidiPort( RtMidiIn *rtmidi );
 int main( int argc, char ** /*argv[]*/ )
 {
   RtMidiIn *midiin = 0;
-  RtMidiOut *midiout - new RtMidiOut();
-  std::vector<unsigned char> message;
 
   // Minimal command-line check.
   if ( argc > 2 ) usage();
@@ -60,6 +101,16 @@ int main( int argc, char ** /*argv[]*/ )
 
     // Don't ignore sysex, timing, or active sensing messages.
     midiin->ignoreTypes( false, false, false );
+
+
+      // Call function to select port.
+      try {
+          if ( chooseMidiPort( midiout ) == false ) goto cleanup;
+      }
+      catch ( RtMidiError &error ) {
+          error.printMessage();
+          goto cleanup;
+      }
 
     std::cout << "\nReading MIDI input ... press <enter> to quit.\n";
     char input;
