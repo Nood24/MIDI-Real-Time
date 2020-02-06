@@ -18,6 +18,9 @@ void usage( void ) {
   std::cout << "    where port = the device to use (first / default = 0).\n\n";
   exit( 0 );
 }
+RtMidiOut *midiout - new RtMidiOut();
+//check available ports
+
 
 void mycallback( double deltatime, std::vector< unsigned char > *message, void */*userData*/ )
 {
@@ -36,6 +39,8 @@ bool chooseMidiPort( RtMidiIn *rtmidi );
 int main( int argc, char ** /*argv[]*/ )
 {
   RtMidiIn *midiin = 0;
+  RtMidiOut *midiout - new RtMidiOut();
+  std::vector<unsigned char> message;
 
   // Minimal command-line check.
   if ( argc > 2 ) usage();
