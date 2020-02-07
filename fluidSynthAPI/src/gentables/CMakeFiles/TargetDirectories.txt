@@ -1,3 +1,0 @@
-/home/neil/MIDI-Real-Time/fluidSynthAPI/src/gentables/CMakeFiles/rebuild_cache.dir
-/home/neil/MIDI-Real-Time/fluidSynthAPI/src/gentables/CMakeFiles/make_tables.dir
-/home/neil/MIDI-Real-Time/fluidSynthAPI/src/gentables/CMakeFiles/edit_cache.dir
