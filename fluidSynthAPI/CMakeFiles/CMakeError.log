@@ -1,0 +1,224 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_0ee82/fast"
+/usr/bin/make -f CMakeFiles/cmTC_0ee82.dir/build.make CMakeFiles/cmTC_0ee82.dir/build
+make[1]: Entering directory '/home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_0ee82.dir/CheckSymbolExists.c.o
+/usr/bin/cc -DTESTKEYWORD=inline  -Wall -W -Wpointer-arith -Wcast-qual -Wstrict-prototypes -Wno-unused-parameter -Wdeclaration-after-statement -Werror=implicit-function-declaration -Wbad-function-cast -Wcast-align  -fPIE   -o CMakeFiles/cmTC_0ee82.dir/CheckSymbolExists.c.o   -c /home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_0ee82
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0ee82.dir/link.txt --verbose=1
+/usr/bin/cc  -Wall -W -Wpointer-arith -Wcast-qual -Wstrict-prototypes -Wno-unused-parameter -Wdeclaration-after-statement -Werror=implicit-function-declaration -Wbad-function-cast -Wcast-align     -rdynamic CMakeFiles/cmTC_0ee82.dir/CheckSymbolExists.c.o  -o cmTC_0ee82 
+CMakeFiles/cmTC_0ee82.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_0ee82.dir/build.make:97: recipe for target 'cmTC_0ee82' failed
+make[1]: *** [cmTC_0ee82] Error 1
+make[1]: Leaving directory '/home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_0ee82/fast' failed
+make: *** [cmTC_0ee82/fast] Error 2
+
+File /home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_f64ec/fast"
+/usr/bin/make -f CMakeFiles/cmTC_f64ec.dir/build.make CMakeFiles/cmTC_f64ec.dir/build
+make[1]: Entering directory '/home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f64ec.dir/CheckFunctionExists.c.o
+/usr/bin/cc -DTESTKEYWORD=inline  -Wall -W -Wpointer-arith -Wcast-qual -Wstrict-prototypes -Wno-unused-parameter -Wdeclaration-after-statement -Werror=implicit-function-declaration -Wbad-function-cast -Wcast-align -DCHECK_FUNCTION_EXISTS=pthread_create -fPIE   -o CMakeFiles/cmTC_f64ec.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_f64ec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f64ec.dir/link.txt --verbose=1
+/usr/bin/cc  -Wall -W -Wpointer-arith -Wcast-qual -Wstrict-prototypes -Wno-unused-parameter -Wdeclaration-after-statement -Werror=implicit-function-declaration -Wbad-function-cast -Wcast-align -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_f64ec.dir/CheckFunctionExists.c.o  -o cmTC_f64ec -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_f64ec.dir/build.make:97: recipe for target 'cmTC_f64ec' failed
+make[1]: *** [cmTC_f64ec] Error 1
+make[1]: Leaving directory '/home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_f64ec/fast' failed
+make: *** [cmTC_f64ec/fast] Error 2
+
+
+Determining if the include file ladspa.h exists failed with the following output:
+Change Dir: /home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_adc9e/fast"
+/usr/bin/make -f CMakeFiles/cmTC_adc9e.dir/build.make CMakeFiles/cmTC_adc9e.dir/build
+make[1]: Entering directory '/home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_adc9e.dir/CheckIncludeFile.c.o
+/usr/bin/cc -DTESTKEYWORD=inline  -Wall -W -Wpointer-arith -Wcast-qual -Wstrict-prototypes -Wno-unused-parameter -Wdeclaration-after-statement -Werror=implicit-function-declaration -Wbad-function-cast -Wcast-align  -fPIE   -o CMakeFiles/cmTC_adc9e.dir/CheckIncludeFile.c.o   -c /home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: ladspa.h: No such file or directory
+ #include <ladspa.h>
+          ^~~~~~~~~~
+compilation terminated.
+CMakeFiles/cmTC_adc9e.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_adc9e.dir/CheckIncludeFile.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_adc9e.dir/CheckIncludeFile.c.o] Error 1
+make[1]: Leaving directory '/home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_adc9e/fast' failed
+make: *** [cmTC_adc9e/fast] Error 2
+
+
+Determining if the function sinf exists failed with the following output:
+Change Dir: /home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_c9109/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c9109.dir/build.make CMakeFiles/cmTC_c9109.dir/build
+make[1]: Entering directory '/home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c9109.dir/CheckFunctionExists.c.o
+/usr/bin/cc -DTESTKEYWORD=inline  -Wall -W -Wpointer-arith -Wcast-qual -Wstrict-prototypes -Wno-unused-parameter -Wdeclaration-after-statement -Werror=implicit-function-declaration -Wbad-function-cast -Wcast-align -fopenmp -DCHECK_FUNCTION_EXISTS=sinf -fPIE   -o CMakeFiles/cmTC_c9109.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+<command-line>:0:23: warning: conflicting types for built-in function ‘sinf’ [-Wbuiltin-declaration-mismatch]
+/usr/share/cmake-3.10/Modules/CheckFunctionExists.c:7:3: note: in expansion of macro ‘CHECK_FUNCTION_EXISTS’
+   CHECK_FUNCTION_EXISTS(void);
+   ^~~~~~~~~~~~~~~~~~~~~
+Linking C executable cmTC_c9109
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c9109.dir/link.txt --verbose=1
+/usr/bin/cc  -Wall -W -Wpointer-arith -Wcast-qual -Wstrict-prototypes -Wno-unused-parameter -Wdeclaration-after-statement -Werror=implicit-function-declaration -Wbad-function-cast -Wcast-align -fopenmp -DCHECK_FUNCTION_EXISTS=sinf    -rdynamic CMakeFiles/cmTC_c9109.dir/CheckFunctionExists.c.o  -o cmTC_c9109 
+CMakeFiles/cmTC_c9109.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x10): undefined reference to `sinf'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_c9109.dir/build.make:97: recipe for target 'cmTC_c9109' failed
+make[1]: *** [cmTC_c9109] Error 1
+make[1]: Leaving directory '/home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_c9109/fast' failed
+make: *** [cmTC_c9109/fast] Error 2
+
+
+Determining if the function cosf exists failed with the following output:
+Change Dir: /home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_26f59/fast"
+/usr/bin/make -f CMakeFiles/cmTC_26f59.dir/build.make CMakeFiles/cmTC_26f59.dir/build
+make[1]: Entering directory '/home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_26f59.dir/CheckFunctionExists.c.o
+/usr/bin/cc -DTESTKEYWORD=inline  -Wall -W -Wpointer-arith -Wcast-qual -Wstrict-prototypes -Wno-unused-parameter -Wdeclaration-after-statement -Werror=implicit-function-declaration -Wbad-function-cast -Wcast-align -fopenmp -DCHECK_FUNCTION_EXISTS=cosf -fPIE   -o CMakeFiles/cmTC_26f59.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+<command-line>:0:23: warning: conflicting types for built-in function ‘cosf’ [-Wbuiltin-declaration-mismatch]
+/usr/share/cmake-3.10/Modules/CheckFunctionExists.c:7:3: note: in expansion of macro ‘CHECK_FUNCTION_EXISTS’
+   CHECK_FUNCTION_EXISTS(void);
+   ^~~~~~~~~~~~~~~~~~~~~
+Linking C executable cmTC_26f59
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_26f59.dir/link.txt --verbose=1
+/usr/bin/cc  -Wall -W -Wpointer-arith -Wcast-qual -Wstrict-prototypes -Wno-unused-parameter -Wdeclaration-after-statement -Werror=implicit-function-declaration -Wbad-function-cast -Wcast-align -fopenmp -DCHECK_FUNCTION_EXISTS=cosf    -rdynamic CMakeFiles/cmTC_26f59.dir/CheckFunctionExists.c.o  -o cmTC_26f59 
+CMakeFiles/cmTC_26f59.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x10): undefined reference to `cosf'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_26f59.dir/build.make:97: recipe for target 'cmTC_26f59' failed
+make[1]: *** [cmTC_26f59] Error 1
+make[1]: Leaving directory '/home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_26f59/fast' failed
+make: *** [cmTC_26f59/fast] Error 2
+
+
+Determining if the function fabsf exists failed with the following output:
+Change Dir: /home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_6636b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_6636b.dir/build.make CMakeFiles/cmTC_6636b.dir/build
+make[1]: Entering directory '/home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_6636b.dir/CheckFunctionExists.c.o
+/usr/bin/cc -DTESTKEYWORD=inline  -Wall -W -Wpointer-arith -Wcast-qual -Wstrict-prototypes -Wno-unused-parameter -Wdeclaration-after-statement -Werror=implicit-function-declaration -Wbad-function-cast -Wcast-align -fopenmp -DCHECK_FUNCTION_EXISTS=fabsf -fPIE   -o CMakeFiles/cmTC_6636b.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+<command-line>:0:23: warning: conflicting types for built-in function ‘fabsf’ [-Wbuiltin-declaration-mismatch]
+/usr/share/cmake-3.10/Modules/CheckFunctionExists.c:7:3: note: in expansion of macro ‘CHECK_FUNCTION_EXISTS’
+   CHECK_FUNCTION_EXISTS(void);
+   ^~~~~~~~~~~~~~~~~~~~~
+Linking C executable cmTC_6636b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6636b.dir/link.txt --verbose=1
+/usr/bin/cc  -Wall -W -Wpointer-arith -Wcast-qual -Wstrict-prototypes -Wno-unused-parameter -Wdeclaration-after-statement -Werror=implicit-function-declaration -Wbad-function-cast -Wcast-align -fopenmp -DCHECK_FUNCTION_EXISTS=fabsf    -rdynamic CMakeFiles/cmTC_6636b.dir/CheckFunctionExists.c.o  -o cmTC_6636b 
+CMakeFiles/cmTC_6636b.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x10): undefined reference to `fabsf'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_6636b.dir/build.make:97: recipe for target 'cmTC_6636b' failed
+make[1]: *** [cmTC_6636b] Error 1
+make[1]: Leaving directory '/home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_6636b/fast' failed
+make: *** [cmTC_6636b/fast] Error 2
+
+
+Determining if the function powf exists failed with the following output:
+Change Dir: /home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_af4dd/fast"
+/usr/bin/make -f CMakeFiles/cmTC_af4dd.dir/build.make CMakeFiles/cmTC_af4dd.dir/build
+make[1]: Entering directory '/home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_af4dd.dir/CheckFunctionExists.c.o
+/usr/bin/cc -DTESTKEYWORD=inline  -Wall -W -Wpointer-arith -Wcast-qual -Wstrict-prototypes -Wno-unused-parameter -Wdeclaration-after-statement -Werror=implicit-function-declaration -Wbad-function-cast -Wcast-align -fopenmp -DCHECK_FUNCTION_EXISTS=powf -fPIE   -o CMakeFiles/cmTC_af4dd.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+<command-line>:0:23: warning: conflicting types for built-in function ‘powf’ [-Wbuiltin-declaration-mismatch]
+/usr/share/cmake-3.10/Modules/CheckFunctionExists.c:7:3: note: in expansion of macro ‘CHECK_FUNCTION_EXISTS’
+   CHECK_FUNCTION_EXISTS(void);
+   ^~~~~~~~~~~~~~~~~~~~~
+Linking C executable cmTC_af4dd
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_af4dd.dir/link.txt --verbose=1
+/usr/bin/cc  -Wall -W -Wpointer-arith -Wcast-qual -Wstrict-prototypes -Wno-unused-parameter -Wdeclaration-after-statement -Werror=implicit-function-declaration -Wbad-function-cast -Wcast-align -fopenmp -DCHECK_FUNCTION_EXISTS=powf    -rdynamic CMakeFiles/cmTC_af4dd.dir/CheckFunctionExists.c.o  -o cmTC_af4dd 
+CMakeFiles/cmTC_af4dd.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x10): undefined reference to `powf'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_af4dd.dir/build.make:97: recipe for target 'cmTC_af4dd' failed
+make[1]: *** [cmTC_af4dd] Error 1
+make[1]: Leaving directory '/home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_af4dd/fast' failed
+make: *** [cmTC_af4dd/fast] Error 2
+
+
+Determining if the function sqrtf exists failed with the following output:
+Change Dir: /home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_30294/fast"
+/usr/bin/make -f CMakeFiles/cmTC_30294.dir/build.make CMakeFiles/cmTC_30294.dir/build
+make[1]: Entering directory '/home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_30294.dir/CheckFunctionExists.c.o
+/usr/bin/cc -DTESTKEYWORD=inline  -Wall -W -Wpointer-arith -Wcast-qual -Wstrict-prototypes -Wno-unused-parameter -Wdeclaration-after-statement -Werror=implicit-function-declaration -Wbad-function-cast -Wcast-align -fopenmp -DCHECK_FUNCTION_EXISTS=sqrtf -fPIE   -o CMakeFiles/cmTC_30294.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+<command-line>:0:23: warning: conflicting types for built-in function ‘sqrtf’ [-Wbuiltin-declaration-mismatch]
+/usr/share/cmake-3.10/Modules/CheckFunctionExists.c:7:3: note: in expansion of macro ‘CHECK_FUNCTION_EXISTS’
+   CHECK_FUNCTION_EXISTS(void);
+   ^~~~~~~~~~~~~~~~~~~~~
+Linking C executable cmTC_30294
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_30294.dir/link.txt --verbose=1
+/usr/bin/cc  -Wall -W -Wpointer-arith -Wcast-qual -Wstrict-prototypes -Wno-unused-parameter -Wdeclaration-after-statement -Werror=implicit-function-declaration -Wbad-function-cast -Wcast-align -fopenmp -DCHECK_FUNCTION_EXISTS=sqrtf    -rdynamic CMakeFiles/cmTC_30294.dir/CheckFunctionExists.c.o  -o cmTC_30294 
+CMakeFiles/cmTC_30294.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x10): undefined reference to `sqrtf'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_30294.dir/build.make:97: recipe for target 'cmTC_30294' failed
+make[1]: *** [cmTC_30294] Error 1
+make[1]: Leaving directory '/home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_30294/fast' failed
+make: *** [cmTC_30294/fast] Error 2
+
+
+Determining if the function logf exists failed with the following output:
+Change Dir: /home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_fee77/fast"
+/usr/bin/make -f CMakeFiles/cmTC_fee77.dir/build.make CMakeFiles/cmTC_fee77.dir/build
+make[1]: Entering directory '/home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_fee77.dir/CheckFunctionExists.c.o
+/usr/bin/cc -DTESTKEYWORD=inline  -Wall -W -Wpointer-arith -Wcast-qual -Wstrict-prototypes -Wno-unused-parameter -Wdeclaration-after-statement -Werror=implicit-function-declaration -Wbad-function-cast -Wcast-align -fopenmp -DCHECK_FUNCTION_EXISTS=logf -fPIE   -o CMakeFiles/cmTC_fee77.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+<command-line>:0:23: warning: conflicting types for built-in function ‘logf’ [-Wbuiltin-declaration-mismatch]
+/usr/share/cmake-3.10/Modules/CheckFunctionExists.c:7:3: note: in expansion of macro ‘CHECK_FUNCTION_EXISTS’
+   CHECK_FUNCTION_EXISTS(void);
+   ^~~~~~~~~~~~~~~~~~~~~
+Linking C executable cmTC_fee77
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fee77.dir/link.txt --verbose=1
+/usr/bin/cc  -Wall -W -Wpointer-arith -Wcast-qual -Wstrict-prototypes -Wno-unused-parameter -Wdeclaration-after-statement -Werror=implicit-function-declaration -Wbad-function-cast -Wcast-align -fopenmp -DCHECK_FUNCTION_EXISTS=logf    -rdynamic CMakeFiles/cmTC_fee77.dir/CheckFunctionExists.c.o  -o cmTC_fee77 
+CMakeFiles/cmTC_fee77.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x10): undefined reference to `logf'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_fee77.dir/build.make:97: recipe for target 'cmTC_fee77' failed
+make[1]: *** [cmTC_fee77] Error 1
+make[1]: Leaving directory '/home/neil/MIDI-Real-Time/fluidSynthAPI/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_fee77/fast' failed
+make: *** [cmTC_fee77/fast] Error 2
+
+

@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/neil/MIDI-Real-Time/fluidsynth/src/gentables/../rvoice/fluid_rvoice_dsp_tables.h
+
+/home/neil/MIDI-Real-Time/fluidsynth/src/gentables/../utils/fluid_conv_tables.h
+
+/home/neil/MIDI-Real-Time/fluidsynth/src/gentables/gen_conv.c
+utils/fluid_conv_tables.h
+/home/neil/MIDI-Real-Time/fluidsynth/src/gentables/utils/fluid_conv_tables.h
+make_tables.h
+/home/neil/MIDI-Real-Time/fluidsynth/src/gentables/make_tables.h
+
+/home/neil/MIDI-Real-Time/fluidsynth/src/gentables/gen_rvoice_dsp.c
+rvoice/fluid_rvoice_dsp_tables.h
+/home/neil/MIDI-Real-Time/fluidsynth/src/gentables/rvoice/fluid_rvoice_dsp_tables.h
+make_tables.h
+/home/neil/MIDI-Real-Time/fluidsynth/src/gentables/make_tables.h
+
+/home/neil/MIDI-Real-Time/fluidsynth/src/gentables/make_tables.c
+make_tables.h
+/home/neil/MIDI-Real-Time/fluidsynth/src/gentables/make_tables.h
+
+/home/neil/MIDI-Real-Time/fluidsynth/src/gentables/make_tables.h
+stdio.h
+-
+stdlib.h
+-
+math.h
+-
+string.h
+-
+
