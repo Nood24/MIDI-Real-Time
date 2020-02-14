@@ -52,7 +52,7 @@ int main(int argc, char *argv[]){
     /* create the synth, driver and sequencer instances */
     synth = new_fluid_synth(settings);
     /* load a SoundFont */
-    fluid_synth_sfload(synth, "/usr/share/sounds/sf2/FluidR3_GM.sf2", 1);
+    int sf_id = fluid_synth_sfload(synth, "/usr/share/sounds/sf2/FluidR3_GM.sf2", 1);
      
     sequencer = new_fluid_sequencer2(0);
     /* register the synth with the sequencer */
@@ -63,9 +63,16 @@ int main(int argc, char *argv[]){
     audiodriver = new_fluid_audio_driver(settings, synth);
          
     printf("Hello World!");
+    
+    /* Changing Intruments */
+    fluid_synth_program_select(synth, 0, sf_id,0, 20);
 
     noteOn(0, 60);
 
+    sleep(3);
+
+    noteOff(0,60);
+    
     sleep(3);
 
     /* clean and exit */
