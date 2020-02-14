@@ -43,6 +43,13 @@ void noteOff(int chan, short key)
 
 }
 
+/* Play a note with a length in seconds*/
+void playNoteOfLength(int chan, short key, short length){
+    noteOn(chan, key);
+    sleep(length);
+    noteOff(chan, key);
+}
+
 int main(int argc, char *argv[]){
     
     fluid_settings_t *settings;
@@ -74,6 +81,8 @@ int main(int argc, char *argv[]){
     noteOff(0,60);
     
     sleep(3);
+
+    playNoteOfLength(0,64,1);
 
     /* clean and exit */
     delete_fluid_audio_driver(audiodriver);
