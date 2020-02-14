@@ -17,13 +17,6 @@ fluid_synth_t *synth;
 fluid_audio_driver_t *audiodriver;
 fluid_sequencer_t *sequencer;
 short synth_destination, client_destination;
-unsigned int time_marker;
-/* duration of the pattern in ticks. */
-unsigned int duration = 1440;
-/* notes of the arpeggio */
-unsigned int notes[] = { 60, 64, 67, 72, 76, 79, 84, 79, 76, 72, 67, 64 };
-/* number of notes in one pattern */
-unsigned int pattern_size;
 
 
 
@@ -50,13 +43,8 @@ void noteOff(int chan, short key)
 
 }
 
-
-
-
-int
-main(int argc, char *argv[])
-{
-    int n;
+int main(int argc, char *argv[]){
+    
     fluid_settings_t *settings;
     settings = new_fluid_settings();
     fluid_settings_setstr(settings,"audio.driver","alsa");
@@ -68,11 +56,9 @@ main(int argc, char *argv[])
      
     sequencer = new_fluid_sequencer2(0);
     /* register the synth with the sequencer */
-    synth_destination = fluid_sequencer_register_fluidsynth(sequencer,
-                                synth);
+    synth_destination = fluid_sequencer_register_fluidsynth(sequencer,synth);
     /* register the client name and callback */
-    client_destination = fluid_sequencer_register_client(sequencer,
-                             "arpeggio", NULL, NULL);
+    client_destination = fluid_sequencer_register_client(sequencer,"MidiController", NULL, NULL);
 
     audiodriver = new_fluid_audio_driver(settings, synth);
          
