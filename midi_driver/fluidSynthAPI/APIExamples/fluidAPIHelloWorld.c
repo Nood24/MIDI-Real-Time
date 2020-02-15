@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     }
     /* Initialize the random number generator */
     srand(getpid());
-    for(i = 0; i < 12; i++)
+    while(1)
     {
         /* Generate a random key */
         key = 60 + (int)(12.0f * rand() / (float) RAND_MAX);
