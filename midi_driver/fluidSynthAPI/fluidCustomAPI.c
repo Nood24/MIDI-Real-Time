@@ -28,8 +28,10 @@ int sf_id;
 /* Initialize fluidsynth API */
 void fluid_synth_init(){
 
+    /* Set Settings */
     settings = new_fluid_settings();
     fluid_settings_setstr(settings,"audio.driver","alsa");
+    fluid_settings_setstr(settings,"audio.periods","4");
 
     /* create the synth, driver and sequencer instances */
     synth = new_fluid_synth(settings);
