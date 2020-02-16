@@ -20,6 +20,14 @@ int main( void ){
 fluid_synth_init();
 cout << "Playing 3 second note!\n";
 playNoteOfLength(0,60,3);
+
+
+cout << "Change Instrument!\n";
+changeInstrument(0, 5);
+
+cout << "Playing 3 second note!\n";
+playNoteOfLength(0,60,3);
+
 cout << "Closing FluidSynth\n";
 deleteFluidSynth();
 

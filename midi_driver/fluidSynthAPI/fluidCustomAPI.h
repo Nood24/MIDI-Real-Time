@@ -12,6 +12,7 @@ void playNoteOfLength(int chan, short key, short length);
 
 void deleteFluidSynth();
 
+void changeInstrument(int channel, int instrument);
 
 #ifdef __cplusplus
 }
