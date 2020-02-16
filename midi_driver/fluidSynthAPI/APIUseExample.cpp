@@ -3,15 +3,23 @@
 
 */
 
-
+#include <stdlib.h>
+#include <stdio.h>
+#include <fluidsynth.h>
+#include <unistd.h>
 #include <iostream>
 #include <cstdlib>
 #include "../../rtmidi/RtMidi.h"
+#include <iostream>
 #include "fluidCustomAPI.h"
 
+using namespace std;
 
 int main( void ){
-noteOn(0,64);
+
+fluid_synth_init();
+cout << "Hello World!\n";
 playNoteOfLength(0,60,3);
+cout << "leaving!\n";
 
 }

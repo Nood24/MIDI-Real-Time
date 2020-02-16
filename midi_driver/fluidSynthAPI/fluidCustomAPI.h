@@ -2,6 +2,8 @@
 extern "C" {
 #endif
 
+void fluid_synth_init();
+
 void noteOn(int chan, short key);
 
 void noteOff(int chan, short key);
