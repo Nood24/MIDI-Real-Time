@@ -28,8 +28,6 @@ fluid_settings_t *settings;
 
 void fluid_synth_init(){
 
-printf(" Started Init!");
-
 settings = new_fluid_settings();
 fluid_settings_setstr(settings,"audio.driver","alsa");
 
@@ -46,7 +44,7 @@ client_destination = fluid_sequencer_register_client(sequencer,"MidiController",
 
 audiodriver = new_fluid_audio_driver(settings, synth);
  
-printf(" FinishedInit!");
+//printf("Hello World!");
 
 /* Changing Intruments */
 fluid_synth_program_select(synth, 0, sf_id,0, 20);
@@ -99,6 +97,9 @@ void deleteFluidSynth(){
 
 }
 
-
+int main(){
+	fluid_synth_init();
+	playNoteOfLength(0,60,3);
+}
 
 
