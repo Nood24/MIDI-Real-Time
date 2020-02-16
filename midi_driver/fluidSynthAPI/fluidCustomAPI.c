@@ -20,10 +20,6 @@ short synth_destination, client_destination;
 fluid_settings_t *settings;
 int sf_id;
 
- 
-
-/* Changing Intruments */
-//fluid_synth_program_select(synth, 0, sf_id,0, 20);
 
 /* Initialize fluidsynth API */
 void fluid_synth_init(){
@@ -46,37 +42,26 @@ void fluid_synth_init(){
 
     audiodriver = new_fluid_audio_driver(settings, synth);
  
-
-    /* Changing Intruments */
-    //fluid_synth_program_select(synth, 0, sf_id,0, 20);
-
 }
 
 /* schedule a note on message */
-void noteOn(int chan, short key)
-{
-
+void noteOn(int chan, short key){
     fluid_event_t *ev = new_fluid_event();
     fluid_event_set_source(ev, -1);
     fluid_event_set_dest(ev, synth_destination);
     fluid_event_noteon(ev, chan, key, 127);
     fluid_sequencer_send_now(sequencer, ev);
     delete_fluid_event(ev);
-
-    
 }
-/* schedule a note off message */
-void noteOff(int chan, short key)
-{
 
+/* schedule a note off message */
+void noteOff(int chan, short key){
     fluid_event_t *ev = new_fluid_event();
     fluid_event_set_source(ev, -1);
     fluid_event_set_dest(ev, synth_destination);
     fluid_event_noteoff(ev, chan, key);
     fluid_sequencer_send_now(sequencer, ev);
     delete_fluid_event(ev);
-
-
 }
 
 /* Play a note with a length in seconds*/
@@ -84,7 +69,6 @@ void playNoteOfLength(int chan, short key, short length){
     noteOn(chan, key);
     sleep(length);
     noteOff(chan, key);
-
 }
 
 /* Shutdown synth */
@@ -93,7 +77,6 @@ void deleteFluidSynth(){
     delete_fluid_sequencer(sequencer);
     delete_fluid_synth(synth);
     delete_fluid_settings(settings);
-
 }
 
 /* Changing Intruments */
