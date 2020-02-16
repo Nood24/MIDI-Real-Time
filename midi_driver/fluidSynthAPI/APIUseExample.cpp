@@ -18,8 +18,9 @@ using namespace std;
 int main( void ){
 
 fluid_synth_init();
-cout << "Hello World!\n";
+cout << "Playing 3 second note!\n";
 playNoteOfLength(0,60,3);
-cout << "leaving!\n";
+cout << "Closing FluidSynth\n";
+deleteFluidSynth();
 
 }
