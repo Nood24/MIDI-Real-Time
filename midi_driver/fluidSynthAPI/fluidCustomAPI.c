@@ -20,36 +20,32 @@ short synth_destination, client_destination;
 fluid_settings_t *settings;
 
  
-//printf("Hello World!");
 
 /* Changing Intruments */
 //fluid_synth_program_select(synth, 0, sf_id,0, 20);
 
-
+/* Initialize fluidsynth API */
 void fluid_synth_init(){
 
-printf(" Started Init!");
+    settings = new_fluid_settings();
+    fluid_settings_setstr(settings,"audio.driver","alsa");
 
-settings = new_fluid_settings();
-fluid_settings_setstr(settings,"audio.driver","alsa");
+    /* create the synth, driver and sequencer instances */
+    synth = new_fluid_synth(settings);
+    /* load a SoundFont */
+    int sf_id = fluid_synth_sfload(synth, "/usr/share/sounds/sf2/FluidR3_GM.sf2", 1);
 
-/* create the synth, driver and sequencer instances */
-synth = new_fluid_synth(settings);
-/* load a SoundFont */
-int sf_id = fluid_synth_sfload(synth, "/usr/share/sounds/sf2/FluidR3_GM.sf2", 1);
+    sequencer = new_fluid_sequencer2(0);
+    /* register the synth with the sequencer */
+    synth_destination = fluid_sequencer_register_fluidsynth(sequencer,synth);
+    /* register the client name and callback */
+    client_destination = fluid_sequencer_register_client(sequencer,"MidiController", NULL, NULL);
 
-sequencer = new_fluid_sequencer2(0);
-/* register the synth with the sequencer */
-synth_destination = fluid_sequencer_register_fluidsynth(sequencer,synth);
-/* register the client name and callback */
-client_destination = fluid_sequencer_register_client(sequencer,"MidiController", NULL, NULL);
-
-audiodriver = new_fluid_audio_driver(settings, synth);
+    audiodriver = new_fluid_audio_driver(settings, synth);
  
-printf(" FinishedInit!");
 
-/* Changing Intruments */
-fluid_synth_program_select(synth, 0, sf_id,0, 20);
+    /* Changing Intruments */
+    fluid_synth_program_select(synth, 0, sf_id,0, 20);
 
 }
 
@@ -82,7 +78,6 @@ void noteOff(int chan, short key)
 
 /* Play a note with a length in seconds*/
 void playNoteOfLength(int chan, short key, short length){
-    printf("Playing Note of Length!\n");
     noteOn(chan, key);
     sleep(length);
     noteOff(chan, key);
