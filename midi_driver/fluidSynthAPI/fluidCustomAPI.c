@@ -18,6 +18,7 @@ fluid_audio_driver_t *audiodriver;
 fluid_sequencer_t *sequencer;
 short synth_destination, client_destination;
 fluid_settings_t *settings;
+int sf_id;
 
  
 
@@ -33,7 +34,7 @@ void fluid_synth_init(){
     /* create the synth, driver and sequencer instances */
     synth = new_fluid_synth(settings);
     /* load a SoundFont */
-    int sf_id = fluid_synth_sfload(synth, "/usr/share/sounds/sf2/FluidR3_GM.sf2", 1);
+    sf_id = fluid_synth_sfload(synth, "/usr/share/sounds/sf2/FluidR3_GM.sf2", 1);
 
     sequencer = new_fluid_sequencer2(0);
     /* register the synth with the sequencer */
@@ -45,7 +46,7 @@ void fluid_synth_init(){
  
 
     /* Changing Intruments */
-    fluid_synth_program_select(synth, 0, sf_id,0, 20);
+    //fluid_synth_program_select(synth, 0, sf_id,0, 20);
 
 }
 
@@ -84,9 +85,8 @@ void playNoteOfLength(int chan, short key, short length){
 
 }
 
-
+/* Shutdown synth */
 void deleteFluidSynth(){
-
     delete_fluid_audio_driver(audiodriver);
     delete_fluid_sequencer(sequencer);
     delete_fluid_synth(synth);
@@ -94,6 +94,8 @@ void deleteFluidSynth(){
 
 }
 
-
-
+/* Changing Intruments */
+void changeInstrument(int channel, int instrument){
+    fluid_synth_program_select(synth, channel, sf_id,0, instrument);
+}
 
