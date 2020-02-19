@@ -94,6 +94,7 @@ bool chooseMidiPort( RtMidiIn *rtmidi );
 
 int main( int argc, char ** /*argv[]*/ )
 {
+  fluid_synth_init();
   RtMidiIn *midiin = 0;
 
   // Minimal command-line check.
