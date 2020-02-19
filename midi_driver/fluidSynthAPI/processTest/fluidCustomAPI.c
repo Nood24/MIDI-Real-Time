@@ -66,6 +66,7 @@ void noteOff(int chan, short key){
 
 /* Play a note with a length in seconds*/
 void playNoteOfLength(int chan, short key, short length){
+    printf("Playing Note of length ");
     noteOn(chan, key);
     sleep(length);
     noteOff(chan, key);
