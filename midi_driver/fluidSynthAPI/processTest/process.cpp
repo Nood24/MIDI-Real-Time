@@ -29,6 +29,8 @@ bool isKthBitSet(int n, int k)
 void setMessage(std::vector<unsigned char>* newMessage){
  message = newMessage;
  unsigned int nBytes = message->size();
+
+ //b1 channel on/off, b2 note, b3 velocity
  int byte1 =  message->at(0);
  int byte2 = message->at(1);
  int byte3 = message->at(2);
@@ -37,19 +39,19 @@ void setMessage(std::vector<unsigned char>* newMessage){
  bool is_set = isKthBitSet(byte1,5);
 
 
-
 //std::cout << res;
 if( is_set){
+ noteOn(0,byte2);
  printf("true\n");
 }
 else{
+ noteOff(0,byte2);
  printf("false\n");
 }
 
  //printf("Number of bytes %d Printing MIDI Message %d %d %d \n",nBytes, byte1,byte2,byte3);
- fluid_synth_init();
 
- noteOn(0,60);
+
   
  
 }
