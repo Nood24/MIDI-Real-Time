@@ -12,6 +12,15 @@
 #include "../../../rtmidi/RtMidi.h"
 #include "process.h"
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <fluidsynth.h>
+#include <unistd.h>
+#include <iostream>
+#include <cstdlib>
+#include <iostream>
+#include "fluidCustomAPI.h"
+
 
 bool chooseMidiPort( RtMidiOut *rtmidi )
 {
@@ -68,10 +77,10 @@ RtMidiOut *midiout = new RtMidiOut();
 void mycallback( double deltatime, std::vector< unsigned char > *message, void */*userData*/ )
 {
   unsigned int nBytes = message->size();
+  midiout->sendMessage( message );
   setMessage(message);
-  //midiout->sendMessage( message );
   for ( unsigned int i=0; i<nBytes; i++ )
-    std::cout << "Byte " << i << " = " << (int)message->at(i) << ", ";
+    std::cout << "\nByte Sent " << i << " = " << (int)message->at(i) << ", \n";
   /*
   if ( nBytes > 0 )
     std::cout << "stamp = " << deltatime << std::endl;
@@ -108,23 +117,21 @@ int main( int argc, char ** /*argv[]*/ )
 
 
       // Call function to select port.
-
-//      try {
-//          if ( chooseMidiPort( midiout ) == false ) goto cleanup;
-//      }
-//      catch ( RtMidiError &error ) {
-//          error.printMessage();
-//          goto cleanup;
-//      }
+      try {
+          if ( chooseMidiPort( midiout ) == false ) goto cleanup;
+      }
+      catch ( RtMidiError &error ) {
+          error.printMessage();
+          goto cleanup;
+      }
 
     std::cout << "\nReading MIDI input ... press <enter> to quit.\n";
     char input;
     std::cin.get(input);
 
- } catch ( RtMidiError &error ) {
+  } catch ( RtMidiError &error ) {
     error.printMessage();
-  
-}
+  }
 
  cleanup:
 
