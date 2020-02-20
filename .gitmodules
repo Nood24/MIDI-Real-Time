@@ -4,3 +4,9 @@
 [submodule "fluidsynth"]
 	path = fluidsynth
 	url = https://github.com/FluidSynth/fluidsynth
+[submodule "midiparser/midifile"]
+	path = midiparser/midifile
+	url = https://github.com/craigsapp/midifile
+[submodule "midiparser/--name"]
+	path = midiparser/--name
+	url = https://github.com/craigsapp/midifile
