@@ -19,8 +19,18 @@ Twitter: https://twitter.com/OneManCeilidh
 
 Dependancies:
 
+RTMidi Dependancies:
+
+sudo apt-get install libtool
+
+sudo apt-get install automake
+
+sudo apt-get install autoconf
+
+Other:
+
 sudo apt-get install libasound2-dev : Allows RTMIDI to interacvt with ALSA.
 
 sudo apt-get install fluidsynth : Synth MIDI into analogue output.
 
-sudi aot-get install libfluidsynth-dev: Allows use of fluidsynth API.
+sudo apt-get install libfluidsynth-dev: Allows use of fluidsynth API.
