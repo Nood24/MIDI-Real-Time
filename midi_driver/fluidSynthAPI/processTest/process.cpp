@@ -22,7 +22,7 @@ using namespace std;
 
 std::vector<unsigned char>* message;
 
-shared_mutex readWrite;
+mutex readWrite;
 
 int chordNotes[3];
 int chordIdx = 0;
@@ -38,14 +38,14 @@ bool isKthBitSet(int n, int k)
 
 
 void setChordNote(int note){
-    unique_lock lock(readWrite);
+    readWrite.lock();
     chordNotes[chordIdx] = note;
     chordIdx = (chordIdx+1)%3;
 }
 
 int getChordNotes(){
-    shared_lock lock(readWrite);
-    return 1
+    readWrite.lock();
+    return 1;
     //TO DO
 }
 void setMessage(std::vector<unsigned char>* newMessage){
@@ -60,11 +60,15 @@ void setMessage(std::vector<unsigned char>* newMessage){
 
     bool is_set = isKthBitSet(byte1,5);
 
-    bool is_bass = isKthBitSet(byte1,2)
+    bool is_bass = isKthBitSet(byte1,2);
 
 
     //std::cout << res;
     if( is_set){
+	if (is_bass)
+		bassNote = byte2;
+	else
+		setChordNote(byte2);
         noteOn(0,byte2);
         printf("true\n");
     }
@@ -73,7 +77,7 @@ void setMessage(std::vector<unsigned char>* newMessage){
         printf("false\n");
     }
     if (is_bass){
-        printf("Bass ON\n")
+        printf("Bass ON\n");
     }
 
  //printf("Number of bytes %d Printing MIDI Message %d %d %d \n",nBytes, byte1,byte2,byte3);
@@ -87,6 +91,7 @@ void printMessage(){
   cout << "Hello World!\n";
   
 }
+
 struct Instrument {
     vector<int> *timeDeltas;
     vector<int> *channels;
@@ -136,7 +141,7 @@ void *Play(void *instrument){
 }
 
 
-int main(){
+int run(){
     string testfile = "Piano.csv";
     vector<int> timeDeltas, channels, onOff;
     loadCSVToArray(testfile,timeDeltas,channels,onOff);
@@ -154,3 +159,4 @@ int main(){
 
 
 }
+
