@@ -79,8 +79,8 @@ void mycallback( double deltatime, std::vector< unsigned char > *message, void *
   unsigned int nBytes = message->size();
   midiout->sendMessage( message );
   setMessage(message);
-  for ( unsigned int i=0; i<nBytes; i++ )
-    std::cout << "\nByte Sent " << i << " = " << (int)message->at(i) << ", \n";
+ // for ( unsigned int i=0; i<nBytes; i++ )
+   // std::cout << "\nByte Sent " << i << " = " << (int)message->at(i) << ", \n";
   /*
   if ( nBytes > 0 )
     std::cout << "stamp = " << deltatime << std::endl;
@@ -127,6 +127,7 @@ int main( int argc, char ** /*argv[]*/ )
       }
 
     std::cout << "\nReading MIDI input ... press <enter> to quit.\n";
+    run();
     char input;
     std::cin.get(input);
 
