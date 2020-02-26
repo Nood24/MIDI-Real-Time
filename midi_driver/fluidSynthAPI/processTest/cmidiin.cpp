@@ -22,45 +22,6 @@
 #include "fluidCustomAPI.h"
 
 
-bool chooseMidiPort( RtMidiOut *rtmidi )
-{
-    std::cout << "\nWould you like to open a virtual output port? [y/N] ";
-
-    std::string keyHit;
-    std::getline( std::cin, keyHit );
-
-    if ( keyHit == "y" ) {
-        rtmidi->openVirtualPort("RtMidi");
-        return true;
-    }
-
-    std::string portName;
-    unsigned int i = 0, nPorts = rtmidi->getPortCount();
-    if ( nPorts == 0 ) {
-        std::cout << "No output ports available!" << std::endl;
-        return false;
-    }
-
-    if ( nPorts == 1 ) {
-        std::cout << "\nOpening " << rtmidi->getPortName() << std::endl;
-    }
-    else {
-        for ( i=0; i<nPorts; i++ ) {
-            portName = rtmidi->getPortName(i);
-            std::cout << "  Output port #" << i << ": " << portName << '\n';
-        }
-
-        do {
-            std::cout << "\nChoose a port number: ";
-            std::cin >> i;
-        } while ( i >= nPorts );
-    }
-
-    std::cout << "\n";
-    rtmidi->openPort( i );
-
-    return true;
-}
 
 
 void usage( void ) {
@@ -115,16 +76,6 @@ int main( int argc, char ** /*argv[]*/ )
 
     // Don't ignore sysex, timing, or active sensing messages.
     midiin->ignoreTypes( false, false, false );
-
-
-      // Call function to select port.
-      try {
-          if ( chooseMidiPort( midiout ) == false ) goto cleanup;
-      }
-      catch ( RtMidiError &error ) {
-          error.printMessage();
-          goto cleanup;
-      }
 
     std::cout << "\nReading MIDI input ... press <enter> to quit.\n";
     run();
