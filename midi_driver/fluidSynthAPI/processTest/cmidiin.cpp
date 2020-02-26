@@ -29,21 +29,10 @@ void usage( void ) {
   std::cout << "    where port = the device to use (first / default = 0).\n\n";
   exit( 0 );
 }
-RtMidiOut *midiout = new RtMidiOut();
-//check available ports
-
 
 void mycallback( double deltatime, std::vector< unsigned char > *message, void */*userData*/ )
 {
-  unsigned int nBytes = message->size();
-  midiout->sendMessage( message );
   setMessage(message);
- // for ( unsigned int i=0; i<nBytes; i++ )
-   // std::cout << "\nByte Sent " << i << " = " << (int)message->at(i) << ", \n";
-  /*
-  if ( nBytes > 0 )
-    std::cout << "stamp = " << deltatime << std::endl;
-  */
 }
 
 // This function should be embedded in a try/catch block in case of
@@ -84,7 +73,7 @@ int main( int argc, char ** /*argv[]*/ )
     error.printMessage();
   }
 
- cleanup:
+  cleanup:
 
   delete midiin;
 
