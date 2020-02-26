@@ -32,12 +32,16 @@
 using namespace std;
 
 std::vector<unsigned char>* message;
-
 mutex readWrite;
-
 int chordNotes[3] = {60,64,67}; //CHANGE
 int chordIdx = 0;
 int bassNote = 48; //CHANGE
+int byte1;
+int byte2;
+unsigned int nBytes;
+bool is_bass;
+//bool is_set;
+
 
 bool isKthBitSet(int n, int k) 
 { 
@@ -60,11 +64,6 @@ int getChordNotes(){
     return 1;
     //TO DO
 }
-int byte1;
-int byte2;
-unsigned int nBytes;
-bool is_bass;
-//bool is_set;
 
 void setMessage(std::vector<unsigned char>* newMessage){
     message = newMessage;
@@ -78,7 +77,6 @@ void setMessage(std::vector<unsigned char>* newMessage){
     //is_set = isKthBitSet(byte1,5);
 
     is_bass = isKthBitSet(byte1,2);
-
 
     //std::cout << res;
     if (is_bass)
