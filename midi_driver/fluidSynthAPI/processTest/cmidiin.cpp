@@ -1,9 +1,8 @@
 //*****************************************//
-//  cmidiin.cpp
-//  by Gary Scavone, 2003-2004.
-//
-//  Simple program to test MIDI input and
-//  use of a user callback function.
+//  
+//  Midi in program connecting to accordion via RtMidi 
+//  Sends midi messages to process.cpp
+//    
 //
 //*****************************************//
 
@@ -11,7 +10,6 @@
 #include <cstdlib>
 #include "../../../rtmidi/RtMidi.h"
 #include "process.h"
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <fluidsynth.h>
