@@ -27,7 +27,9 @@
 #include <vector>
 #include "CSVParse.h"
 #include <pthread.h>
-#include <unistd.h>
+#include <unistd.h>	
+#include "process.h"
+
 
 using namespace std;
 
@@ -40,10 +42,12 @@ int byte1;
 int byte2;
 unsigned int nBytes;
 bool is_bass;
+int tempo = 650;
+vector<int> timeDeltas, channels, onOff;
 //bool is_set;
 
 
-bool isKthBitSet(int n, int k) 
+bool Process::isKthBitSet(int n, int k) 
 { 
     if ((n >> (k - 1)) & 1) 
         return true;
@@ -52,20 +56,20 @@ bool isKthBitSet(int n, int k)
 } 
 
 
-void setChordNote(int note){
+void Process::setChordNote(int note){
     //readWrite.lock();
     chordNotes[chordIdx] = note;
     chordIdx = (chordIdx+1)%3;
     //readWrite.unlock();
 }
 
-int getChordNotes(){
+int Process::getChordNotes(){
     //readWrite.lock();
     return 1;
     //TO DO
 }
 
-void setMessage(std::vector<unsigned char>* newMessage){
+void Process::setMessage(std::vector<unsigned char>* newMessage){
     message = newMessage;
     nBytes = message->size();
     //b1 channel on/off, b2 note, b3 velocity
@@ -92,14 +96,16 @@ void printMessage(){
   cout << "Hello World!\n";  
 }
 */
+
+/*
 struct Instrument {
     vector<int> timeDeltas;
     vector<int> channels;
     vector<int> onOff;
 };
+*/
 
-
-void loadCSVToArray(string &filename, vector<int> &timeDeltas, vector<int> &channels, vector<int> &onOff){
+void Process::loadCSVToArray(string &filename, vector<int> &timeDeltas, vector<int> &channels, vector<int> &onOff){
     ifstream csvfile;
     csvfile.open(filename);
 
@@ -130,7 +136,7 @@ void sendNote(bool on, int channel, int note){
 	else
 		noteOff(channel,note);
 }
-int tempo = 650;
+
 void Loop(vector<int> &timeDeltas, vector<int> &channels, vector<int> &onOff){
 	int d = 0;
 	int size = timeDeltas.size();
@@ -168,10 +174,9 @@ void *Play(void *instrument){
 }
 */
 
-void run(){
+void Process::run(){
     printf("in run");
     string testfile = "../../Piano.csv";
-    vector<int> timeDeltas, channels, onOff;
     cout<<"About to load arrays";
     loadCSVToArray(testfile,timeDeltas,channels,onOff);
     cout<<"loaded arrays";

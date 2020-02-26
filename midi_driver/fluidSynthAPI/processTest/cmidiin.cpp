@@ -19,8 +19,7 @@
 #include <iostream>
 #include "fluidCustomAPI.h"
 
-
-
+Process process1;
 
 void usage( void ) {
   // Error function in case of incorrect command-line
@@ -32,7 +31,7 @@ void usage( void ) {
 
 void mycallback( double deltatime, std::vector< unsigned char > *message, void */*userData*/ )
 {
-  setMessage(message);
+  process1.setMessage(message);
 }
 
 // This function should be embedded in a try/catch block in case of
@@ -65,7 +64,7 @@ int main( int argc, char ** /*argv[]*/ )
     midiin->ignoreTypes( false, false, false );
 
     std::cout << "\nReading MIDI input ... press <enter> to quit.\n";
-    run();
+    process1.run();
     char input;
     std::cin.get(input);
 
