@@ -1,8 +1,5 @@
 all:
-	gcc -c -g -o fluidCustomAPI.o fluidCustomAPI.c `pkg-config fluidsynth --libs`
-	g++ -c -g -o process.o process.cpp `pkg-config fluidsynth --libs`
-	g++ -c -g -o cmidiin.o cmidiin.cpp  `pkg-config fluidsynth --libs`
-	g++ -Wall -D__LINUX_ALSA__ -o executible fluidCustomAPI.o process.o cmidiin.o `pkg-config fluidsynth --libs` ../../../rtmidi/RtMidi.cpp -lasound -lpthread
+	g++ -c -g -o HardwareController.o HardwareController.cpp
+	g++ -c -g -o HardwareController_Test.o HardwareController_Test.cpp
+	g++ -o executible HardwareController_Test.o HardwareController.o
 	rm *.o
-
-
