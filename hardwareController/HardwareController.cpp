@@ -5,21 +5,60 @@
 //  maintaining system state
 //
 //*****************************************//
+//
+// Button 1 song left
+// Button 2 song right
+// Button 3 start/stop song
+// Button 4 redundency 
+//
+//*****************************************//
+
+
+
+
+
 #include "HardwareController.h"
 #include <iostream>
 using namespace std;
 
 bool songPlaying = false;
 char songs [4][30] = {"The Gay Gordons", "The Dashing White Sergeant", "Canadian Barn Dance","Highland Schottishe" }; 
-
+int songIndex = 0;
 
 
 int getInput(){
     int i;
-    cout << "Please enter an integer value between 1-4 for pedal press: ";
+    cout << "\nPlease enter an integer value between 1-4 for pedal press: ";
     cin >> i;
-    cout << "The value you entered is " << i << "\n";
     return i;
+}
+
+
+void shiftSongLeft(){
+    if (songIndex == 0){
+        songIndex = (sizeof(songs)/sizeof(*songs))-1;
+    }
+    else{
+        songIndex = songIndex - 1;
+    }
+    cout << "\nCurrent Song is " << songs[songIndex];
+    return;
+}
+
+
+void processInput(int input){
+    if(input == 1){
+        shiftSongLeft();
+    }
+    else if(input == 2){
+
+    }
+    else if(input == 3){
+
+    }
+    else{
+    
+    }
 }
 
 
@@ -27,6 +66,7 @@ int getInput(){
 void HardwareController::run(){
     while(true){
     int input = getInput();
+    processInput(input);
     }
 
 }
