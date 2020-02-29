@@ -14,9 +14,6 @@
 //*****************************************//
 
 
-
-
-
 #include "HardwareController.h"
 #include <iostream>
 using namespace std;
@@ -41,7 +38,6 @@ void shiftSongLeft(){
     else{
         songIndex = songIndex - 1;
     }
-    cout << "\nCurrent Song is " << songs[songIndex];
     return;
 }
 
@@ -52,29 +48,52 @@ void shiftSongRight(){
     else{
         songIndex = songIndex + 1;
     }
-    cout << "\nCurrent Song is " << songs[songIndex];
     return;
 }
 
+void startStopSong(){
+    if(songPlaying){
+        songPlaying = false;
+    }
+    else{
+        songPlaying = true;
+    }
+}
+
+void printSystemState(){
+    cout << "\nCurrent Song is " << songs[songIndex];
+    if(songPlaying){
+        cout << "\nA song is currently playing\n---------------\n";
+    }
+    else{
+        cout << "\nNo song is currently playing\n---------------\n";
+    }
+      
+}
 
 void processInput(int input){
-    if(input == 1){
+    if(input == 1 && !songPlaying){
         shiftSongLeft();
     }
-    else if(input == 2){
+    else if(input == 2 && !songPlaying){
         shiftSongRight();
     }
     else if(input == 3){
-
+        startStopSong();
+    }
+    else if(input == 4){
+        cout << "\nButton 4 is placeholder\n";
     }
     else{
-    
+        cout << "\nInvalid Input";
     }
+    printSystemState();
 }
 
 
 
 void HardwareController::run(){
+    printSystemState();
     while(true){
     int input = getInput();
     processInput(input);
