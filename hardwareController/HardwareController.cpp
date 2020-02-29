@@ -18,10 +18,13 @@
 #include <iostream>
 using namespace std;
 
+//-------------------------------------------------
+
 bool songPlaying = false;
 char songs [4][30] = {"The Gay Gordons", "The Dashing White Sergeant", "Canadian Barn Dance","Highland Schottishe" }; 
 int songIndex = 0;
 
+//--------------------------------------------------
 
 int getInput(){
     int i;
@@ -30,6 +33,7 @@ int getInput(){
     return i;
 }
 
+//--------------------------------------------------
 
 void shiftSongLeft(){
     if (songIndex == 0){
@@ -41,6 +45,8 @@ void shiftSongLeft(){
     return;
 }
 
+//--------------------------------------------------
+
 void shiftSongRight(){
     if(songIndex == (sizeof(songs)/sizeof(*songs))-1){
         songIndex = 0;
@@ -51,6 +57,8 @@ void shiftSongRight(){
     return;
 }
 
+//--------------------------------------------------
+
 void startStopSong(){
     if(songPlaying){
         songPlaying = false;
@@ -59,6 +67,8 @@ void startStopSong(){
         songPlaying = true;
     }
 }
+
+//--------------------------------------------------
 
 void printSystemState(){
     cout << "\nCurrent Song is " << songs[songIndex];
@@ -70,6 +80,8 @@ void printSystemState(){
     }
       
 }
+
+//--------------------------------------------------
 
 void processInput(int input){
     if(input == 1 && !songPlaying){
@@ -90,7 +102,7 @@ void processInput(int input){
     printSystemState();
 }
 
-
+//--------------------------------------------------
 
 void HardwareController::run(){
     printSystemState();
