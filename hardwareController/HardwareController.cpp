@@ -45,13 +45,24 @@ void shiftSongLeft(){
     return;
 }
 
+void shiftSongRight(){
+    if(songIndex == (sizeof(songs)/sizeof(*songs))-1){
+        songIndex = 0;
+    }
+    else{
+        songIndex = songIndex + 1;
+    }
+    cout << "\nCurrent Song is " << songs[songIndex];
+    return;
+}
+
 
 void processInput(int input){
     if(input == 1){
         shiftSongLeft();
     }
     else if(input == 2){
-
+        shiftSongRight();
     }
     else if(input == 3){
 
