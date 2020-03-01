@@ -6,15 +6,11 @@
 //
 //*****************************************//
 #include <string>
-
-class HardwareController{
-
-  public:
     void run();
     bool IsSongPlaying();
     char * getSong();
 
-};
+
  
 
 

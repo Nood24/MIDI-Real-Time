@@ -1,18 +1,18 @@
 #include "HardwareController.h"
 #include <iostream>
 #include <unistd.h>
+#include <pthread.h>
+#include <thread>
+
 using namespace std;
-
-
-HardwareController controller1;
 
 int main(){
 
     //get song example
-    cout << controller1.getSong();
+    cout << getSong();
 
     //get if song playing example
-    if(!controller1.IsSongPlaying()){
+    if(!IsSongPlaying()){
     cout<< "\nSong not playing\n";
     }
     else{
@@ -20,5 +20,9 @@ int main(){
     }
     
     //run hardware controller example
-    controller1.run();
+    //run();
+    std::thread t1(run);
+
+    //Pause Till Complete
+    t1.join();
 }

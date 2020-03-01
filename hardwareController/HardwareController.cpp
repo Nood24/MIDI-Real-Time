@@ -77,14 +77,12 @@ void shiftSongRight(){
 //--------------------------------------------------
 
 void startStopSong(){
-    mutex_songPlaying.lock();
     if(songPlaying){
         songPlaying = false;
     }
     else{
         songPlaying = true;
     }
-    mutex_songPlaying.unlock();
 }
 
 //--------------------------------------------------
@@ -113,8 +111,14 @@ void processInput(int input){
     if(input == 1 && !songPlaying){
         shiftSongLeft();
     }
+    else if(input == 1 && songPlaying){
+        cout << "\nSong must be off to switch song!\n";
+    }
     else if(input == 2 && !songPlaying){
         shiftSongRight();
+    }
+    else if(input == 2 && songPlaying){
+        cout << "\nSong must be off to switch song!\n";
     }
     else if(input == 3){
         startStopSong();
@@ -123,7 +127,7 @@ void processInput(int input){
         cout << "\nButton 4 is placeholder\n";
     }
     else{
-        cout << "\nInvalid Input";
+        cout << "\nInvalid Input\n";
     }
     mutex_songPlaying.unlock();
     printSystemState();
@@ -132,18 +136,18 @@ void processInput(int input){
 
 //--------------------------------------------------
 
-char * HardwareController::getSong(){
+char * getSong(){
     return songs[songIndex];
 }
 
 //--------------------------------------------------
 
-bool HardwareController::IsSongPlaying(){
+bool IsSongPlaying(){
     return songPlaying;
 }
 
 //--------------------------------------------------
-void HardwareController::run(){
+void run(){
     printSystemState();
     while(true){
     int input = getInput();
