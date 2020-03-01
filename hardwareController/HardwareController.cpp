@@ -16,6 +16,7 @@
 
 #include "HardwareController.h"
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 //-------------------------------------------------
@@ -102,8 +103,20 @@ void processInput(int input){
     printSystemState();
 }
 
+
 //--------------------------------------------------
 
+char * HardwareController::getSong(){
+    return songs[songIndex];
+}
+
+//--------------------------------------------------
+
+bool HardwareController::IsSongPlaying(){
+    return songPlaying;
+}
+
+//--------------------------------------------------
 void HardwareController::run(){
     printSystemState();
     while(true){
