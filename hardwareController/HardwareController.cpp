@@ -17,7 +17,15 @@
 #include "HardwareController.h"
 #include <iostream>
 #include <cstring>
+#include <mutex>
+#include <thread>
 using namespace std;
+
+//-------------------------------------------------
+
+std::mutex mutex_songPlaying;
+std::mutex mutex_songs;
+std::mutex mutex_songIndex;
 
 //-------------------------------------------------
 
@@ -37,41 +45,54 @@ int getInput(){
 //--------------------------------------------------
 
 void shiftSongLeft(){
+    mutex_songs.lock();
+    mutex_songIndex.lock();
     if (songIndex == 0){
         songIndex = (sizeof(songs)/sizeof(*songs))-1;
     }
     else{
         songIndex = songIndex - 1;
     }
+    mutex_songs.unlock();
+    mutex_songIndex.unlock();
     return;
 }
 
 //--------------------------------------------------
 
 void shiftSongRight(){
+    mutex_songs.lock();
+    mutex_songIndex.lock();
     if(songIndex == (sizeof(songs)/sizeof(*songs))-1){
         songIndex = 0;
     }
     else{
         songIndex = songIndex + 1;
     }
+    mutex_songs.unlock();
+    mutex_songIndex.unlock();
     return;
 }
 
 //--------------------------------------------------
 
 void startStopSong(){
+    mutex_songPlaying.lock();
     if(songPlaying){
         songPlaying = false;
     }
     else{
         songPlaying = true;
     }
+    mutex_songPlaying.unlock();
 }
 
 //--------------------------------------------------
 
 void printSystemState(){
+    mutex_songs.lock();
+    mutex_songIndex.lock();
+    mutex_songPlaying.lock();
     cout << "\nCurrent Song is " << songs[songIndex];
     if(songPlaying){
         cout << "\nA song is currently playing\n---------------\n";
@@ -79,12 +100,16 @@ void printSystemState(){
     else{
         cout << "\nNo song is currently playing\n---------------\n";
     }
+    mutex_songs.unlock();
+    mutex_songIndex.unlock();
+    mutex_songPlaying.unlock();
       
 }
 
 //--------------------------------------------------
 
 void processInput(int input){
+    mutex_songPlaying.lock();
     if(input == 1 && !songPlaying){
         shiftSongLeft();
     }
@@ -100,6 +125,7 @@ void processInput(int input){
     else{
         cout << "\nInvalid Input";
     }
+    mutex_songPlaying.unlock();
     printSystemState();
 }
 
