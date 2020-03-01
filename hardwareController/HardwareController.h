@@ -5,18 +5,14 @@
 //  maintaining system state
 //
 //*****************************************//
-
+#include <string>
 
 class HardwareController{
 
-  private:
-
-bool songPlaying;
-char songs [4][30];
-
   public:
     void run();
-
+    bool IsSongPlaying();
+    char * getSong();
 
 };
  
