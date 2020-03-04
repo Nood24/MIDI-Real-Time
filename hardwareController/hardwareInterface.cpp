@@ -68,7 +68,7 @@ while(1)
 	//Loop to Keep LED1 on until another button is pressed
 {	state = 1;	
 	newState = true;
-	do{	printf("Button1 pressed\n");
+	do{	//printf("Button1 pressed\n");
 		//Turn on LED1
 		digitalWrite(light1, HIGH);
 		//Turn off other LEDs
@@ -82,7 +82,7 @@ while(1)
 {	
 	state = 2;
 	newState = true;
-	do{	printf("Button2 pressed\n");
+	do{	//printf("Button2 pressed\n");
 		//Turn on LED2
 		digitalWrite(light2, HIGH);
 		//Turn off other LEDs
@@ -98,7 +98,7 @@ while(1)
 {	
 	state = 3;
 	newState = true;
-	do{	printf("Button3 pressed\n");
+	do{	//printf("Button3 pressed\n");
 		//Turn on LED3
 		digitalWrite(light3, HIGH);
 		//Turn off other LEDs
@@ -114,7 +114,7 @@ while(1)
 {	
     state = 4;
 	newState = true;
-	do{	printf("Button4 pressed\n");
+	do{	//printf("Button4 pressed\n");
 		//Turn on LED4
 		digitalWrite(light4, HIGH);
 		//Turn off other LEDs
