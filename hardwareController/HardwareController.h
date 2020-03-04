@@ -1,8 +1,7 @@
 //*****************************************//
 //  
 //  HardwareController.h
-//  Class Interfacing with hardware and
-//  maintaining system state
+//  Class controlling system state
 //
 //*****************************************//
 #include <string>

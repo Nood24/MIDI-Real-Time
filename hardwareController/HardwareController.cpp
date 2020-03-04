@@ -19,6 +19,8 @@
 #include <cstring>
 #include <mutex>
 #include <thread>
+#include "hardwareInterface.h"
+#include <pthread.h>
 using namespace std;
 
 //-------------------------------------------------
@@ -37,8 +39,7 @@ int songIndex = 0;
 
 int getInput(){
     int i;
-    cout << "\nPlease enter an integer value between 1-4 for pedal press: ";
-    cin >> i;
+    i = getState;
     return i;
 }
 
@@ -108,6 +109,10 @@ void printSystemState(){
 
 void processInput(int input){
     mutex_songPlaying.lock();
+	if (input == 0){
+		//No change in state
+		continue;
+	}
     if(input == 1 && !songPlaying){
         shiftSongLeft();
     }
@@ -148,6 +153,7 @@ bool IsSongPlaying(){
 
 //--------------------------------------------------
 void run(){
+	std::thread t1(runrunHardwareInterface);
     printSystemState();
     while(true){
     int input = getInput();
