@@ -61,6 +61,14 @@ pinMode(light3, OUTPUT);   //Set LED3 as an output
 pinMode(button4, INPUT);   //Set button4 as an input
 pinMode(light4, OUTPUT);   //Set LED4 as an output
 
+
+//set initial state to 1 
+digitalWrite(light1, HIGH);
+//Turn off other LEDs
+digitalWrite(light2, LOW);
+digitalWrite(light3, LOW);
+digitalWrite(light4, LOW);
+digitalRead(button1) == LOW;
 while(1)
 {	
 	//When button1 is pressed digitalRead returns LOW
@@ -75,6 +83,7 @@ while(1)
 		digitalWrite(light2, LOW);
 		digitalWrite(light3, LOW);
 		digitalWrite(light4, LOW);
+	       	cout << state << "\n";
 	}while(digitalRead(button2) == HIGH && digitalRead(button3) == HIGH && digitalRead(button4) == HIGH);
 }
 //When button2 is pressed digitalRead returns LOW
@@ -89,7 +98,7 @@ while(1)
 		digitalWrite(light1, LOW);
 		digitalWrite(light3, LOW);
 		digitalWrite(light4, LOW);
-		
+		cout << state << "\n";
 	}while(digitalRead(button1) == HIGH && digitalRead(button3) == HIGH && digitalRead(button4) == HIGH);
 }
 
@@ -105,7 +114,8 @@ while(1)
 		digitalWrite(light1, LOW);
 		digitalWrite(light2, LOW);
 		digitalWrite(light4, LOW);
-		
+	        cout << state << "\n";
+	
 	}while(digitalRead(button1) == HIGH && digitalRead(button2) == HIGH && digitalRead(button4) == HIGH);
 }
 
@@ -121,10 +131,9 @@ while(1)
 		digitalWrite(light1, LOW);
 		digitalWrite(light2, LOW);
 		digitalWrite(light3, LOW);
-
+                cout << state << "\n";
 	}while(digitalRead(button1) == HIGH && digitalRead(button2) == HIGH && digitalRead(button3) == HIGH);
 }
-
-}
+    }
 return 0; 
 }
