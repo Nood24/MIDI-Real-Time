@@ -39,7 +39,7 @@ int songIndex = 0;
 
 int getInput(){
     int i;
-    i = getState;
+    i = getState();
     return i;
 }
 
@@ -111,7 +111,6 @@ void processInput(int input){
     mutex_songPlaying.lock();
 	if (input == 0){
 		//No change in state
-		continue;
 	}
     if(input == 1 && !songPlaying){
         shiftSongLeft();
@@ -153,7 +152,7 @@ bool IsSongPlaying(){
 
 //--------------------------------------------------
 void run(){
-	std::thread t1(runrunHardwareInterface);
+    std::thread t1(runHardwareInterface);
     printSystemState();
     while(true){
     int input = getInput();
