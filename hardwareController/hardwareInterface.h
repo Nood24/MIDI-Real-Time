@@ -6,8 +6,8 @@
 //*****************************************//
 #include <string>
 	
-	int getState()
-	int runHardwareInterface()
+	int getState();
+	int runHardwareInterface();
 
  
 
