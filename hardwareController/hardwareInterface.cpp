@@ -48,7 +48,7 @@ const int button4 = 6;
 const int light4 = 13; 
 
 
-wiringPiSetup();      //Setup the Pi Library
+wiringPiSetup();           //Setup the Pi Library
 pinMode(button1, INPUT);   //Set button1 as an input
 pinMode(light1, OUTPUT);   //Set LED1 as an output
 

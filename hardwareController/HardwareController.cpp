@@ -109,10 +109,11 @@ void printSystemState(){
 
 void processInput(int input){
     mutex_songPlaying.lock();
-	if (input == 0){
+    if (input == 0){
 		//No change in state
+		return;
 	}
-    if(input == 1 && !songPlaying){
+   else if(input == 1 && !songPlaying){
         shiftSongLeft();
     }
     else if(input == 1 && songPlaying){
@@ -131,7 +132,7 @@ void processInput(int input){
         cout << "\nButton 4 is placeholder\n";
     }
     else{
-        cout << "\nInvalid Input\n";
+        cout << "\nInvalid Input\n" << input;
     }
     mutex_songPlaying.unlock();
     printSystemState();
