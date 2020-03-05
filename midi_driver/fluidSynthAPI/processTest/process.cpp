@@ -55,6 +55,9 @@ int getChordNotes(){
     //TO DO
 }
 
+bool equalList(int *list1, int *list2){
+	return ((list1[0] == list2[0]) && (list1[1] == list2[1]) && (list1[2] == list2[2]));
+}
 int byte1;
 int byte2;
 unsigned int nBytes;
@@ -100,7 +103,6 @@ void sendNote(bool on, int channel, int note){
 		noteOn(channel,note);
 	else
 		noteOff(channel,note);
-	cout<<note<<"\n";
 }
 
 void updateNote(int channel){
@@ -161,8 +163,10 @@ void setMessage(std::vector<unsigned char>* newMessage){
     else{
 	setChordNote(byte2);
     }
-    if (previousBass!=bassNote || previousChord!=chordNotes)
+    if (previousBass!=bassNote || !equalList(previousChord,chordNotes)){
     	updateNote(0);
+	cout<<"It's worked\n";
+    }
  }
 
 /*
