@@ -16,52 +16,41 @@
 
 #include "HardwareController.h"
 #include <iostream>
+using namespace std;
 #include <cstring>
 #include <mutex>
 #include <thread>
-#include "hardwareInterface.h"
-#include <pthread.h>
-using namespace std;
+#include "../mainwindow.h"
 
-//-------------------------------------------------
-
-std::mutex mutex_songPlaying;
-std::mutex mutex_songs;
-std::mutex mutex_songIndex;
-
-//-------------------------------------------------
-
-bool songPlaying = false;
-char songs [4][30] = {"The Gay Gordons", "The Dashing White Sergeant", "Canadian Barn Dance","Highland Schottishe" }; 
-int songIndex = 0;
 
 //--------------------------------------------------
 
-int getInput(){
+int HardwareController::getInput(){
     int i;
-    i = getState();
+    cout << "\nPlease enter an integer value between 1-4 for pedal press: ";
+    cin >> i;
     return i;
 }
 
 //--------------------------------------------------
 
-void shiftSongLeft(){
-    mutex_songs.lock();
-    mutex_songIndex.lock();
-    if (songIndex == 0){
-        songIndex = (sizeof(songs)/sizeof(*songs))-1;
+void HardwareController::shiftSongLeft(){
+    this->mutex_songs.lock();
+    this->mutex_songIndex.lock();
+    if (this->songIndex == 0){
+        this->songIndex = (sizeof(this->songs)/sizeof(*(this->songs)))-1;
     }
     else{
-        songIndex = songIndex - 1;
+        this->songIndex = this->songIndex - 1;
     }
-    mutex_songs.unlock();
-    mutex_songIndex.unlock();
+    this->mutex_songs.unlock();
+    this->mutex_songIndex.unlock();
     return;
 }
 
 //--------------------------------------------------
 
-void shiftSongRight(){
+void HardwareController::shiftSongRight(){
     mutex_songs.lock();
     mutex_songIndex.lock();
     if(songIndex == (sizeof(songs)/sizeof(*songs))-1){
@@ -77,7 +66,7 @@ void shiftSongRight(){
 
 //--------------------------------------------------
 
-void startStopSong(){
+void HardwareController::startStopSong(){
     if(songPlaying){
         songPlaying = false;
     }
@@ -88,7 +77,7 @@ void startStopSong(){
 
 //--------------------------------------------------
 
-void printSystemState(){
+void HardwareController::printSystemState(){
     mutex_songs.lock();
     mutex_songIndex.lock();
     mutex_songPlaying.lock();
@@ -107,13 +96,9 @@ void printSystemState(){
 
 //--------------------------------------------------
 
-void processInput(int input){
+void HardwareController::processInput(int input){
     mutex_songPlaying.lock();
-    if (input == 0){
-		//No change in state
-		return;
-	}
-   else if(input == 1 && !songPlaying){
+    if(input == 1 && !songPlaying){
         shiftSongLeft();
     }
     else if(input == 1 && songPlaying){
@@ -132,35 +117,76 @@ void processInput(int input){
         cout << "\nButton 4 is placeholder\n";
     }
     else{
-        cout << "\nInvalid Input\n" << input;
+        cout << "\nInvalid Input\n";
     }
     mutex_songPlaying.unlock();
     printSystemState();
 }
 
-
 //--------------------------------------------------
 
-char * getSong(){
+char * HardwareController:: getSong(){
     return songs[songIndex];
+}
+//--------------------------------------------------
+
+char * HardwareController::getLeftSong(){
+    mutex_songs.lock();
+    mutex_songIndex.lock();
+    int temp = this->songIndex;
+    if (temp == 0){
+        temp = (sizeof(this->songs)/sizeof(*(this->songs)))-1;
+    }
+    else{
+        temp = this->songIndex - 1;
+    }
+    mutex_songs.unlock();
+    mutex_songIndex.unlock();
+    return songs[temp];
+}
+//--------------------------------------------------
+
+char * HardwareController:: getRightSong(){
+    mutex_songs.lock();
+    mutex_songIndex.lock();
+    int temp = this->songIndex;
+    if(temp == (sizeof(songs)/sizeof(*songs))-1){
+        temp = 0;
+    }
+    else{
+        temp = songIndex + 1;
+    }
+    mutex_songs.unlock();
+    mutex_songIndex.unlock();
+    return songs[temp];
 }
 
 //--------------------------------------------------
 
-bool IsSongPlaying(){
+bool HardwareController::IsSongPlaying(){
     return songPlaying;
 }
 
 //--------------------------------------------------
+void HardwareController::runThread(MainWindow& window, HardwareController& controller){
+     cout << "hello";
+     std::thread t1(&HardwareController::run, &controller, std::ref(window));
+     t1.detach();
+}
 
-/*
-void run(){
-    std::thread t1(runHardwareInterface);
+//--------------------------------------------------
+void HardwareController::run(MainWindow& window){
+    songPlaying = false;
+    this->songIndex = 0;
     printSystemState();
+    int input; 
+    window.setSongs(getLeftSong(),getSong(),getRightSong());
+    window.setPlayButton(songPlaying);
     while(true){
-    int input = getInput();
+    input = getInput();
     processInput(input);
+    window.setSongs(getLeftSong(),getSong(),getRightSong());
+    window.setPlayButton(songPlaying);
     }
 
 }
-*/
