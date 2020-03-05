@@ -1,13 +1,3 @@
-//*****************************************//
-//  
-//  
-//  process.cpp
-//    
-//
-//*****************************************//
-
-
-
 #include <iostream>
 #include <cstdlib>
 #include <iostream>
@@ -27,27 +17,19 @@
 #include <vector>
 #include "CSVParse.h"
 #include <pthread.h>
-#include <unistd.h>	
-#include "process.h"
-
+#include <unistd.h>
 
 using namespace std;
 
 std::vector<unsigned char>* message;
+
 mutex readWrite;
+
 int chordNotes[3] = {60,64,67}; //CHANGE
 int chordIdx = 0;
 int bassNote = 48; //CHANGE
-int byte1;
-int byte2;
-unsigned int nBytes;
-bool is_bass;
-int tempo = 650;
-vector<int> timeDeltas, channels, onOff;
-//bool is_set;
 
-
-bool Process::isKthBitSet(int n, int k) 
+bool isKthBitSet(int n, int k) 
 { 
     if ((n >> (k - 1)) & 1) 
         return true;
@@ -56,20 +38,25 @@ bool Process::isKthBitSet(int n, int k)
 } 
 
 
-void Process::setChordNote(int note){
+void setChordNote(int note){
     //readWrite.lock();
     chordNotes[chordIdx] = note;
     chordIdx = (chordIdx+1)%3;
     //readWrite.unlock();
 }
 
-int Process::getChordNotes(){
+int getChordNotes(){
     //readWrite.lock();
     return 1;
     //TO DO
 }
+int byte1;
+int byte2;
+unsigned int nBytes;
+bool is_bass;
+//bool is_set;
 
-void Process::setMessage(std::vector<unsigned char>* newMessage){
+void setMessage(std::vector<unsigned char>* newMessage){
     message = newMessage;
     nBytes = message->size();
     //b1 channel on/off, b2 note, b3 velocity
@@ -81,6 +68,7 @@ void Process::setMessage(std::vector<unsigned char>* newMessage){
     //is_set = isKthBitSet(byte1,5);
 
     is_bass = isKthBitSet(byte1,2);
+
 
     //std::cout << res;
     if (is_bass)
@@ -96,16 +84,14 @@ void printMessage(){
   cout << "Hello World!\n";  
 }
 */
-
-/*
 struct Instrument {
     vector<int> timeDeltas;
     vector<int> channels;
     vector<int> onOff;
 };
-*/
 
-void Process::loadCSVToArray(string &filename, vector<int> &timeDeltas, vector<int> &channels, vector<int> &onOff){
+
+void loadCSVToArray(string &filename, vector<int> &timeDeltas, vector<int> &channels, vector<int> &onOff){
     ifstream csvfile;
     csvfile.open(filename);
 
@@ -136,7 +122,7 @@ void sendNote(bool on, int channel, int note){
 	else
 		noteOff(channel,note);
 }
-
+int tempo = 650;
 void Loop(vector<int> &timeDeltas, vector<int> &channels, vector<int> &onOff){
 	int d = 0;
 	int size = timeDeltas.size();
@@ -174,9 +160,10 @@ void *Play(void *instrument){
 }
 */
 
-void Process::run(){
+void run(){
     printf("in run");
     string testfile = "../../Piano.csv";
+    vector<int> timeDeltas, channels, onOff;
     cout<<"About to load arrays";
     loadCSVToArray(testfile,timeDeltas,channels,onOff);
     cout<<"loaded arrays";
