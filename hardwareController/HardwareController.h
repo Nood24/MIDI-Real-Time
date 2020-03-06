@@ -10,6 +10,7 @@
     char * getSong();
 
 
- 
+    void processInput(int state); 
+    void printSystemState();
 
 

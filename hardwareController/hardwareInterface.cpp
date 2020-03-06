@@ -1,5 +1,6 @@
 #include<iostream>  //Include all needed libraries
 #include<wiringPi.h>   //Add the wiringPi library to control GPIO pins on C++
+#include"HardwareController.h"
 
 using namespace std;
 int state;
@@ -20,35 +21,24 @@ int runHardwareInterface()
 {
 
 //init state
-state = 1;
+state = 0;
 
-	//Declare the GPIO pins for each system component
+//Declare the GPIO pins for each system component
 
 // Switch1: Physical pin 12, wiringPi 1, BCM GPIO18.
-
 const int button1 = 1;
-
 //LED1: Physical pin 11, wiringPi 0, BCM GPIO17.
 const int light1 = 0; 
-
 // Switch2: Physical pin 16, wiringPi 4, BCM GPIO23.
-
 const int button2 = 4;
-
 //LED2: Physical pin 15, wiringPi 3, BCM GPIO22.
 const int light2 = 3; 
-
 // Switch3: Physical pin 18, wiringPi 5, BCM GPIO24.
-
 const int button3 = 5;
-
 //LED3: Physical pin 19, wiringPi 12, BCM GPIO10.
 const int light3 = 12; 
-
 // Switch4: Physical pin 22, wiringPi 6, BCM GPIO25.
-
 const int button4 = 6;
-
 //LED4: Physical pin 21, wiringPi 13, BCM GPIO9.
 const int light4 = 13; 
 
@@ -67,8 +57,8 @@ pinMode(button4, INPUT);   //Set button4 as an input
 pinMode(light4, OUTPUT);   //Set LED4 as an output
 
 
-//set initial state to 1 
-digitalWrite(light1, HIGH);
+//set initial state to 0 
+digitalWrite(light1, LOW);
 //Turn off other LEDs
 digitalWrite(light2, LOW);
 digitalWrite(light3, LOW);
@@ -81,6 +71,7 @@ while(1)
 	//Loop to Keep LED1 on until another button is pressed
 {	state = 1;	
 	newState = true;
+	processInput(state);
 	cout << state << "\n";
         do{	//printf("Button1 pressed\n");
 		digitalWrite(light1, HIGH);
@@ -94,7 +85,8 @@ while(1)
 	else if (digitalRead(button2) == LOW)
 {	
 	state = 2;
-	newState = true;	
+	newState = true;
+        processInput(state);	
 	cout << state << "\n";
 	do{	
 		digitalWrite(light2, HIGH);
@@ -111,6 +103,7 @@ while(1)
 {	
 	state = 3;
 	newState = true;
+	processInput(state);
 	cout << state << "\n";
 	do{
 		digitalWrite(light3, HIGH);
@@ -128,6 +121,7 @@ while(1)
 {	
         state = 4;
 	newState = true;
+	processInput(state);
 	cout << state << "\n";
 	do{	
 		digitalWrite(light4, HIGH);
