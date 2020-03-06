@@ -88,6 +88,7 @@ while(1)
 		digitalWrite(light3, LOW);
 		digitalWrite(light4, LOW);
 	}while(digitalRead(button1)== LOW);
+	digitalWrite(light1,LOW);
 }
 //When button2 is pressed digitalRead returns LOW
 	else if (digitalRead(button2) == LOW)
@@ -102,6 +103,7 @@ while(1)
 		digitalWrite(light4, LOW);
 	
 	}while(digitalRead(button2) == LOW);
+	digitalWrite(light2,LOW);
 }
 
 //When button3 is pressed digitalRead returns LOW
@@ -118,6 +120,7 @@ while(1)
 	       
 	
 	}while(digitalRead(button3) == LOW);
+	digitalWrite(light3,LOW);
 }
 
 //When button4 is pressed digitalRead returns LOW
@@ -132,6 +135,7 @@ while(1)
 		digitalWrite(light2, LOW);
 		digitalWrite(light3, LOW);
 	}while(digitalRead(button4) == LOW);
+	digitalWrite(light4,LOW);
 }
     }
 return 0; 
