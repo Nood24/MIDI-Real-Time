@@ -2,7 +2,7 @@
 #include<wiringPi.h>   //Add the wiringPi library to control GPIO pins on C++
 
 using namespace std;
-int state = 1;
+int state;
 bool newState = false;
 
 int getState(){
@@ -17,7 +17,12 @@ int getState(){
 
 
 int runHardwareInterface()
-{	//Declare the GPIO pins for each system component
+{
+
+//init state
+state = 1;
+
+	//Declare the GPIO pins for each system component
 
 // Switch1: Physical pin 12, wiringPi 1, BCM GPIO18.
 
@@ -76,30 +81,27 @@ while(1)
 	//Loop to Keep LED1 on until another button is pressed
 {	state = 1;	
 	newState = true;
-	do{	//printf("Button1 pressed\n");
-		//Turn on LED1
+	cout << state << "\n";
+        do{	//printf("Button1 pressed\n");
 		digitalWrite(light1, HIGH);
-		//Turn off other LEDs
 		digitalWrite(light2, LOW);
 		digitalWrite(light3, LOW);
 		digitalWrite(light4, LOW);
-	       	cout << state << "\n";
-	}while(digitalRead(button2) == HIGH && digitalRead(button3) == HIGH && digitalRead(button4) == HIGH);
+	}while(digitalRead(button1)== LOW);
 }
 //When button2 is pressed digitalRead returns LOW
 	else if (digitalRead(button2) == LOW)
 {	
 	state = 2;
-	newState = true;
-	do{	//printf("Button2 pressed\n");
-		//Turn on LED2
+	newState = true;	
+	cout << state << "\n";
+	do{	
 		digitalWrite(light2, HIGH);
-		//Turn off other LEDs
 		digitalWrite(light1, LOW);
 		digitalWrite(light3, LOW);
 		digitalWrite(light4, LOW);
-		cout << state << "\n";
-	}while(digitalRead(button1) == HIGH && digitalRead(button3) == HIGH && digitalRead(button4) == HIGH);
+	
+	}while(digitalRead(button2) == LOW);
 }
 
 //When button3 is pressed digitalRead returns LOW
@@ -107,32 +109,29 @@ while(1)
 {	
 	state = 3;
 	newState = true;
-	do{	//printf("Button3 pressed\n");
-		//Turn on LED3
+	cout << state << "\n";
+	do{
 		digitalWrite(light3, HIGH);
-		//Turn off other LEDs
 		digitalWrite(light1, LOW);
 		digitalWrite(light2, LOW);
 		digitalWrite(light4, LOW);
-	        cout << state << "\n";
+	       
 	
-	}while(digitalRead(button1) == HIGH && digitalRead(button2) == HIGH && digitalRead(button4) == HIGH);
+	}while(digitalRead(button3) == LOW);
 }
 
 //When button4 is pressed digitalRead returns LOW
 	else if (digitalRead(button4) == LOW)
 {	
-    state = 4;
+        state = 4;
 	newState = true;
-	do{	//printf("Button4 pressed\n");
-		//Turn on LED4
+	cout << state << "\n";
+	do{	
 		digitalWrite(light4, HIGH);
-		//Turn off other LEDs
 		digitalWrite(light1, LOW);
 		digitalWrite(light2, LOW);
 		digitalWrite(light3, LOW);
-                cout << state << "\n";
-	}while(digitalRead(button1) == HIGH && digitalRead(button2) == HIGH && digitalRead(button3) == HIGH);
+	}while(digitalRead(button4) == LOW);
 }
     }
 return 0; 
