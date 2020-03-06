@@ -1,13 +1,3 @@
-//*****************************************//
-//  
-//  
-//  process.cpp
-//    
-//
-//*****************************************//
-
-
-
 #include <iostream>
 #include <cstdlib>
 #include <iostream>
@@ -27,85 +17,60 @@
 #include <vector>
 #include "CSVParse.h"
 #include <pthread.h>
-#include <unistd.h>	
-#include "process.h"
-
+#include <unistd.h>
 
 using namespace std;
 
 std::vector<unsigned char>* message;
+
 mutex readWrite;
+bool bassOn=0;
+bool chordOn=0;
+int previousBass;
+int previousChord[3] = {60,64,67};
 int chordNotes[3] = {60,64,67}; //CHANGE
 int chordIdx = 0;
 int bassNote = 48; //CHANGE
-int byte1;
-int byte2;
-unsigned int nBytes;
-bool is_bass;
-int tempo = 650;
-vector<int> timeDeltas, channels, onOff;
-//bool is_set;
 
-
-bool Process::isKthBitSet(int n, int k) 
+bool isKthBitSet(int n, int k) 
 { 
     if ((n >> (k - 1)) & 1) 
         return true;
     else
         return false; 
-} 
+}
 
 
-void Process::setChordNote(int note){
+void setChordNote(int note){
     //readWrite.lock();
+    previousChord[chordIdx] = chordNotes[chordIdx];
     chordNotes[chordIdx] = note;
     chordIdx = (chordIdx+1)%3;
     //readWrite.unlock();
 }
 
-int Process::getChordNotes(){
+int getChordNotes(){
     //readWrite.lock();
     return 1;
     //TO DO
 }
 
-void Process::setMessage(std::vector<unsigned char>* newMessage){
-    message = newMessage;
-    nBytes = message->size();
-    //b1 channel on/off, b2 note, b3 velocity
-    byte1 =  message->at(0);
-    byte2 = message->at(1);
-    //int byte3 = message->at(2);
-    //char result = byte1 && 00010000;
+int byte1;
+int byte2;
+unsigned int nBytes;
+bool is_bass;
+//bool is_set;
 
-    //is_set = isKthBitSet(byte1,5);
 
-    is_bass = isKthBitSet(byte1,2);
-
-    //std::cout << res;
-    if (is_bass)
-	bassNote = byte2;
-    else{
-	setChordNote(byte2);
-    }
- }
-
- //printf("Number of bytes %d Printing MIDI Message %d %d %d \n",nBytes, byte1,byte2,byte3)
-/*
-void printMessage(){
-  cout << "Hello World!\n";  
-}
-*/
-
-/*
+ 
 struct Instrument {
     vector<int> timeDeltas;
     vector<int> channels;
     vector<int> onOff;
 };
-*/
 
-void Process::loadCSVToArray(string &filename, vector<int> &timeDeltas, vector<int> &channels, vector<int> &onOff){
+
+void loadCSVToArray(string &filename, vector<int> &timeDeltas, vector<int> &channels, vector<int> &onOff){
     ifstream csvfile;
     csvfile.open(filename);
 
@@ -135,25 +100,70 @@ void sendNote(bool on, int channel, int note){
 		noteOn(channel,note);
 	else
 		noteOff(channel,note);
+	cout<<note<<"\n";
 }
 
+void updateNote(int channel){
+   if (bassOn){
+	sendNote(0,channel,previousBass);
+	sendNote(1,channel,bassNote);
+   }
+   if (chordOn){
+	sendNote(0,channel,previousChord[0]);
+	sendNote(0,channel,previousChord[1]);
+	sendNote(0,channel,previousChord[2]);
+	sendNote(1,channel,chordNotes[0]);
+	sendNote(1,channel,chordNotes[1]);
+	sendNote(1,channel,chordNotes[2]);
+   }
+}
+int tempo = 650;
 void Loop(vector<int> &timeDeltas, vector<int> &channels, vector<int> &onOff){
 	int d = 0;
 	int size = timeDeltas.size();
 	while(1){
 		usleep(tempo*timeDeltas[d%size]);
 		//cout << "just waited"<<timeDeltas[d%size]<<"\n";
-		if (channels[d%size]==2)
+		if (channels[d%size]==2){
 			sendNote(onOff[d%size],0,bassNote);
+			bassOn = onOff[d%size];
+		}
 		else{
 			sendNote(onOff[d%size],0,chordNotes[0]);
 			sendNote(onOff[d%size],0,chordNotes[1]);
 			sendNote(onOff[d%size],0,chordNotes[2]);
+			chordOn = onOff[d%size];
 		}
 		d=d+1;
 		//cout << "chord notes are currently " << chordNotes[0] << chordNotes[1] << chordNotes[2] << "\n";
 	}
 }
+
+void setMessage(std::vector<unsigned char>* newMessage){
+    message = newMessage;
+    nBytes = message->size();
+    //b1 channel on/off, b2 note, b3 velocity
+    byte1 =  message->at(0);
+    byte2 = message->at(1);
+    //int byte3 = message->at(2);
+    //char result = byte1 && 00010000;
+
+    //is_set = isKthBitSet(byte1,5);
+
+    is_bass = isKthBitSet(byte1,2);
+
+
+    //std::cout << res;
+    if (is_bass){
+	previousBass = bassNote;
+	bassNote = byte2;
+    }
+    else{
+	setChordNote(byte2);
+    }
+    if (previousBass!=bassNote || previousChord!=chordNotes)
+    	updateNote(0);
+ }
 
 /*
 void *Play(void *instrument){
@@ -174,9 +184,10 @@ void *Play(void *instrument){
 }
 */
 
-void Process::run(){
+void run(){
     printf("in run");
     string testfile = "../../Piano.csv";
+    vector<int> timeDeltas, channels, onOff;
     cout<<"About to load arrays";
     loadCSVToArray(testfile,timeDeltas,channels,onOff);
     cout<<"loaded arrays";
