@@ -1,4 +1,5 @@
 #include "HardwareController.h"
+#include "hardwareInterface.h"
 #include <iostream>
 #include <unistd.h>
 #include <pthread.h>
@@ -21,7 +22,7 @@ int main(){
     
     //run hardware controller example
     //run();
-    std::thread t1(run);
+    std::thread t1(runHardwareInterface);
 
     //Pause Till Complete
     t1.join();

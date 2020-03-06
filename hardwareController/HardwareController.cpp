@@ -152,6 +152,8 @@ bool IsSongPlaying(){
 }
 
 //--------------------------------------------------
+
+/*
 void run(){
     std::thread t1(runHardwareInterface);
     printSystemState();
@@ -161,3 +163,4 @@ void run(){
     }
 
 }
+*/
