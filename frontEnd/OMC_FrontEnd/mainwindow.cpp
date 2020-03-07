@@ -16,6 +16,13 @@ MainWindow::MainWindow(QWidget *parent)
     int h_2 = ui->OMC_logo_2->height();
     ui->OMC_logo_2->setPixmap(pix2.scaled(w_2,h_2,Qt::KeepAspectRatio));
 
+    QFont font = ui->song_status->font();
+    font.setPointSize(24);
+    ui->song_status->setFont(font);
+    ui->song_status->setText("The Current Song is: \n\n\nTemp Song Name!");
+
+
+
     this->setWindowTitle(
             QApplication::translate("toplevel", "One Man Ceilidh"));
 
