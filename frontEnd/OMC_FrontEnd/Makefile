@@ -658,8 +658,10 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_images.cpp
 qrc_images.cpp: images.qrc \
 		../../../anaconda3/bin/rcc \
+		images/redButton.jpg \
 		images/OneManCeilidh.jpg \
-		images/OneManCeilidh2.jpg
+		images/OneManCeilidh2.jpg \
+		images/greenButton.jpg
 	/home/neil/anaconda3/bin/rcc -name images images.qrc -o qrc_images.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h

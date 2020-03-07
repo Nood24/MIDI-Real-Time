@@ -2,5 +2,7 @@
     <qresource prefix="/images">
         <file>images/OneManCeilidh.jpg</file>
         <file>images/OneManCeilidh2.jpg</file>
+        <file>images/redButton.jpg</file>
+        <file>images/greenButton.jpg</file>
     </qresource>
 </RCC>

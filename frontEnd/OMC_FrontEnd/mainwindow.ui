@@ -15,27 +15,38 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
-    <item alignment="Qt::AlignLeft|Qt::AlignTop">
-     <widget class="QLabel" name="OMC_logo">
-      <property name="minimumSize">
-       <size>
-        <width>191</width>
-        <height>191</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>191</width>
-        <height>191</height>
-       </size>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap resource="images.qrc">:/images/images/OneManCeilidh.jpg</pixmap>
-      </property>
-     </widget>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="OMC_logo">
+        <property name="minimumSize">
+         <size>
+          <width>191</width>
+          <height>191</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>191</width>
+          <height>191</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="images.qrc">:/images/images/OneManCeilidh.jpg</pixmap>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignBottom">
+       <widget class="QLabel" name="left_song">
+        <property name="text">
+         <string>left Song</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -46,36 +57,54 @@
         </property>
        </widget>
       </item>
-      <item>
-       <widget class="QLabel" name="label">
+      <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
+       <widget class="QLabel" name="play_state">
         <property name="text">
-         <string/>
+         <string>Song is Playing</string>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="playButton">
+        <property name="text">
+         <string>TextLabel</string>
         </property>
        </widget>
       </item>
      </layout>
     </item>
-    <item alignment="Qt::AlignRight|Qt::AlignTop">
-     <widget class="QLabel" name="OMC_logo_2">
-      <property name="minimumSize">
-       <size>
-        <width>191</width>
-        <height>191</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>191</width>
-        <height>538</height>
-       </size>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap resource="images.qrc">:/images/images/OneManCeilidh2.jpg</pixmap>
-      </property>
-     </widget>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item alignment="Qt::AlignRight|Qt::AlignTop">
+       <widget class="QLabel" name="OMC_logo_2">
+        <property name="minimumSize">
+         <size>
+          <width>191</width>
+          <height>191</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>191</width>
+          <height>538</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="images.qrc">:/images/images/OneManCeilidh2.jpg</pixmap>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignRight|Qt::AlignBottom">
+       <widget class="QLabel" name="right_song">
+        <property name="text">
+         <string>Right Song</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
