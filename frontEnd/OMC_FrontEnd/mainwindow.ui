@@ -37,12 +37,23 @@
       </property>
      </widget>
     </item>
-    <item alignment="Qt::AlignHCenter|Qt::AlignTop">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>The Current Selected Song is:</string>
-      </property>
-     </widget>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item alignment="Qt::AlignHCenter|Qt::AlignTop">
+       <widget class="QLabel" name="song_status">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item alignment="Qt::AlignRight|Qt::AlignTop">
      <widget class="QLabel" name="OMC_logo_2">
