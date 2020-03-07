@@ -1,17 +1,12 @@
+#include <QtWidgets>
 
-#include <qapplication.h>
-#include <qpushbutton.h>
-
-
-int main( int argc, char **argv )
+int main(int argc, char *argv[])
 {
-    QApplication a( argc, argv );
-
-    QPushButton hello( "Hello world!", 0 );
-    hello.resize( 100, 30 );
-
-    hello.show();
-    return a.exec();
+    QApplication app(argc, argv);
+    QWidget window;
+    window.showMaximized();
+    window.show();
+    window.setWindowTitle(
+        QApplication::translate("toplevel", "One Man Ceilidh"));
+    return app.exec();
 }
-
-
