@@ -40,7 +40,7 @@
     <item alignment="Qt::AlignHCenter|Qt::AlignTop">
      <widget class="QLabel" name="label">
       <property name="text">
-       <string>BLAH BLAH BLAH  BLAH</string>
+       <string>The Current Selected Song is:</string>
       </property>
      </widget>
     </item>
