@@ -16,11 +16,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    hardwareController_Terminal_prototype/HardwareController.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    hardwareController_Terminal_prototype/HardwareController.h \
     mainwindow.h
+
+
+INCLUDEPATH += hardwareController_Terminal_prototype/HardwareController.h
 
 FORMS += \
     mainwindow.ui

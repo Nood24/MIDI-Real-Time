@@ -15,7 +15,7 @@ CXX           = g++
 DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -O2 -std=gnu++11 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I. -I../../../anaconda3/include/qt -I../../../anaconda3/include/qt/QtWidgets -I../../../anaconda3/include/qt/QtGui -I../../../anaconda3/include/qt/QtCore -I. -I. -I../../../anaconda3/mkspecs/linux-g++
+INCPATH       = -I. -IhardwareController_Terminal_prototype/HardwareController.h -I../../../anaconda3/include/qt -I../../../anaconda3/include/qt/QtWidgets -I../../../anaconda3/include/qt/QtGui -I../../../anaconda3/include/qt/QtCore -I. -I. -I../../../anaconda3/mkspecs/linux-g++
 QMAKE         = /home/neil/anaconda3/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -50,10 +50,12 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = main.cpp \
+SOURCES       = hardwareController_Terminal_prototype/HardwareController.cpp \
+		main.cpp \
 		mainwindow.cpp qrc_images.cpp \
 		moc_mainwindow.cpp
-OBJECTS       = main.o \
+OBJECTS       = HardwareController.o \
+		main.o \
 		mainwindow.o \
 		qrc_images.o \
 		moc_mainwindow.o
@@ -234,7 +236,9 @@ DIST          = ../../../anaconda3/mkspecs/features/spec_pre.prf \
 		../../../anaconda3/mkspecs/features/exceptions.prf \
 		../../../anaconda3/mkspecs/features/yacc.prf \
 		../../../anaconda3/mkspecs/features/lex.prf \
-		OMC_FrontEnd.pro mainwindow.h main.cpp \
+		OMC_FrontEnd.pro hardwareController_Terminal_prototype/HardwareController.h \
+		mainwindow.h hardwareController_Terminal_prototype/HardwareController.cpp \
+		main.cpp \
 		mainwindow.cpp
 QMAKE_TARGET  = OMC_FrontEnd
 DESTDIR       = 
@@ -628,8 +632,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents images.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../anaconda3/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents hardwareController_Terminal_prototype/HardwareController.h mainwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents hardwareController_Terminal_prototype/HardwareController.cpp main.cpp mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
 
@@ -779,7 +783,7 @@ moc_mainwindow.cpp: ../../../anaconda3/include/qt/QtWidgets/QMainWindow \
 		mainwindow.h \
 		moc_predefs.h \
 		../../../anaconda3/bin/moc
-	/home/neil/anaconda3/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/neil/anaconda3/mkspecs/linux-g++ -I/home/neil/MIDI-Real-Time/frontEnd/OMC_FrontEnd -I/home/neil/anaconda3/include/qt -I/home/neil/anaconda3/include/qt/QtWidgets -I/home/neil/anaconda3/include/qt/QtGui -I/home/neil/anaconda3/include/qt/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mainwindow.h -o moc_mainwindow.cpp
+	/home/neil/anaconda3/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/neil/anaconda3/mkspecs/linux-g++ -I/home/neil/MIDI-Real-Time/frontEnd/OMC_FrontEnd -I/home/neil/MIDI-Real-Time/frontEnd/OMC_FrontEnd/hardwareController_Terminal_prototype/HardwareController.h -I/home/neil/anaconda3/include/qt -I/home/neil/anaconda3/include/qt/QtWidgets -I/home/neil/anaconda3/include/qt/QtGui -I/home/neil/anaconda3/include/qt/QtCore -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -799,6 +803,9 @@ compiler_lex_clean:
 compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
+
+HardwareController.o: hardwareController_Terminal_prototype/HardwareController.cpp hardwareController_Terminal_prototype/HardwareController.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o HardwareController.o hardwareController_Terminal_prototype/HardwareController.cpp
 
 main.o: main.cpp mainwindow.h \
 		../../../anaconda3/include/qt/QtWidgets/QMainWindow \
@@ -1018,7 +1025,8 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../anaconda3/include/qt/QtWidgets/qtabwidget.h \
 		../../../anaconda3/include/qt/QtGui/qicon.h \
 		ui_mainwindow.h \
-		../../../anaconda3/include/qt/QtGui/QPixmap
+		../../../anaconda3/include/qt/QtGui/QPixmap \
+		hardwareController_Terminal_prototype/HardwareController.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 qrc_images.o: qrc_images.cpp 
