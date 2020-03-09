@@ -1,10 +1,19 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <iostream>
 #include <QPixmap>
+#include "hardwareController_Terminal_prototype/HardwareController.h"
+
+using namespace std;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    char * leftSong;
+    char * rightSong;
+    char * SelectedSong;
+
     ui->setupUi(this);
     QPixmap pix(":/images/images/OneManCeilidh.jpg");
     int w = ui->OMC_logo->width();
@@ -38,6 +47,14 @@ MainWindow::MainWindow(QWidget *parent)
             QApplication::translate("toplevel", "One Man Ceilidh"));
 
 }
+
+void MainWindow::init()
+{
+    run();
+}
+
+
+
 
 MainWindow::~MainWindow()
 {
