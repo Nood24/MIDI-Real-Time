@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include <iostream>
 #include <QPixmap>
+#include <pthread.h>
+#include <thread>
 #include "hardwareController_Terminal_prototype/HardwareController.h"
 
 using namespace std;
@@ -48,9 +50,11 @@ MainWindow::MainWindow(QWidget *parent)
 
 }
 
-void MainWindow::init()
+void MainWindow::controllerInit()
 {
-    run();
+    std::thread t1(run);
+    t1.detach();
+
 }
 
 
