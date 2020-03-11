@@ -7,22 +7,18 @@
 using namespace std;
 
 int main(){
-
+    HardwareController controller;
     //get song example
-    cout << getSong();
+    cout << controller.getSong();
 
     //get if song playing example
-    if(!IsSongPlaying()){
+    if(!controller.IsSongPlaying()){
     cout<< "\nSong not playing\n";
     }
     else{
         cout<< "\nSong playing\n";
     }
-    
-    //run hardware controller example
-    //run();
-    std::thread t1(run);
 
-    //Pause Till Complete
-    t1.join();
+    controller.runThread();
+
 }

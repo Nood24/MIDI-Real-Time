@@ -16,26 +16,15 @@
 
 #include "HardwareController.h"
 #include <iostream>
+using namespace std;
 #include <cstring>
 #include <mutex>
 #include <thread>
-using namespace std;
 
-//-------------------------------------------------
-
-std::mutex mutex_songPlaying;
-std::mutex mutex_songs;
-std::mutex mutex_songIndex;
-
-//-------------------------------------------------
-
-bool songPlaying = false;
-char songs [4][30] = {"The Gay Gordons", "The Dashing White Sergeant", "Canadian Barn Dance","Highland Schottishe" }; 
-int songIndex = 0;
 
 //--------------------------------------------------
 
-int getInput(){
+int HardwareController::getInput(){
     int i;
     cout << "\nPlease enter an integer value between 1-4 for pedal press: ";
     cin >> i;
@@ -44,23 +33,23 @@ int getInput(){
 
 //--------------------------------------------------
 
-void shiftSongLeft(){
-    mutex_songs.lock();
-    mutex_songIndex.lock();
-    if (songIndex == 0){
-        songIndex = (sizeof(songs)/sizeof(*songs))-1;
+void HardwareController::shiftSongLeft(){
+    this->mutex_songs.lock();
+    this->mutex_songIndex.lock();
+    if (this->songIndex == 0){
+        this->songIndex = (sizeof(this->songs)/sizeof(*(this->songs)))-1;
     }
     else{
-        songIndex = songIndex - 1;
+        this->songIndex = this->songIndex - 1;
     }
-    mutex_songs.unlock();
-    mutex_songIndex.unlock();
+    this->mutex_songs.unlock();
+    this->mutex_songIndex.unlock();
     return;
 }
 
 //--------------------------------------------------
 
-void shiftSongRight(){
+void HardwareController::shiftSongRight(){
     mutex_songs.lock();
     mutex_songIndex.lock();
     if(songIndex == (sizeof(songs)/sizeof(*songs))-1){
@@ -76,7 +65,7 @@ void shiftSongRight(){
 
 //--------------------------------------------------
 
-void startStopSong(){
+void HardwareController::startStopSong(){
     if(songPlaying){
         songPlaying = false;
     }
@@ -87,7 +76,7 @@ void startStopSong(){
 
 //--------------------------------------------------
 
-void printSystemState(){
+void HardwareController::printSystemState(){
     mutex_songs.lock();
     mutex_songIndex.lock();
     mutex_songPlaying.lock();
@@ -106,7 +95,7 @@ void printSystemState(){
 
 //--------------------------------------------------
 
-void processInput(int input){
+void HardwareController::processInput(int input){
     mutex_songPlaying.lock();
     if(input == 1 && !songPlaying){
         shiftSongLeft();
@@ -133,24 +122,33 @@ void processInput(int input){
     printSystemState();
 }
 
-
 //--------------------------------------------------
 
-char * getSong(){
+char * HardwareController:: getSong(){
     return songs[songIndex];
 }
 
 //--------------------------------------------------
 
-bool IsSongPlaying(){
+bool HardwareController::IsSongPlaying(){
     return songPlaying;
 }
 
 //--------------------------------------------------
-void run(){
+void HardwareController::runThread(){
+     std::thread t1(&HardwareController::run, this);
+     t1.join();
+}
+
+//--------------------------------------------------
+void HardwareController::run(){
+    songPlaying = false;
+    //this->songs [4][30] = {"The Gay Gordons", "The Dashing White Sergeant", "Canadian Barn Dance","Highland Schottishe"}; 
+    this->songIndex = 0;
     printSystemState();
+    int input; 
     while(true){
-    int input = getInput();
+    input = getInput();
     processInput(input);
     }
 
