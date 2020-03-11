@@ -20,6 +20,7 @@ using namespace std;
 #include <cstring>
 #include <mutex>
 #include <thread>
+#include "../mainwindow.h"
 
 
 //--------------------------------------------------
@@ -135,15 +136,16 @@ bool HardwareController::IsSongPlaying(){
 }
 
 //--------------------------------------------------
-void HardwareController::runThread(){
-     std::thread t1(&HardwareController::run, this);
-     t1.join();
+void HardwareController::runThread(MainWindow& window){
+     cout << "hello";
+     window.setSongs("hello", "hello", "hello");
+     //std::thread t1(&HardwareController::run, this);
+     //t1.join();
 }
 
 //--------------------------------------------------
 void HardwareController::run(){
     songPlaying = false;
-    //this->songs [4][30] = {"The Gay Gordons", "The Dashing White Sergeant", "Canadian Barn Dance","Highland Schottishe"}; 
     this->songIndex = 0;
     printSystemState();
     int input; 

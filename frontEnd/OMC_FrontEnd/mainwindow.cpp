@@ -55,17 +55,16 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 void MainWindow::setSongs(char* leftSong, char* rightSong, char* selectedSong){
-    cout<< "Hello";
+    cout<<"hello";
+    ui->right_song->setText(rightSong);
+    ui->left_song->setText(leftSong);
+    ui->playingSongName->setText(selectedSong);
 }
 
 void MainWindow::controllerInit()
 {
-    void *setSongs_pointer setSongs;
-    std::thread t1(run, this);
-    t1.detach();
-    ui->playingSongName->setText(getSong());
-
-
+    //HardwareController controller;
+    //controller.runThread(this);
 }
 
 
