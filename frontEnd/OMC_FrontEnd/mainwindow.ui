@@ -50,12 +50,23 @@
     </item>
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
-      <item alignment="Qt::AlignHCenter|Qt::AlignTop">
-       <widget class="QLabel" name="song_status">
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
-       </widget>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QLabel" name="song_status">
+          <property name="text">
+           <string>What Song is playig</string>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QLabel" name="playingSongName">
+          <property name="text">
+           <string>Song Playing Name</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
        <widget class="QLabel" name="play_state">

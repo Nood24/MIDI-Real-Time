@@ -15,6 +15,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void controllerInit();
+    void setSongs(char* leftSong, char* rightSong, char* selectedSong);
+
 
 private:
     Ui::MainWindow *ui;

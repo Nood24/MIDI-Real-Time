@@ -5,6 +5,7 @@
 #include <pthread.h>
 #include <thread>
 #include "hardwareController_Terminal_prototype/HardwareController.h"
+#include <string>
 
 using namespace std;
 
@@ -28,7 +29,10 @@ MainWindow::MainWindow(QWidget *parent)
     QFont font = ui->song_status->font();
     font.setPointSize(24);
     ui->song_status->setFont(font);
-    ui->song_status->setText("The Current Song is: \n\n\nTemp Song Name!");
+    ui->song_status->setText("The Current Song is: \n\n");
+
+    font.setPointSize(24);
+    ui->playingSongName->setFont(font);
 
     font.setPointSize(16);
     ui->left_song->setFont(font);
@@ -50,14 +54,19 @@ MainWindow::MainWindow(QWidget *parent)
 
 }
 
-void MainWindow::controllerInit()
-{
-    std::thread t1(run);
-    t1.detach();
-
+void MainWindow::setSongs(char* leftSong, char* rightSong, char* selectedSong){
+    cout<< "Hello";
 }
 
+void MainWindow::controllerInit()
+{
+    void *setSongs_pointer setSongs;
+    std::thread t1(run, this);
+    t1.detach();
+    ui->playingSongName->setText(getSong());
 
+
+}
 
 
 MainWindow::~MainWindow()
