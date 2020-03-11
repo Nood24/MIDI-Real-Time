@@ -7,6 +7,7 @@
 //*****************************************// 
 #include <string>
 #include <mutex>
+#include "../mainwindow.h"
 
 class HardwareController
 {
@@ -14,7 +15,7 @@ class HardwareController
 public:
     bool IsSongPlaying();
     char * getSong();
-    void runThread();
+    void runThread(MainWindow& window);
 
 private:
     void processInput(int input);
