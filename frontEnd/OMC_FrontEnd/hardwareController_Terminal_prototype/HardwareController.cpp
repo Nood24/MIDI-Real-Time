@@ -152,6 +152,7 @@ void HardwareController::run(MainWindow& window){
     while(true){
     input = getInput();
     processInput(input);
+    window.setSongs(getSong(),getSong(),getSong());
     }
 
 }
