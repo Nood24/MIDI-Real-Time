@@ -804,7 +804,111 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 
 ####### Compile
 
-HardwareController.o: hardwareController_Terminal_prototype/HardwareController.cpp hardwareController_Terminal_prototype/HardwareController.h
+HardwareController.o: hardwareController_Terminal_prototype/HardwareController.cpp hardwareController_Terminal_prototype/HardwareController.h \
+		mainwindow.h \
+		../../../anaconda3/include/qt/QtWidgets/QMainWindow \
+		../../../anaconda3/include/qt/QtWidgets/qmainwindow.h \
+		../../../anaconda3/include/qt/QtWidgets/qtwidgetsglobal.h \
+		../../../anaconda3/include/qt/QtGui/qtguiglobal.h \
+		../../../anaconda3/include/qt/QtCore/qglobal.h \
+		../../../anaconda3/include/qt/QtCore/qconfig-bootstrapped.h \
+		../../../anaconda3/include/qt/QtCore/qconfig.h \
+		../../../anaconda3/include/qt/QtCore/qtcore-config.h \
+		../../../anaconda3/include/qt/QtCore/qsystemdetection.h \
+		../../../anaconda3/include/qt/QtCore/qprocessordetection.h \
+		../../../anaconda3/include/qt/QtCore/qcompilerdetection.h \
+		../../../anaconda3/include/qt/QtCore/qtypeinfo.h \
+		../../../anaconda3/include/qt/QtCore/qsysinfo.h \
+		../../../anaconda3/include/qt/QtCore/qlogging.h \
+		../../../anaconda3/include/qt/QtCore/qflags.h \
+		../../../anaconda3/include/qt/QtCore/qatomic.h \
+		../../../anaconda3/include/qt/QtCore/qbasicatomic.h \
+		../../../anaconda3/include/qt/QtCore/qatomic_bootstrap.h \
+		../../../anaconda3/include/qt/QtCore/qgenericatomic.h \
+		../../../anaconda3/include/qt/QtCore/qatomic_cxx11.h \
+		../../../anaconda3/include/qt/QtCore/qatomic_msvc.h \
+		../../../anaconda3/include/qt/QtCore/qglobalstatic.h \
+		../../../anaconda3/include/qt/QtCore/qmutex.h \
+		../../../anaconda3/include/qt/QtCore/qnumeric.h \
+		../../../anaconda3/include/qt/QtCore/qversiontagging.h \
+		../../../anaconda3/include/qt/QtGui/qtgui-config.h \
+		../../../anaconda3/include/qt/QtWidgets/qtwidgets-config.h \
+		../../../anaconda3/include/qt/QtWidgets/qwidget.h \
+		../../../anaconda3/include/qt/QtGui/qwindowdefs.h \
+		../../../anaconda3/include/qt/QtCore/qobjectdefs.h \
+		../../../anaconda3/include/qt/QtCore/qnamespace.h \
+		../../../anaconda3/include/qt/QtCore/qobjectdefs_impl.h \
+		../../../anaconda3/include/qt/QtGui/qwindowdefs_win.h \
+		../../../anaconda3/include/qt/QtCore/qobject.h \
+		../../../anaconda3/include/qt/QtCore/qstring.h \
+		../../../anaconda3/include/qt/QtCore/qchar.h \
+		../../../anaconda3/include/qt/QtCore/qbytearray.h \
+		../../../anaconda3/include/qt/QtCore/qrefcount.h \
+		../../../anaconda3/include/qt/QtCore/qarraydata.h \
+		../../../anaconda3/include/qt/QtCore/qstringbuilder.h \
+		../../../anaconda3/include/qt/QtCore/qlist.h \
+		../../../anaconda3/include/qt/QtCore/qalgorithms.h \
+		../../../anaconda3/include/qt/QtCore/qiterator.h \
+		../../../anaconda3/include/qt/QtCore/qhashfunctions.h \
+		../../../anaconda3/include/qt/QtCore/qpair.h \
+		../../../anaconda3/include/qt/QtCore/qbytearraylist.h \
+		../../../anaconda3/include/qt/QtCore/qstringlist.h \
+		../../../anaconda3/include/qt/QtCore/qregexp.h \
+		../../../anaconda3/include/qt/QtCore/qstringmatcher.h \
+		../../../anaconda3/include/qt/QtCore/qcoreevent.h \
+		../../../anaconda3/include/qt/QtCore/qscopedpointer.h \
+		../../../anaconda3/include/qt/QtCore/qmetatype.h \
+		../../../anaconda3/include/qt/QtCore/qvarlengtharray.h \
+		../../../anaconda3/include/qt/QtCore/qcontainerfwd.h \
+		../../../anaconda3/include/qt/QtCore/qobject_impl.h \
+		../../../anaconda3/include/qt/QtCore/qmargins.h \
+		../../../anaconda3/include/qt/QtGui/qpaintdevice.h \
+		../../../anaconda3/include/qt/QtCore/qrect.h \
+		../../../anaconda3/include/qt/QtCore/qsize.h \
+		../../../anaconda3/include/qt/QtCore/qpoint.h \
+		../../../anaconda3/include/qt/QtGui/qpalette.h \
+		../../../anaconda3/include/qt/QtGui/qcolor.h \
+		../../../anaconda3/include/qt/QtGui/qrgb.h \
+		../../../anaconda3/include/qt/QtGui/qrgba64.h \
+		../../../anaconda3/include/qt/QtGui/qbrush.h \
+		../../../anaconda3/include/qt/QtCore/qvector.h \
+		../../../anaconda3/include/qt/QtGui/qmatrix.h \
+		../../../anaconda3/include/qt/QtGui/qpolygon.h \
+		../../../anaconda3/include/qt/QtGui/qregion.h \
+		../../../anaconda3/include/qt/QtCore/qdatastream.h \
+		../../../anaconda3/include/qt/QtCore/qiodevice.h \
+		../../../anaconda3/include/qt/QtCore/qline.h \
+		../../../anaconda3/include/qt/QtGui/qtransform.h \
+		../../../anaconda3/include/qt/QtGui/qpainterpath.h \
+		../../../anaconda3/include/qt/QtGui/qimage.h \
+		../../../anaconda3/include/qt/QtGui/qpixelformat.h \
+		../../../anaconda3/include/qt/QtGui/qpixmap.h \
+		../../../anaconda3/include/qt/QtCore/qsharedpointer.h \
+		../../../anaconda3/include/qt/QtCore/qshareddata.h \
+		../../../anaconda3/include/qt/QtCore/qhash.h \
+		../../../anaconda3/include/qt/QtCore/qsharedpointer_impl.h \
+		../../../anaconda3/include/qt/QtGui/qfont.h \
+		../../../anaconda3/include/qt/QtGui/qfontmetrics.h \
+		../../../anaconda3/include/qt/QtGui/qfontinfo.h \
+		../../../anaconda3/include/qt/QtWidgets/qsizepolicy.h \
+		../../../anaconda3/include/qt/QtGui/qcursor.h \
+		../../../anaconda3/include/qt/QtGui/qkeysequence.h \
+		../../../anaconda3/include/qt/QtGui/qevent.h \
+		../../../anaconda3/include/qt/QtCore/qvariant.h \
+		../../../anaconda3/include/qt/QtCore/qmap.h \
+		../../../anaconda3/include/qt/QtCore/qdebug.h \
+		../../../anaconda3/include/qt/QtCore/qtextstream.h \
+		../../../anaconda3/include/qt/QtCore/qlocale.h \
+		../../../anaconda3/include/qt/QtCore/qset.h \
+		../../../anaconda3/include/qt/QtCore/qcontiguouscache.h \
+		../../../anaconda3/include/qt/QtCore/qurl.h \
+		../../../anaconda3/include/qt/QtCore/qurlquery.h \
+		../../../anaconda3/include/qt/QtCore/qfile.h \
+		../../../anaconda3/include/qt/QtCore/qfiledevice.h \
+		../../../anaconda3/include/qt/QtGui/qvector2d.h \
+		../../../anaconda3/include/qt/QtGui/qtouchdevice.h \
+		../../../anaconda3/include/qt/QtWidgets/qtabwidget.h \
+		../../../anaconda3/include/qt/QtGui/qicon.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o HardwareController.o hardwareController_Terminal_prototype/HardwareController.cpp
 
 main.o: main.cpp mainwindow.h \
@@ -911,6 +1015,7 @@ main.o: main.cpp mainwindow.h \
 		../../../anaconda3/include/qt/QtGui/qtouchdevice.h \
 		../../../anaconda3/include/qt/QtWidgets/qtabwidget.h \
 		../../../anaconda3/include/qt/QtGui/qicon.h \
+		hardwareController_Terminal_prototype/HardwareController.h \
 		../../../anaconda3/include/qt/QtWidgets/QApplication \
 		../../../anaconda3/include/qt/QtWidgets/qapplication.h \
 		../../../anaconda3/include/qt/QtCore/qcoreapplication.h \
