@@ -54,8 +54,22 @@ MainWindow::MainWindow(QWidget *parent)
 
 }
 
+void MainWindow::setPlayButton(bool playButtonState){
+    int w = ui->OMC_logo->width();
+    int h = ui->OMC_logo->height();
+    if (playButtonState){
+        QPixmap pix3(":/images/images/greenButton.jpg");
+        ui->playButton->setPixmap(pix3.scaled(w*1.3,h*1.3,Qt::KeepAspectRatio));
+        ui->play_state->setText("Song Is Currently Playing!\n");
+    }
+    else{
+        QPixmap pix3(":/images/images/redButton.jpg");
+        ui->playButton->setPixmap(pix3.scaled(w*1.3,h*1.3,Qt::KeepAspectRatio));
+        ui->play_state->setText("Song Is Currently Paused!\n");
+    }
+}
+
 void MainWindow::setSongs(char* leftSong, char* rightSong, char* selectedSong){
-    cout<<"hello";
     ui->right_song->setText(rightSong);
     ui->left_song->setText(leftSong);
     ui->playingSongName->setText(selectedSong);
