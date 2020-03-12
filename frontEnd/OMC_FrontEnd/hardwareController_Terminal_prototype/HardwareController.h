@@ -15,7 +15,7 @@ class HardwareController
 public:
     bool IsSongPlaying();
     char * getSong();
-    void runThread(MainWindow& window);
+    void runThread(MainWindow& window, HardwareController& controller);
 
 private:
     void processInput(int input);
