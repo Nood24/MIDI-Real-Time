@@ -24,7 +24,7 @@ private:
     void shiftSongRight();
     void shiftSongLeft();
     int getInput();
-    void run();
+    void run(MainWindow& window);
     
     bool songPlaying;
     char songs [4][30] = {"The Gay Gordons", "The Dashing White Sergeant", "Canadian Barn Dance","Highland Schottishe"};  

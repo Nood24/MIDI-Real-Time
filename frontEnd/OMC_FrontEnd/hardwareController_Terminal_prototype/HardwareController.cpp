@@ -136,15 +136,15 @@ bool HardwareController::IsSongPlaying(){
 }
 
 //--------------------------------------------------
-void HardwareController::runThread(MainWindow& window,     HardwareController& controller){
+void HardwareController::runThread(MainWindow& window, HardwareController& controller){
      cout << "hello";
      window.setSongs("hello", "hello", "hello");
-     std::thread t1(&HardwareController::run, &controller);
-     t1.join();
+     std::thread t1(&HardwareController::run, &controller, std::ref(window));
+     t1.detach();
 }
 
 //--------------------------------------------------
-void HardwareController::run(){
+void HardwareController::run(MainWindow& window){
     songPlaying = false;
     this->songIndex = 0;
     printSystemState();
