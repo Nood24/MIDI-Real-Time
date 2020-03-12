@@ -14,7 +14,6 @@ class HardwareController
 
 public:
     bool IsSongPlaying();
-    char * getSong();
     void runThread(MainWindow& window, HardwareController& controller);
 
 private:
@@ -25,7 +24,10 @@ private:
     void shiftSongLeft();
     int getInput();
     void run(MainWindow& window);
-    
+    char * getSong();
+    char * getLeftSong();
+    char * getRightSong();
+
     bool songPlaying;
     char songs [4][30] = {"The Gay Gordons", "The Dashing White Sergeant", "Canadian Barn Dance","Highland Schottishe"};  
     int songIndex;

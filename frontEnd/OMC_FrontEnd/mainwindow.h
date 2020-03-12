@@ -16,6 +16,7 @@ public:
     ~MainWindow();
     void controllerInit();
     void setSongs(char* leftSong, char* rightSong, char* selectedSong);
+    void setPlayButton(bool playButtonState);
 
 
 private:
