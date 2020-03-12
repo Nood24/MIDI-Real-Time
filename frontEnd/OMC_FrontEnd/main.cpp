@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     MainWindow w;
     HardwareController controller;
 
-    controller.runThread(w);
+    controller.runThread(w, controller);
     w.controllerInit();
     w.showMaximized();
     w.show();

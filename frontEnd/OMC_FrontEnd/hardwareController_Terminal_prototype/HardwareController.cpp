@@ -136,11 +136,11 @@ bool HardwareController::IsSongPlaying(){
 }
 
 //--------------------------------------------------
-void HardwareController::runThread(MainWindow& window){
+void HardwareController::runThread(MainWindow& window,     HardwareController& controller){
      cout << "hello";
      window.setSongs("hello", "hello", "hello");
-     //std::thread t1(&HardwareController::run, this);
-     //t1.join();
+     std::thread t1(&HardwareController::run, &controller);
+     t1.join();
 }
 
 //--------------------------------------------------
