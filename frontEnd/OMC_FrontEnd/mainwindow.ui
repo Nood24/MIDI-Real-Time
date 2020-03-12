@@ -39,7 +39,27 @@
         </property>
        </widget>
       </item>
-      <item alignment="Qt::AlignBottom">
+      <item>
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item alignment="Qt::AlignLeft|Qt::AlignBottom">
+       <widget class="QLabel" name="leftShift">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
        <widget class="QLabel" name="left_song">
         <property name="text">
          <string>left Song</string>
@@ -108,7 +128,27 @@
         </property>
        </widget>
       </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
       <item alignment="Qt::AlignRight|Qt::AlignBottom">
+       <widget class="QLabel" name="rightShift">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignRight|Qt::AlignVCenter">
        <widget class="QLabel" name="right_song">
         <property name="text">
          <string>Right Song</string>

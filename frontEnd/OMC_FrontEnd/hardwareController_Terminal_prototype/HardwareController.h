@@ -29,7 +29,7 @@ private:
     char * getRightSong();
 
     bool songPlaying;
-    char songs [4][30] = {"The Gay Gordons", "The Dashing White Sergeant", "Canadian Barn Dance","Highland Schottishe"};  
+    char songs [4][30] = {"The Gay \nGordons", "The Dashing White \nSergeant", "Canadian \nBarn Dance","Highland \nSchottishe"};
     int songIndex;
 
     std::mutex mutex_songPlaying;
