@@ -20,11 +20,11 @@ void DanceSet::load_instruments() {
     Instrument accordion = Instrument(file_location + 'accordion.csv');
     Instrument drumkit = Instrument(file_location + 'drumkit.csv');
 
-    instruments = [bass, piano, accordion, drumkit];
+    instruments = {bass, piano, accordion, drumkit};
 }
 
 void DanceSet::wait_loop_end(){
-    for (i=0;i<4;i++;){
+    for (int i=0;i<4;i++;){
         instruments[i].join();
     }
 }
@@ -57,20 +57,20 @@ static void set_notes(double deltatime, std::vector< unsigned char > *message, v
 }
 
 void DanceSet::start_dance(){
-    for (i=0; i<4; i++){
+    for (int i=0; i<4; i++){
         instruments[i].start();
     }
-    for (i=0; i<4; i++){
+    for (int i=0; i<4; i++){
         instruments[i].join();
     }
 }
 
-void DanceSet::get_tempo(int tempo){
+int DanceSet::get_tempo(){
     return tempo;
 }
 
 void DanceSet::set_tempo(int tempo) {
-    assert((tempo>0)&&(tempo<200))
+    assert((tempo>0)&&(tempo<200));
     tempo = tempo;
 }
 

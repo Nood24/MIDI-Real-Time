@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/cameronbennett/Desktop/CeilidhBand/midi_driver/fluidSynthAPI/processTest/cppThread-master/DemoThread.cpp" "/Users/cameronbennett/Desktop/CeilidhBand/midi_driver/fluidSynthAPI/processTest/cppThread-master/CMakeFiles/demo.dir/DemoThread.cpp.o"
-  "/Users/cameronbennett/Desktop/CeilidhBand/midi_driver/fluidSynthAPI/processTest/cppThread-master/demo.cpp" "/Users/cameronbennett/Desktop/CeilidhBand/midi_driver/fluidSynthAPI/processTest/cppThread-master/CMakeFiles/demo.dir/demo.cpp.o"
+  "/home/pi/CeilidhBand/MIDI-Real-Time/midi_driver/fluidSynthAPI/processTest/cppThread-master/DemoThread.cpp" "/home/pi/CeilidhBand/MIDI-Real-Time/midi_driver/fluidSynthAPI/processTest/cppThread-master/CMakeFiles/demo.dir/DemoThread.cpp.o"
+  "/home/pi/CeilidhBand/MIDI-Real-Time/midi_driver/fluidSynthAPI/processTest/cppThread-master/demo.cpp" "/home/pi/CeilidhBand/MIDI-Real-Time/midi_driver/fluidSynthAPI/processTest/cppThread-master/CMakeFiles/demo.dir/demo.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "Clang")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

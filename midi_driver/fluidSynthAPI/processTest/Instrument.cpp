@@ -4,14 +4,7 @@
 
 #include "Instrument.h"
 
-Instrument::Instrument(string csv_file, int tempo) {
-    vector<int> timeDeltas, channels, onOff;
-    extract_from_csv(csv_file,timeDeltas,channels,onOff);
-    size = timeDeltas.size();
-    timing_factor = 60/tempo/12000; //convert tempo from bpm to ms per tick (12000 ticks per beat)
-}
-
-void Instrument::sendNote(bool on, int channel, int note){
+void sendNote(bool on, int channel, int note){
     if (on)
         noteOn(channel,note);
     else
@@ -33,7 +26,7 @@ void Instrument::updateNote(int channel){
     }
 }
 
-void run() {
+void Instrument::run() {
     int d = 0;
     while(Controller::playing || d%size!=0){
         usleep(timing_factor*timeDeltas[d%size]);
@@ -58,7 +51,7 @@ void Instrument::extract_from_csv(string filename, vector<int> timeDeltas, vecto
 
     ifstream csvfile;
     csvfile.open(filename);
-    assert(csvfile.is_open())
+    assert(csvfile.is_open());
 
     while(csvfile.good()){
         getline(csvfile,strdelta,',');

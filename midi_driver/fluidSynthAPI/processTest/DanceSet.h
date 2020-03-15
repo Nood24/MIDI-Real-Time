@@ -6,7 +6,7 @@
 #define CEILIDHBAND_DANCESET_H
 
 #include "Instrument.h"
-
+#include <list>
 
 
 using namespace std;
@@ -28,7 +28,7 @@ public:
 private:
     string dance;
     int tempo;
-    Instrument instruments[4];
+    vector<Instrument> instruments;
 };
 
 
