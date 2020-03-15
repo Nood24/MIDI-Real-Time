@@ -51,3 +51,11 @@ void Controller::create_midi_reader(int port_no){
         error.printMessage();
     }
 }
+
+int main(){
+    controller = Controller();
+    controller.create_midi_reader(1);
+    controller.load_dance('gaygordons', 120);
+    controller.start_playing();
+
+}
