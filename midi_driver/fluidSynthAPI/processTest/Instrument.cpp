@@ -4,10 +4,11 @@
 
 #include "Instrument.h"
 
-Instrument::Instrument(string csv_file) {
+Instrument::Instrument(string csv_file, int tempo) {
     vector<int> timeDeltas, channels, onOff;
     extract_from_csv(csv_file,timeDeltas,channels,onOff);
     size = timeDeltas.size();
+    timing_factor = 60/tempo/12000; //convert tempo from bpm to ms per tick (12000 ticks per beat)
 }
 
 void Instrument::sendNote(bool on, int channel, int note){
@@ -34,8 +35,8 @@ void Instrument::updateNote(int channel){
 
 void run() {
     int d = 0;
-    while(Controller::playing){
-        usleep(tempo*timeDeltas[d%size]);
+    while(Controller::playing || d%size!=0){
+        usleep(timing_factor*timeDeltas[d%size]);
         if (channels[d%size]==2){
             sendNote(onOff[d%size],0,bassNote);
             bassOn = onOff[d%size];

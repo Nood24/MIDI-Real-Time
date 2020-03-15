@@ -78,7 +78,7 @@ RtMidiOut *midiout = new RtMidiOut();
 
 void mycallback( double deltatime, std::vector< unsigned char > *message, void */*userData*/ )
 {
-  set_notes(message);
+    set_notes(message);
 }
 
 // This function should be embedded in a try/catch block in case of
@@ -89,7 +89,8 @@ bool chooseMidiPort( RtMidiIn *rtmidi );
 void start(){
     Controller controller = Controller();
     controller.load_dance('gaygordons');
-    controller.start_playing;
+    controller.start_playing();
+
 }
 
 int main( int argc, char ** /*argv[]*/ )
@@ -125,9 +126,8 @@ int main( int argc, char ** /*argv[]*/ )
           error.printMessage();
           goto cleanup;
       }
-
+    start();
     std::cout << "\nReading MIDI input ... press <enter> to quit.\n";
-    run();
     char input;
     std::cin.get(input);
 

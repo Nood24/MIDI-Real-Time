@@ -16,6 +16,7 @@ public:
     DanceSet(string _dance, int _tempo);
     void start_dance();
     void load_instruments();
+    void wait_loop_end();
     int get_tempo();
     void set_tempo(int tempo);
     string get_dance_name();
