@@ -6,7 +6,9 @@
 #define DEFAULT_DANCE 'gaygordons'
 #define DEFAULT_TEMPO 210
 
-Controller::Controller(){}
+Controller::Controller(){
+    playing = false;
+}
 
 void Controller::load_dance(string dance_name, int tempo){
     file_location = CSV_FILES + dance_name + '/';

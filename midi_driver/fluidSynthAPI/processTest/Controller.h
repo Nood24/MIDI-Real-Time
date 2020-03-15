@@ -8,15 +8,15 @@
 
 #include "DanceSet.h"
 
+using namespace std;
 
 
 class Controller {
 public:
     Controller();
-    const string
     static string get_file_location(string dance, int tempo);
-    bool playing = false;
-    void load_dance(string dance_name)
+    static bool playing;
+    void load_dance(string dance_name);
     void start_playing();
 private:
 

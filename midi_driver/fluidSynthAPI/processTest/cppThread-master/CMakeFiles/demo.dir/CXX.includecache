@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/Users/cameronbennett/Desktop/CeilidhBand/midi_driver/fluidSynthAPI/processTest/cppThread-master/CppThread.h
+/home/pi/CeilidhBand/MIDI-Real-Time/midi_driver/fluidSynthAPI/processTest/cppThread-master/CppThread.h
 thread
 -
 
-/Users/cameronbennett/Desktop/CeilidhBand/midi_driver/fluidSynthAPI/processTest/cppThread-master/DemoThread.cpp
+/home/pi/CeilidhBand/MIDI-Real-Time/midi_driver/fluidSynthAPI/processTest/cppThread-master/DemoThread.cpp
 DemoThread.h
-/Users/cameronbennett/Desktop/CeilidhBand/midi_driver/fluidSynthAPI/processTest/cppThread-master/DemoThread.h
+/home/pi/CeilidhBand/MIDI-Real-Time/midi_driver/fluidSynthAPI/processTest/cppThread-master/DemoThread.h
 stdio.h
 -
 chrono
@@ -20,13 +20,13 @@ chrono
 thread
 -
 
-/Users/cameronbennett/Desktop/CeilidhBand/midi_driver/fluidSynthAPI/processTest/cppThread-master/DemoThread.h
+/home/pi/CeilidhBand/MIDI-Real-Time/midi_driver/fluidSynthAPI/processTest/cppThread-master/DemoThread.h
 CppThread.h
-/Users/cameronbennett/Desktop/CeilidhBand/midi_driver/fluidSynthAPI/processTest/cppThread-master/CppThread.h
+/home/pi/CeilidhBand/MIDI-Real-Time/midi_driver/fluidSynthAPI/processTest/cppThread-master/CppThread.h
 
-/Users/cameronbennett/Desktop/CeilidhBand/midi_driver/fluidSynthAPI/processTest/cppThread-master/demo.cpp
+/home/pi/CeilidhBand/MIDI-Real-Time/midi_driver/fluidSynthAPI/processTest/cppThread-master/demo.cpp
 stdio.h
 -
 DemoThread.h
-/Users/cameronbennett/Desktop/CeilidhBand/midi_driver/fluidSynthAPI/processTest/cppThread-master/DemoThread.h
+/home/pi/CeilidhBand/MIDI-Real-Time/midi_driver/fluidSynthAPI/processTest/cppThread-master/DemoThread.h
 
