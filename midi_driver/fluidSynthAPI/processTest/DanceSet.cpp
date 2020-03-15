@@ -23,6 +23,12 @@ void DanceSet::load_instruments() {
     instruments = [bass, piano, accordion, drumkit];
 }
 
+void DanceSet::wait_loop_end(){
+    for (i=0;i<4;i++;){
+        instruments[i].join();
+    }
+}
+
 void setChordNote(int note){
     //readWrite.lock();
     previousChord[chordIdx] = chordNotes[chordIdx];
@@ -32,6 +38,7 @@ void setChordNote(int note){
 }
 
 static void set_notes(double deltatime, std::vector< unsigned char > *message, void */*userData*/ ){
+    Controller::playing = True;
     message = newMessage;
     byte1 =  message->at(0);
     byte2 = message->at(1);

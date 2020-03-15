@@ -44,6 +44,7 @@ private:
     bool bassOn=0;
     bool chordOn=0;
     std::vector<unsigned char>* message;
+    int timing_factor;
 };
 
 
