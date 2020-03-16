@@ -6,24 +6,23 @@
 #define CEILIDHBAND_DANCESET_H
 
 
-#include "Controller.h"
 #include "Instrument.h"
 #include <cassert>
 
 using namespace std;
 
-class Controller;
 class Instrument;
 
 class DanceSet {
 public:
-    DanceSet(string dance, int tempo, string file_location, Controller& controller) {
+    DanceSet(string dance, int tempo, string file_location, HardwareController hw) {
        dance = dance;
        tempo = tempo;
        file_location = file_location;
-       controller = controller;
+       hardware = hw;
     }
     void start_dance();
+    HardwareController hardware;
     void set_notes(std::vector<unsigned char>* message);
     void load_instruments();
     void wait_loop_end();
@@ -35,7 +34,6 @@ public:
     int chordIdx = 0;
     int bassNote = 48;
     int previousBass = 48;
-    Controller *controller;
 private:
     string dance;
     int tempo;
