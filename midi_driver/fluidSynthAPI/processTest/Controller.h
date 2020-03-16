@@ -3,25 +3,27 @@
 //
 #ifndef CEILIDHBAND_CONTROLLER_H
 #define CEILIDHBAND_CONTROLLER_H
-#define CSV_FILES './CSVFiles/'
+#define CSV_FILES "./CSVFiles/"
 
-#include "DanceSet.h"
 #include "../../../rtmidi/RtMidi.h"
+#include "DanceSet.h"
 
 using namespace std;
 
-class DanceSet;
 class Controller {
 public:
-    Controller();
+    bool playing;
+    Controller(){
+       playing = false;
+    }
     static string get_file_location(string dance, int tempo);
-    static bool playing;
     void load_dance(string dance_name, int tempo);
     void start_playing();
     void stop_playing();
-    static DanceSet *current_dance;
+    void set_playing(bool play);
     void create_midi_reader(int port_no);
     RtMidiIn *midiin;
+    DanceSet *current_dance;
     static void change_notes(double deltatime, vector< unsigned char > *message, void */*userData*/);
     static void replicate_midi(double deltatime, std::vector<unsigned char> *message, void */*userdata*/);
 private:

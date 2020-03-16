@@ -7,12 +7,6 @@
 
 using namespace std;
 
-DanceSet::DanceSet(string dance, int tempo, string file_location) {
-    dance = dance;
-    tempo = tempo;
-    file_location = file_location;
-}
-
 void DanceSet::load_instruments() {
     fluid_synth_init();
 
@@ -39,7 +33,6 @@ void DanceSet::setChordNote(int note){
 }
 
 void DanceSet::set_notes(std::vector< unsigned char >* message){
-    Controller::playing = true;
     byte1 =  message->at(0);
     byte2 = message->at(1);
 

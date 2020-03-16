@@ -22,11 +22,10 @@
 #include <shared_mutex>
 #include <fstream>
 #include <vector>
-#include "CSVParse.h"
 #include <pthread.h>
 #include <unistd.h>
-#include "DanceSet.h"
 #include "Controller.h"
+#include "DanceSet.h"
 #include <cassert>
 
 using namespace std;
@@ -35,11 +34,13 @@ void sendNote(bool on, int channel, int note);
 
 class Instrument : public CppThread {
 public:
-    Instrument(std::string csv_file, int tempo){
+    Controller *controller;
+    Instrument(std::string csv_file, int tempo, Controller& controller){
 	vector<int> timeDeltas, channels, onOff;
         extract_from_csv(csv_file,timeDeltas,channels,onOff);
         size = timeDeltas.size();
         timing_factor = 60/tempo/12000;
+	controller = controller;
     }
     void updateNote(int channel);
 
