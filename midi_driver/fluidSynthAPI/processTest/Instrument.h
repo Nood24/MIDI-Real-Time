@@ -2,6 +2,11 @@
 // Created by Cameron Bennett on 11/03/2020.
 //
 
+#ifndef PLAYING_VAR
+#define PLAYING_VAR
+#include "HardwareController.h"
+#endif
+
 #ifndef CEILIDHBAND_INSTRUMENT_H
 #define CEILIDHBAND_INSTRUMENT_H
 #include "./cppThread-master/CppThread.h"
@@ -24,7 +29,6 @@
 #include <vector>
 #include <pthread.h>
 #include <unistd.h>
-#include "Controller.h"
 #include "DanceSet.h"
 #include <cassert>
 
@@ -34,13 +38,12 @@ void sendNote(bool on, int channel, int note);
 
 class Instrument : public CppThread {
 public:
-    Controller *controller;
-    Instrument(std::string csv_file, int tempo, Controller& controller){
+    Instrument(std::string csv_file, int tempo, HardwareController hw){
 	vector<int> timeDeltas, channels, onOff;
         extract_from_csv(csv_file,timeDeltas,channels,onOff);
         size = timeDeltas.size();
         timing_factor = 60/tempo/12000;
-	controller = controller;
+	hardware = hw;
     }
     void updateNote(int channel);
 
@@ -50,6 +53,7 @@ private:
     vector<int> timeDeltas, channels, onOff;
     bool chordOn = false;
     bool bassOn = false;
+    HardwareController hardware;
     int size;
     int previousChord[3] = {60,64,67};
     int chordNotes[3] = {60,64,67};

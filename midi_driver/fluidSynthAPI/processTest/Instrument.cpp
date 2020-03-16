@@ -28,7 +28,7 @@ void Instrument::updateNote(int channel){
 
 void Instrument::run() {
     int d = 0;
-    while(controller->playing || d%size!=0){
+    while(hardware.playing || d%size!=0){
         usleep(timing_factor*timeDeltas[d%size]);
         if (channels[d%size]==2){
             sendNote(onOff[d%size],0,bassNote);
