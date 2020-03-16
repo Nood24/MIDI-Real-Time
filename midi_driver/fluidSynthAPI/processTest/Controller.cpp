@@ -3,22 +3,19 @@
 //
 
 #include "Controller.h"
-#define DEFAULT_DANCE 'gaygordons'
+#define DEFAULT_DANCE "gaygordons"
 #define DEFAULT_TEMPO 210
 
-Controller::Controller(){
-    playing = false;
-}
-
 void Controller::load_dance(string dance_name, int tempo){
-    file_location = CSV_FILES + dance_name + '/';
-    current_dance = &DanceSet(dance_name, tempo, file_location);
-    current_dance->load_instruments();
+    file_location = CSV_FILES + dance_name + "/";
+    DanceSet dance = DanceSet(dance_name, tempo, file_location, this);
+    current_dance = &dance;
+    dance.load_instruments();
 }
 
 void Controller::start_playing(){
     //stop rtmidi out
-    midiin->setCallback( &change_notes );
+    midiin->setCallback( &change_notes, this );
     while (not playing){};
     current_dance->start_dance();
 }
@@ -29,8 +26,13 @@ void Controller::stop_playing(){
     midiin->setCallback( &replicate_midi );
 }
 
-static void change_notes( double deltatime, std::vector< unsigned char > *message, void */*userData*/ ){
-    Controller::current_dance->set_notes(message);
+void Controller::set_playing(bool play){
+    playing = play;
+}
+
+static void change_notes( double deltatime, std::vector< unsigned char > *message, Controller *controller ){
+    controller.playing = true;
+    controller.current_dance->set_notes(message);
 }
 
 static void replicate_midi( double deltatime, std::vector< unsigned char > *message, void */*userData*/ ){
