@@ -31,6 +31,8 @@
 
 using namespace std;
 
+void sendNote(bool on, int channel, int note);
+
 class Instrument : public CppThread {
 public:
     Instrument(std::string csv_file, int tempo){
@@ -39,12 +41,11 @@ public:
         size = timeDeltas.size();
         timing_factor = 60/tempo/12000;
     }
+    void updateNote(int channel);
 
 private:
     void run();
     void extract_from_csv(string filename, vector<int> timeDeltas, vector<int> channels, vector<int> onOff);
-    void sendNote(bool on, int channel, int note);
-    void updateNote(int channel);
     vector<int> timeDeltas, channels, onOff;
     bool chordOn = false;
     bool bassOn = false;

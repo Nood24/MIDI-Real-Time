@@ -6,15 +6,17 @@
 #define CEILIDHBAND_DANCESET_H
 
 #include "Instrument.h"
-#include <list>
-
+#include <cassert>
 
 using namespace std;
 
+class Instrument;
+
 class DanceSet {
 public:
-    DanceSet(string _dance, int _tempo);
+    DanceSet(string _dance, int _tempo, string file_location);
     void start_dance();
+    void set_notes(std::vector<unsigned char>* message);
     void load_instruments();
     void wait_loop_end();
     int get_tempo();
@@ -28,8 +30,11 @@ public:
 private:
     string dance;
     int tempo;
+    int byte1;
+    int byte2;
+    bool is_bass;
     vector<Instrument> instruments;
+    void setChordNote(int note);
+    string file_location;
 };
-
-
-#endif //CEILIDHBAND_DANCESET_H
+#endif

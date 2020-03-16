@@ -3,33 +3,34 @@
 //
 
 #include "DanceSet.h"
+#include <cassert>
 
 using namespace std;
 
-DanceSet::DanceSet(string dance, int tempo, filelocation) {
+DanceSet::DanceSet(string dance, int tempo, string file_location) {
     dance = dance;
     tempo = tempo;
-    file_location = filelocation;
+    file_location = file_location;
 }
 
 void DanceSet::load_instruments() {
     fluid_synth_init();
 
-    Instrument bass = Instrument(file_location + 'bass.csv');
-    Instrument piano = Instrument(file_location + 'piano.csv');
-    Instrument accordion = Instrument(file_location + 'accordion.csv');
-    Instrument drumkit = Instrument(file_location + 'drumkit.csv');
+    Instrument bass = Instrument(file_location + "bass.csv", tempo);
+    Instrument piano = Instrument(file_location + "piano.csv", tempo);
+    Instrument accordion = Instrument(file_location + "accordion.csv", tempo);
+    Instrument drumkit = Instrument(file_location + "drumkit.csv", tempo);
 
     instruments = {bass, piano, accordion, drumkit};
 }
 
 void DanceSet::wait_loop_end(){
-    for (int i=0;i<4;i++;){
+    for (int i=0;i<4;i++){
         instruments[i].join();
     }
 }
 
-void setChordNote(int note){
+void DanceSet::setChordNote(int note){
     //readWrite.lock();
     previousChord[chordIdx] = chordNotes[chordIdx];
     chordNotes[chordIdx] = note;
@@ -37,13 +38,12 @@ void setChordNote(int note){
     //readWrite.unlock();
 }
 
-static void set_notes(double deltatime, std::vector< unsigned char > *message, void */*userData*/ ){
-    Controller::playing = True;
-    message = newMessage;
+void DanceSet::set_notes(std::vector< unsigned char >* message){
+    Controller::playing = true;
     byte1 =  message->at(0);
     byte2 = message->at(1);
 
-    is_bass = isKthBitSet(byte1,2);
+    is_bass = ((byte1>> 1) & 1);
 
     if (is_bass){
         previousBass = bassNote;
@@ -53,7 +53,9 @@ static void set_notes(double deltatime, std::vector< unsigned char > *message, v
         setChordNote(byte2);
     }
     if (previousBass!=bassNote || previousChord!=chordNotes)
-        updateNote(0);
+       for (int i=0; i<4; i++){
+         instruments[i].updateNote(0);
+       } 
 }
 
 void DanceSet::start_dance(){
