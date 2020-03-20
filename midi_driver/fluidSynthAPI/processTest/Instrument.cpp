@@ -50,6 +50,7 @@ void Instrument::extract_from_csv(string filename, vector<int> timeDeltas, vecto
     int line = 0;
 
     ifstream csvfile;
+    cout<<filename<<"\n";
     csvfile.open(filename);
     assert(csvfile.is_open());
 
@@ -57,7 +58,6 @@ void Instrument::extract_from_csv(string filename, vector<int> timeDeltas, vecto
         getline(csvfile,strdelta,',');
         getline(csvfile,strchannel,',');
         getline(csvfile,stron,'\n');
-
         delta = stoi(strdelta);
         channel = stoi(strchannel);
         on = stoi(stron);
