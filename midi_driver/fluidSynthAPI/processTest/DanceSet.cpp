@@ -9,11 +9,10 @@ using namespace std;
 
 void DanceSet::load_instruments() {
     fluid_synth_init();
-
-    Instrument bass = Instrument(file_location + "bass.csv", tempo,hardware);
-    Instrument piano = Instrument(file_location + "piano.csv", tempo,hardware);
-    Instrument accordion = Instrument(file_location + "accordion.csv", tempo,hardware);
-    Instrument drumkit = Instrument(file_location + "drumkit.csv", tempo,hardware);
+    Instrument bass = Instrument(this->file_location + "piano.csv", tempo,hardware);
+    Instrument piano = Instrument(this->file_location + "piano2.csv", tempo,hardware);
+    Instrument accordion = Instrument(this->file_location + "piano3.csv", tempo,hardware);
+    Instrument drumkit = Instrument(this->file_location + "piano4.csv", tempo,hardware);
 
     instruments = {bass, piano, accordion, drumkit};
 }

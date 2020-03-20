@@ -16,10 +16,10 @@ class Instrument;
 class DanceSet {
 public:
     DanceSet(string dance, int tempo, string file_location, HardwareController hw) {
-       dance = dance;
-       tempo = tempo;
-       file_location = file_location;
-       hardware = hw;
+       this->dance = dance;
+       this->tempo = tempo;
+       this->file_location = file_location;
+       this->hardware = hw;
     }
     void start_dance();
     HardwareController hardware;
