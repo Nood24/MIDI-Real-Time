@@ -75,7 +75,7 @@ int main(){
     HardwareController hwtest;
     Controller controller = Controller(hwtest);
     //Set create_midi_reader(1)on pi
-    controller.create_midi_reader(0);
+    controller.create_midi_reader(1);
     controller.load_dance("gaygordons", 120);
     controller.start_playing();
 
