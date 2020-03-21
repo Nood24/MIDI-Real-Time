@@ -7,9 +7,8 @@
  *
  * (C) 2020, Bernd Porr <mail@bernporr.me.uk>
  **/
-
+#include <iostream>
 #include <thread>
-
 // abstract thread which contains the inner workings of the thread model
 class CppThread {
 

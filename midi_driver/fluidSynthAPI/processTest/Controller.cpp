@@ -1,4 +1,4 @@
-//
+#//
 // Created by Cameron Bennett on 11/03/2020.
 //
 
@@ -8,16 +8,17 @@
 
 void Controller::load_dance(string dance_name, int tempo){
     file_location = CSV_FILES + dance_name + "/";
-    DanceSet dance = DanceSet(dance_name, tempo, file_location, hardware);
-    current_dance = &dance;
+    current_dance = new DanceSet(dance_name, tempo, file_location, hardware);
+    cout << this->current_dance << endl;
+    cout << this->current_dance->get_tempo()<<endl;
     current_dance->load_instruments();
 }
 
 void Controller::start_playing(){
     //stop rtmidi out
     //while (not playing){};
-    hardware.playing = true;
-    current_dance->start_dance();
+    this->hardware.playing = true;
+    this->current_dance->start_dance();
 }
 
 void Controller::stop_playing(){
@@ -75,8 +76,9 @@ int main(){
     HardwareController hwtest;
     Controller controller = Controller(hwtest);
     //Set create_midi_reader(1)on pi
-    controller.create_midi_reader(1);
+    controller.create_midi_reader(0);
     controller.load_dance("gaygordons", 120);
+    cout<<"finished loading\n";
     controller.start_playing();
 
 }

@@ -4,22 +4,25 @@
 
 #include "DanceSet.h"
 #include <cassert>
+#include <typeinfo>
 
 using namespace std;
 
 void DanceSet::load_instruments() {
     fluid_synth_init();
-    Instrument bass = Instrument(this->file_location + "piano.csv", tempo,hardware);
-    Instrument piano = Instrument(this->file_location + "piano2.csv", tempo,hardware);
-    Instrument accordion = Instrument(this->file_location + "piano3.csv", tempo,hardware);
-    Instrument drumkit = Instrument(this->file_location + "piano4.csv", tempo,hardware);
-
-    instruments = {bass, piano, accordion, drumkit};
+    Instrument bass = Instrument(this->file_location + "piano.csv", this->tempo,this->hardware);
+    Instrument piano = Instrument(this->file_location + "piano2.csv", this->tempo,this->hardware);
+    Instrument accordion = Instrument(this->file_location + "piano3.csv", this->tempo,this->hardware);
+    Instrument drumkit = Instrument(this->file_location + "piano4.csv", this->tempo,this->hardware);
+    this->instruments.push_back(bass);
+    this->instruments.push_back(piano);
+    this->instruments.push_back(accordion);
+    this->instruments.push_back(drumkit);
 }
 
 void DanceSet::wait_loop_end(){
     for (int i=0;i<4;i++){
-        instruments[i].join();
+        this->instruments[i].join();
     }
 }
 
@@ -51,8 +54,9 @@ void DanceSet::set_notes(std::vector< unsigned char >* message){
 }
 
 void DanceSet::start_dance(){
+    cout<<"starting dance \n";
     for (int i=0; i<4; i++){
-        instruments[i].start();
+        this->instruments[i].start();
     }
     for (int i=0; i<4; i++){
         instruments[i].join();
@@ -60,7 +64,7 @@ void DanceSet::start_dance(){
 }
 
 int DanceSet::get_tempo(){
-    return tempo;
+    return this->tempo;
 }
 
 void DanceSet::set_tempo(int tempo) {
