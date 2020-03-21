@@ -5,13 +5,18 @@
 #include "Instrument.h"
 
 void sendNote(bool on, int channel, int note){
-    if (on)
+    if (on){
+	cout<<"on\n";
         noteOn(channel,note);
-    else
+    }
+    else{
+	cout<<"off\n";
         noteOff(channel,note);
+}
 }
 
 void Instrument::updateNote(int channel){
+    return;
     if (bassOn){
         sendNote(0,channel,previousBass);
         sendNote(1,channel,bassNote);
@@ -27,10 +32,11 @@ void Instrument::updateNote(int channel){
 }
 
 void Instrument::run() {
+    fluid_synth_init();
     int d = 0;
     cout << "about to run\n";
     while(hardware.playing || d%size!=0){
-        usleep(timing_factor*timeDeltas[d%size]);
+        usleep(this->timing_factor*this->timeDeltas[d%this->size]);
         if (this->channels[d%this->size]==2){
             sendNote(this->onOff[d%size],0,this->bassNote);
             this->bassOn = this->onOff[d%size];

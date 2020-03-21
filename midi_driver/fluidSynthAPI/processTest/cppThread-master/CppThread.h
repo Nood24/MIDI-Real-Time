@@ -14,6 +14,7 @@ class CppThread {
 
 public:
 	void start() {
+		std::cout<<"creating new thread\n";
 		uthread = new std::thread(CppThread::exec, this);
 	}
 

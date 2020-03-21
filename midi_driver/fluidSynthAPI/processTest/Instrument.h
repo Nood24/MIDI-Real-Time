@@ -40,10 +40,13 @@ class Instrument : public CppThread {
 public:
     Instrument(std::string csv_file, int tempo, HardwareController hw){
 	//vector<int> timeDeltas, channels, onOff;
+	cout<<"Inst\n";
         extract_from_csv(csv_file,this->timeDeltas,channels,onOff);
 	this->timeDeltas, this->channels, this->onOff = timeDeltas, channels, onOff;
         size = this->timeDeltas.size();
-        timing_factor = 60/tempo/12000;
+	cout<<"Tempo: "<< tempo<< "\n";
+        this->timing_factor = 20000000*60.0/tempo/12000.0;
+	cout<<"Initial timing" << this->timing_factor<< endl;
 	hardware = hw;
     }
     void updateNote(int channel);
@@ -63,7 +66,7 @@ private:
     int previousBass = 48;
     int bassNote = 48;
     std::vector<unsigned char>* message;
-    int timing_factor;
+    double timing_factor;
 };
 
 
