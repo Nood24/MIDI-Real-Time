@@ -27,7 +27,7 @@ public:
     void set_playing(bool play);
     void create_midi_reader(int port_no);
     RtMidiIn *midiin;
-    DanceSet* current_dance;
+    DanceSet *current_dance;
     HardwareController hardware;
     //static void change_notes(double deltatime, vector< unsigned char > *message, void */*userData*/);
     //static void replicate_midi(double deltatime, std::vector<unsigned char> *message, void */*userdata*/);

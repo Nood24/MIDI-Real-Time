@@ -16,7 +16,7 @@ class Instrument;
 class DanceSet {
 public:
     DanceSet(string dance, int tempo, string file_location, HardwareController hw) {
-       this->dance = dance;
+       this->dance_name = dance;
        this->tempo = tempo;
        this->file_location = file_location;
        this->hardware = hw;
@@ -35,7 +35,7 @@ public:
     int bassNote = 48;
     int previousBass = 48;
 private:
-    string dance;
+    string dance_name;
     int tempo;
     int byte1;
     int byte2;

@@ -40,8 +40,8 @@ class Instrument : public CppThread {
 public:
     Instrument(std::string csv_file, int tempo, HardwareController hw){
 	vector<int> timeDeltas, channels, onOff;
-        extract_from_csv(csv_file,timeDeltas,channels,onOff);
-        size = timeDeltas.size();
+        extract_from_csv(csv_file,this->timeDeltas,channels,onOff);
+        size = this->timeDeltas.size();
         timing_factor = 60/tempo/12000;
 	hardware = hw;
     }
@@ -49,7 +49,9 @@ public:
 
 private:
     void run();
-    void extract_from_csv(string filename, vector<int> timeDeltas, vector<int> channels, vector<int> onOff);
+
+private:
+    void extract_from_csv(string filename, vector<int> &timeDeltas, vector<int> &channels, vector<int> &onOff);
     vector<int> timeDeltas, channels, onOff;
     bool chordOn = false;
     bool bassOn = false;

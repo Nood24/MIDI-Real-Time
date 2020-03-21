@@ -28,26 +28,26 @@ void Instrument::updateNote(int channel){
 
 void Instrument::run() {
     int d = 0;
+    cout << "about to run\n";
     while(hardware.playing || d%size!=0){
         usleep(timing_factor*timeDeltas[d%size]);
-        if (channels[d%size]==2){
-            sendNote(onOff[d%size],0,bassNote);
-            bassOn = onOff[d%size];
+        if (this->channels[d%size]==2){
+            sendNote(this->onOff[d%size],0,this->bassNote);
+            this->bassOn = this->onOff[d%size];
         }
         else{
-            sendNote(onOff[d%size],0,chordNotes[0]);
-            sendNote(onOff[d%size],0,chordNotes[1]);
-            sendNote(onOff[d%size],0,chordNotes[2]);
-            chordOn = onOff[d%size];
+            sendNote(this->onOff[d%size],0,this->chordNotes[0]);
+            sendNote(this->onOff[d%size],0,this->chordNotes[1]);
+            sendNote(this->onOff[d%size],0,this->chordNotes[2]);
+            chordOn = this->onOff[d%size];
         }
         d=d+1;
     }
 }
 
-void Instrument::extract_from_csv(string filename, vector<int> timeDeltas, vector<int> channels, vector<int> onOff){
+void Instrument::extract_from_csv(string filename, vector<int> &timeDeltas, vector<int> &channels, vector<int> &onOff){
     int delta, channel, on;
     string strdelta, strchannel, stron;
-    int line = 0;
 
     ifstream csvfile;
     cout<<filename<<"\n";
