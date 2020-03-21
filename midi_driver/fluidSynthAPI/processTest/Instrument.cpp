@@ -31,7 +31,7 @@ void Instrument::run() {
     cout << "about to run\n";
     while(hardware.playing || d%size!=0){
         usleep(timing_factor*timeDeltas[d%size]);
-        if (this->channels[d%size]==2){
+        if (this->channels[d%this->size]==2){
             sendNote(this->onOff[d%size],0,this->bassNote);
             this->bassOn = this->onOff[d%size];
         }

@@ -56,6 +56,7 @@ void DanceSet::set_notes(std::vector< unsigned char >* message){
 void DanceSet::start_dance(){
     cout<<"starting dance \n";
     for (int i=0; i<4; i++){
+	//cout << this->instruments[i].timeDeltas.size()<<endl;
         this->instruments[i].start();
     }
     for (int i=0; i<4; i++){
