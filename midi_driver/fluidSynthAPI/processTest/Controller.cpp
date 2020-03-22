@@ -37,6 +37,7 @@ void change_notes( double deltatime, vector< unsigned char > *message, Controlle
 }
 
 void callback( double deltatime, vector< unsigned char > *message, void *controller ){
+    //cout<<"in callback"<<endl;
     if (((Controller *)controller)->hardware.playing){
 	((Controller *)controller)->current_dance->set_notes(message);
     }
@@ -54,6 +55,7 @@ void callback( double deltatime, std::vector< unsigned char > *message, void *){
 void Controller::create_midi_reader(int port_no){
     fluid_synth_init();
     midiin = 0;
+    RtMidiOut *midiout = new RtMidiOut();
 
     try {
         // RtMidiIn constructor
@@ -76,9 +78,12 @@ int main(){
     HardwareController hwtest;
     Controller controller = Controller(hwtest);
     //Set create_midi_reader(1)on pi
-    controller.create_midi_reader(0);
+    controller.create_midi_reader(1);
+    char input;
+    std::cin.get(input);
+    /*
     controller.load_dance("gaygordons", 120);
     cout<<"finished loading\n";
     controller.start_playing();
-
+    */
 }
