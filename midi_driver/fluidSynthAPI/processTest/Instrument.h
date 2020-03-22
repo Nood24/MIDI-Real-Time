@@ -38,12 +38,15 @@ void sendNote(bool on, int channel, int note);
 
 class Instrument : public CppThread {
 public:
-    Instrument(std::string csv_file, int tempo, HardwareController hw){
+    Instrument(std::string csv_file, int tempo, HardwareController hw, int sf_ID, int channel_number){
 	//vector<int> timeDeltas, channels, onOff;
         extract_from_csv(csv_file);
         this->size = this->timeDeltas.size();
         this->timing_factor = 20000000*60.0/tempo/12000.0;
 	this->hardware = hw;
+        this->instrument_sfID = sf_ID;
+        this->FS_channel = channel_number;
+        changeInstrument(this->instrument_sfID, this->FS_channel);
     }
     void updateNote(int channel);
 
@@ -63,6 +66,8 @@ private:
     int bassNote = 48;
     std::vector<unsigned char>* message;
     double timing_factor;
+    int FS_channel;
+    int instrument_sfID;
 };
 
 
