@@ -4,10 +4,18 @@
 
 #include "Instrument.h"
 
-void sendNote(bool on, int channel, int note){    
+void sendNote(bool on, int channel, int note){
+<<<<<<< Updated upstream
+    
+    if (on){
+        noteOn(channel,note);
+    }
+    else{
+=======
     if (on)
         noteOn(channel,note);
     else
+>>>>>>> Stashed changes
         noteOff(channel,note);
 }
 
@@ -28,8 +36,15 @@ void Instrument::updateNote(int channel){
 }
 
 void Instrument::run() {
+    //fluid_synth_init should be called in danceSet.
+    //fluid_synth_init();
     int d = 0;
+<<<<<<< Updated upstream
     while(this->hardware.playing || d%this->size!=0){
+=======
+    usleep(100000);
+    while(hardware.playing || d%size!=0){
+>>>>>>> Stashed changes
         usleep(this->timing_factor*this->timeDeltas[d%this->size]);
 
         if (this->channels[d%this->size]==2){
@@ -40,7 +55,12 @@ void Instrument::run() {
             sendNote(this->onOff[d%this->size],0,this->chordNotes[0]);
             sendNote(this->onOff[d%this->size],0,this->chordNotes[1]);
             sendNote(this->onOff[d%this->size],0,this->chordNotes[2]);
+<<<<<<< Updated upstream
             this->chordOn = this->onOff[d%this->size];
+ 
+=======
+            chordOn = this->onOff[d%this->size];
+>>>>>>> Stashed changes
         }
         d=d+1;
     }
