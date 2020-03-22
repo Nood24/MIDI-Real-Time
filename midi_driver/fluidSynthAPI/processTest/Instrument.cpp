@@ -5,53 +5,54 @@
 #include "Instrument.h"
 
 void sendNote(bool on, int channel, int note){
+    
     if (on){
-	cout<<"on\n";
         noteOn(channel,note);
     }
     else{
-	cout<<"off\n";
         noteOff(channel,note);
 }
 }
 
 void Instrument::updateNote(int channel){
     return;
-    if (bassOn){
-        sendNote(0,channel,previousBass);
-        sendNote(1,channel,bassNote);
+    if (this->bassOn){
+        sendNote(0,channel,this->previousBass);
+        sendNote(1,channel,this->bassNote);
     }
-    if (chordOn){
-        sendNote(0,channel,previousChord[0]);
-        sendNote(0,channel,previousChord[1]);
-        sendNote(0,channel,previousChord[2]);
-        sendNote(1,channel,chordNotes[0]);
-        sendNote(1,channel,chordNotes[1]);
-        sendNote(1,channel,chordNotes[2]);
+    if (this->chordOn){
+        sendNote(0,channel,this->previousChord[0]);
+        sendNote(0,channel,this->previousChord[1]);
+        sendNote(0,channel,this->previousChord[2]);
+        sendNote(1,channel,this->chordNotes[0]);
+        sendNote(1,channel,this->chordNotes[1]);
+        sendNote(1,channel,this->chordNotes[2]);
     }
 }
 
 void Instrument::run() {
-    fluid_synth_init();
+    //fluid_synth_init should be called in danceSet.
+    //fluid_synth_init();
     int d = 0;
-    cout << "about to run\n";
-    while(hardware.playing || d%size!=0){
+    while(this->hardware.playing || d%this->size!=0){
         usleep(this->timing_factor*this->timeDeltas[d%this->size]);
+
         if (this->channels[d%this->size]==2){
-            sendNote(this->onOff[d%size],0,this->bassNote);
-            this->bassOn = this->onOff[d%size];
+            sendNote(this->onOff[d%this->size],0,this->bassNote);
+            this->bassOn = this->onOff[d%this->size];
         }
         else{
-            sendNote(this->onOff[d%size],0,this->chordNotes[0]);
-            sendNote(this->onOff[d%size],0,this->chordNotes[1]);
-            sendNote(this->onOff[d%size],0,this->chordNotes[2]);
-            chordOn = this->onOff[d%size];
+            sendNote(this->onOff[d%this->size],0,this->chordNotes[0]);
+            sendNote(this->onOff[d%this->size],0,this->chordNotes[1]);
+            sendNote(this->onOff[d%this->size],0,this->chordNotes[2]);
+            this->chordOn = this->onOff[d%this->size];
+ 
         }
         d=d+1;
     }
 }
 
-void Instrument::extract_from_csv(string filename, vector<int> &timeDeltas, vector<int> &channels, vector<int> &onOff){
+void Instrument::extract_from_csv(string filename){
     int delta, channel, on;
     string strdelta, strchannel, stron;
 
@@ -64,13 +65,14 @@ void Instrument::extract_from_csv(string filename, vector<int> &timeDeltas, vect
         getline(csvfile,strdelta,',');
         getline(csvfile,strchannel,',');
         getline(csvfile,stron,'\n');
+
         delta = stoi(strdelta);
         channel = stoi(strchannel);
         on = stoi(stron);
 
-        timeDeltas.push_back(delta);
-        channels.push_back(channel);
-        onOff.push_back(on);
+        this->timeDeltas.push_back(delta);
+        this->channels.push_back(channel);
+        this->onOff.push_back(on);
     }
 }
 
