@@ -20,8 +20,6 @@
 #include <cstdlib>
 #include <iostream>
 #include "fluidCustomAPI.h"
-#include "DanceSet.h"
-#include "Controller.h"
 
 
 bool chooseMidiPort( RtMidiOut *rtmidi )
@@ -78,20 +76,13 @@ RtMidiOut *midiout = new RtMidiOut();
 
 void mycallback( double deltatime, std::vector< unsigned char > *message, void */*userData*/ )
 {
-    set_notes(message);
+    std::cout<<"called\n";
 }
 
 // This function should be embedded in a try/catch block in case of
 // an exception.  It offers the user a choice of MIDI ports to open.
 // It returns false if there are no ports available.
 bool chooseMidiPort( RtMidiIn *rtmidi );
-
-void start(){
-    Controller controller = Controller();
-    controller.load_dance('gaygordons');
-    controller.start_playing();
-
-}
 
 int main( int argc, char ** /*argv[]*/ )
 {
@@ -112,7 +103,7 @@ int main( int argc, char ** /*argv[]*/ )
     // Set our callback function.  This should be done immediately after
     // opening the port to avoid having incoming messages written to the
     // queue instead of sent to the callback function.
-    midiin->setCallback( &set_notes ); //&mycallback
+    midiin->setCallback( &mycallback ); //&mycallback
 
     // Don't ignore sysex, timing, or active sensing messages.
     midiin->ignoreTypes( false, false, false );
@@ -126,7 +117,6 @@ int main( int argc, char ** /*argv[]*/ )
           error.printMessage();
           goto cleanup;
       }
-    start();
     std::cout << "\nReading MIDI input ... press <enter> to quit.\n";
     char input;
     std::cin.get(input);
