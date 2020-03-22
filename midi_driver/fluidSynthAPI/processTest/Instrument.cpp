@@ -4,26 +4,21 @@
 
 #include "Instrument.h"
 
-void sendNote(bool on, int channel, int note){    
-    if (on)
-        noteOn(channel,note);
-    else
-        noteOff(channel,note);
-}
+
 
 void Instrument::updateNote(int channel){
     return;
     if (this->bassOn){
-        sendNote(0,channel,this->previousBass);
-        sendNote(1,channel,this->bassNote);
+        sendNote(0,this->FS_channel,this->previousBass);
+        sendNote(1,this->FS_channel,this->bassNote);
     }
     if (this->chordOn){
-        sendNote(0,channel,this->previousChord[0]);
-        sendNote(0,channel,this->previousChord[1]);
-        sendNote(0,channel,this->previousChord[2]);
-        sendNote(1,channel,this->chordNotes[0]);
-        sendNote(1,channel,this->chordNotes[1]);
-        sendNote(1,channel,this->chordNotes[2]);
+        sendNote(0,this->FS_channel,this->previousChord[0]);
+        sendNote(0,this->FS_channel,this->previousChord[1]);
+        sendNote(0,this->FS_channel,this->previousChord[2]);
+        sendNote(1,this->FS_channel,this->chordNotes[0]);
+        sendNote(1,this->FS_channel,this->chordNotes[1]);
+        sendNote(1,this->FS_channel,this->chordNotes[2]);
     }
 }
 

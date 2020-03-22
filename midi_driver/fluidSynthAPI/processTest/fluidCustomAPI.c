@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <fluidsynth.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 
 fluid_synth_t *synth;
@@ -85,5 +86,13 @@ void deleteFluidSynth(){
 /* Changing Intruments */
 void changeInstrument(int channel, int instrument){
     fluid_synth_program_select(synth, channel, sf_id,0, instrument);
+}
+
+/* Send On or Off Notes */
+void sendNote(bool on, int channel, int note){  
+    if (on)
+        noteOn(channel,note);
+    else
+        noteOff(channel,note);
 }
 
