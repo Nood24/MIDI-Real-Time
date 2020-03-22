@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/pi/CeilidhBand/MIDI-Real-Time/midi_driver/fluidSynthAPI/processTest/cppThread-master/CppThread.h
+iostream
+-
+thread
+-
+
+/home/pi/CeilidhBand/MIDI-Real-Time/midi_driver/fluidSynthAPI/processTest/cppThread-master/DemoThread.cpp
+DemoThread.h
+/home/pi/CeilidhBand/MIDI-Real-Time/midi_driver/fluidSynthAPI/processTest/cppThread-master/DemoThread.h
+stdio.h
+-
+chrono
+-
+thread
+-
+
+/home/pi/CeilidhBand/MIDI-Real-Time/midi_driver/fluidSynthAPI/processTest/cppThread-master/DemoThread.h
+CppThread.h
+/home/pi/CeilidhBand/MIDI-Real-Time/midi_driver/fluidSynthAPI/processTest/cppThread-master/CppThread.h
+
+/home/pi/CeilidhBand/MIDI-Real-Time/midi_driver/fluidSynthAPI/processTest/cppThread-master/demo.cpp
+stdio.h
+-
+DemoThread.h
+/home/pi/CeilidhBand/MIDI-Real-Time/midi_driver/fluidSynthAPI/processTest/cppThread-master/DemoThread.h
+

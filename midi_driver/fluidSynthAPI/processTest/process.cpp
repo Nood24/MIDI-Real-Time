@@ -34,12 +34,8 @@ int bassNote = 48; //CHANGE
 
 bool isKthBitSet(int n, int k) 
 { 
-    if ((n >> (k - 1)) & 1) 
-        return true;
-    else
-        return false; 
+    return ((n >> (k - 1)) & 1);
 }
-
 
 void setChordNote(int note){
     //readWrite.lock();
@@ -189,12 +185,9 @@ void *Play(void *instrument){
 */
 
 void run(){
-    printf("in run");
     string testfile = "../../Piano.csv";
     vector<int> timeDeltas, channels, onOff;
-    cout<<"About to load arrays";
     loadCSVToArray(testfile,timeDeltas,channels,onOff);
-    cout<<"loaded arrays";
     fluid_synth_init();
     Loop(timeDeltas,channels,onOff);
     /*
@@ -202,12 +195,11 @@ void run(){
     Piano.timeDeltas = timeDeltas;
     Piano.channels = channels;
     Piano.onOff = onOff;
-
     int size = onOff.size();
     int check;
     cout << "About to do threads..";
     pthread_t threads[2];
-    check = pthread_create(&threads[0], NULL, Play, (void *) &Piano);
+    check = pthread_create(&threads[0], NULL, Loop, (void *) &Piano);
     */
 
 }

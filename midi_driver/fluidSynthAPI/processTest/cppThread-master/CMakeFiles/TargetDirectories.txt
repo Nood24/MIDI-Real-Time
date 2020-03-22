@@ -1,0 +1,3 @@
+/home/pi/CeilidhBand/MIDI-Real-Time/midi_driver/fluidSynthAPI/processTest/cppThread-master/CMakeFiles/rebuild_cache.dir
+/home/pi/CeilidhBand/MIDI-Real-Time/midi_driver/fluidSynthAPI/processTest/cppThread-master/CMakeFiles/demo.dir
+/home/pi/CeilidhBand/MIDI-Real-Time/midi_driver/fluidSynthAPI/processTest/cppThread-master/CMakeFiles/edit_cache.dir
