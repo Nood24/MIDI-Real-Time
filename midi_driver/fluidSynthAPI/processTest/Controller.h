@@ -18,7 +18,7 @@ using namespace std;
 class Controller {
 public:
     Controller(HardwareController hw){
-    	hardware = hw;
+    	this->hardware = hw;
     };
     static string get_file_location(string dance, int tempo);
     void load_dance(string dance_name, int tempo);

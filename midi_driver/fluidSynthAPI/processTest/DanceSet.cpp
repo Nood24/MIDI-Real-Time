@@ -35,13 +35,13 @@ void DanceSet::set_notes(std::vector< unsigned char >* message){
     is_bass = ((byte1>> 1) & 1);
 
     if (is_bass){
-        previousBass = bassNote;
-        bassNote = byte2;
+        this->previousBass = this->bassNote;
+        this->bassNote = byte2;
     }
     else{
         setChordNote(byte2);
     }
-    if (previousBass!=bassNote || previousChord!=chordNotes)
+    if (this->previousBass!=this->bassNote || this->previousChord!=this->chordNotes)
        for (int i=0; i<4; i++){
          instruments[i].updateNote(0);
        } 
@@ -54,7 +54,7 @@ void DanceSet::start_dance(){
         this->instruments[i].start();
     }
     for (int i=0; i<4; i++){
-        instruments[i].join();
+        this->instruments[i].join();
     }
 }
 
@@ -64,6 +64,6 @@ int DanceSet::get_tempo(){
 
 void DanceSet::set_tempo(int tempo) {
     assert((tempo>0)&&(tempo<200));
-    tempo = tempo;
+    this->tempo = tempo;
 }
 

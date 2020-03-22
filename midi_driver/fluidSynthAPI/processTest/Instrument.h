@@ -41,13 +41,12 @@ public:
     Instrument(std::string csv_file, int tempo, HardwareController hw){
 	//vector<int> timeDeltas, channels, onOff;
 	cout<<"Inst\n";
-        extract_from_csv(csv_file,this->timeDeltas,channels,onOff);
-	this->timeDeltas, this->channels, this->onOff = timeDeltas, channels, onOff;
-        size = this->timeDeltas.size();
+        extract_from_csv(csv_file);
+        this->size = this->timeDeltas.size();
 	cout<<"Tempo: "<< tempo<< "\n";
         this->timing_factor = 20000000*60.0/tempo/12000.0;
 	cout<<"Initial timing" << this->timing_factor<< endl;
-	hardware = hw;
+	this->hardware = hw;
     }
     void updateNote(int channel);
 
@@ -55,7 +54,7 @@ private:
     void run();
 
 private:
-    void extract_from_csv(string filename, vector<int> &timeDeltas, vector<int> &channels, vector<int> &onOff);
+    void extract_from_csv(string filename);
     vector<int> timeDeltas, channels, onOff;
     bool chordOn = false;
     bool bassOn = false;
