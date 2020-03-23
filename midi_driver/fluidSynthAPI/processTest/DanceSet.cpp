@@ -13,8 +13,8 @@ void DanceSet::load_instruments() {
     //See instruments https://musical-artifacts.com/artifacts/738
     Instrument* piano = new Instrument(this->file_location + "piano.csv", this->tempo,this->hardware,0, 1);
     Instrument* accordion = new Instrument(this->file_location + "Accordion.csv", this->tempo, this->hardware, 1, 21);
-    Instrument* drums = new Instrument(this->file_location + "Bass.csv", this->tempo,this->hardware,2, 118);
-    Instrument* bass = new Instrument(this->file_location + "Drums.csv", this->tempo, this->hardware, 3, 34);
+    Instrument* drums = new Instrument(this->file_location + "Drums.csv", this->tempo,this->hardware,2, 118);
+    Instrument* bass = new Instrument(this->file_location + "Bass.csv", this->tempo, this->hardware, 3, 34);
    
     this->instruments.push_back(accordion);
     this->instruments.push_back(piano);
