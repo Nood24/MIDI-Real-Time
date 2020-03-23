@@ -40,7 +40,9 @@ private:
     int byte1;
     int byte2;
     bool is_bass;
-    vector<Instrument> instruments;
+    vector<Instrument*> instruments;
+    Instrument* bass;
+    Instrument* piano;
     void setChordNote(int note);
     string file_location;
 };

@@ -4,6 +4,16 @@
 
 #include "Instrument.h"
 
+Instrument::Instrument(std::string csv_file, int tempo, HardwareController hw, int channel_number, int sf_ID){
+	//vector<int> timeDeltas, channels, onOff;
+        extract_from_csv(csv_file);
+        this->size = this->timeDeltas.size();
+        this->timing_factor = 20000000*60.0/tempo/12000.0;
+	this->hardware = hw;
+        this->instrument_sfID = sf_ID;
+        this->FS_channel = channel_number;
+        changeInstrument(this->FS_channel,this->instrument_sfID);
+    }
 
 
 void Instrument::updateNote(int channel){
@@ -26,15 +36,14 @@ void Instrument::run() {
     int d = 0;
     while(this->hardware.playing || d%this->size!=0){
         usleep(this->timing_factor*this->timeDeltas[d%this->size]);
-
         if (this->channels[d%this->size]==2){
-            sendNote(this->onOff[d%this->size],0,this->bassNote);
+            sendNote(this->onOff[d%this->size],this->FS_channel,this->bassNote);
             this->bassOn = this->onOff[d%this->size];
         }
         else{
-            sendNote(this->onOff[d%this->size],0,this->chordNotes[0]);
-            sendNote(this->onOff[d%this->size],0,this->chordNotes[1]);
-            sendNote(this->onOff[d%this->size],0,this->chordNotes[2]);
+            sendNote(this->onOff[d%this->size],this->FS_channel,this->chordNotes[0]);
+            sendNote(this->onOff[d%this->size],this->FS_channel,this->chordNotes[1]);
+            sendNote(this->onOff[d%this->size],this->FS_channel,this->chordNotes[2]);
             this->chordOn = this->onOff[d%this->size];
         }
         d=d+1;

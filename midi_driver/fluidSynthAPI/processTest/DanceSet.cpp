@@ -11,15 +11,15 @@ using namespace std;
 void DanceSet::load_instruments() {
     fluid_synth_init();
     //See instruments https://musical-artifacts.com/artifacts/738
-    Instrument bass = Instrument(this->file_location + "piano.csv", this->tempo,this->hardware,1, 14);
-    Instrument piano = Instrument(this->file_location + "piano2.csv", this->tempo, this->hardware, 0, 21);
+    Instrument* bass = new Instrument(this->file_location + "piano.csv", this->tempo,this->hardware,0, 4);
+    Instrument* piano = new Instrument(this->file_location + "piano2.csv", this->tempo, this->hardware, 0, 21);
     this->instruments.push_back(bass);
     this->instruments.push_back(piano);
 }
 
 void DanceSet::wait_loop_end(){
-    for (int i=0;i<1;i++){
-        this->instruments[i].join();
+    for (int i=0;i<2;i++){
+        this->instruments[i]->join();
     }
 }
 
@@ -46,19 +46,20 @@ void DanceSet::set_notes(std::vector< unsigned char >* message){
     }
     if (this->previousBass!=this->bassNote || this->previousChord!=this->chordNotes)
        for (int i=0; i<4; i++){
-         instruments[i].updateNote(0);
+         instruments[i]->updateNote(0);
        } 
 }
 
 void DanceSet::start_dance(){
     cout<<"starting dance \n";
-    for (int i=0; i<1; i++){
+    for (int i=0; i<2; i++){
 	//cout << this->instruments[i].timeDeltas.size()<<endl;
-        this->instruments[i].start();
+        this->instruments[i]->start();
     }
     for (int i=0; i<4; i++){
-        this->instruments[i].join();
+        this->instruments[i]->join();
     }
+    
 }
 
 int DanceSet::get_tempo(){
