@@ -9,8 +9,6 @@
 void Controller::load_dance(string dance_name, int tempo){
     file_location = CSV_FILES + dance_name + "/";
     current_dance = new DanceSet(dance_name, tempo, file_location, hardware);
-    cout << this->current_dance << endl;
-    cout << this->current_dance->get_tempo()<<endl;
     current_dance->load_instruments();
 }
 
