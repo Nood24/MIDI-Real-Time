@@ -11,10 +11,16 @@ using namespace std;
 void DanceSet::load_instruments() {
     fluid_synth_init();
     //See instruments https://musical-artifacts.com/artifacts/738
-    Instrument* bass = new Instrument(this->file_location + "piano.csv", this->tempo,this->hardware,0, 4);
-    Instrument* piano = new Instrument(this->file_location + "piano2.csv", this->tempo, this->hardware, 0, 21);
-    this->instruments.push_back(bass);
+    Instrument* piano = new Instrument(this->file_location + "piano.csv", this->tempo,this->hardware,0, 1);
+    Instrument* accordion = new Instrument(this->file_location + "Accordion.csv", this->tempo, this->hardware, 1, 21);
+    Instrument* drums = new Instrument(this->file_location + "Bass.csv", this->tempo,this->hardware,2, 118);
+    Instrument* bass = new Instrument(this->file_location + "Drums.csv", this->tempo, this->hardware, 3, 34);
+   
+    this->instruments.push_back(accordion);
     this->instruments.push_back(piano);
+    this->instruments.push_back(drums);
+    this->instruments.push_back(bass);
+
 }
 
 void DanceSet::wait_loop_end(){
@@ -52,7 +58,7 @@ void DanceSet::set_notes(std::vector< unsigned char >* message){
 
 void DanceSet::start_dance(){
     cout<<"starting dance \n";
-    for (int i=0; i<2; i++){
+    for (int i=0; i<4; i++){
 	//cout << this->instruments[i].timeDeltas.size()<<endl;
         this->instruments[i]->start();
     }
