@@ -10,7 +10,7 @@
 #define CEILIDHBAND_CONTROLLER_H
 #define CSV_FILES "./CSVFiles/"
 
-#include "../../../rtmidi/RtMidi.h"
+#include "../../rtmidi/RtMidi.h"
 #include "DanceSet.h"
 
 using namespace std;
