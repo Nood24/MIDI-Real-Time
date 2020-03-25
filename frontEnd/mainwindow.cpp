@@ -4,7 +4,7 @@
 #include <QPixmap>
 #include <pthread.h>
 #include <thread>
-#include "hardwareController_Terminal_prototype/HardwareController.h"
+#include "hardwareController_Terminal_prototype/TerminalController.h"
 #include <string>
 
 using namespace std;
@@ -13,9 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    char * leftSong;
-    char * rightSong;
-    char * SelectedSong;
+
 
     ui->setupUi(this);
     QPixmap pix(":/images/images/OneManCeilidh.jpg");
@@ -50,7 +48,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     font.setPointSize(16);
     ui->rightShift->setFont(font);
-    ui->rightShift->setText("\Switch Right For:\n");
+    ui->rightShift->setText("Switch Right For:\n");
     ui->rightShift->setFixedWidth(w*1.1);
     ui->rightShift->setAlignment(Qt::AlignCenter);
 
