@@ -36,7 +36,7 @@ void change_notes( double deltatime, vector< unsigned char > *message, Controlle
 
 
 void callback( double deltatime, vector< unsigned char > *message, void *controller ){
-    //cout<<"in callback"<<endl;
+    //cout<<"in callback"<<((Controller *)controller)->hardware.playing<<endl;
     if (((Controller *)controller)->hardware.playing){
 	((Controller *)controller)->current_dance->set_notes(message);
     }
