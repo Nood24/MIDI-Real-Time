@@ -185,6 +185,7 @@
 #define __FLT128_MAX_EXP__ 16384
 #define __FLT32_MANT_DIG__ 24
 #define __FLOAT_WORD_ORDER__ __ORDER_LITTLE_ENDIAN__
+#define __LINUX_ALSA__ 1
 #define __STDC_IEC_559_COMPLEX__ 1
 #define __FLT128_HAS_DENORM__ 1
 #define __FLT128_DIG__ 33
