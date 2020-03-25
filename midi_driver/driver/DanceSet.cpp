@@ -56,11 +56,18 @@ void DanceSet::set_notes(std::vector< unsigned char >* message){
        } 
 }
 
-void DanceSet::start_dance(){
+void DanceSet::start_dance(VirtualHardwareController& vhc){
+    this->hardware = vhc;
     cout<<"starting dance \n";
     for (int i=0; i<4; i++){
-	//cout << this->instruments[i].timeDeltas.size()<<endl;
+    //cout << this->instruments[i].timeDeltas.size()<<endl;
+        this->instruments[i]->hardware = vhc;
         this->instruments[i]->start();
+    }
+    int i=0;
+    while (true){
+        this->instruments[i%4]->hardware = vhc;
+        i= i+1;
     }
     for (int i=0; i<4; i++){
         this->instruments[i]->join();

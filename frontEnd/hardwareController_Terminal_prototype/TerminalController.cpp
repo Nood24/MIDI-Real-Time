@@ -69,6 +69,7 @@ void TerminalController::shiftSongRight(){
 void TerminalController::startStopSong(){
     if(songPlaying){
         songPlaying = false;
+
     }
     else{
         songPlaying = true;
@@ -177,7 +178,7 @@ void TerminalController::runThread(MainWindow& window, TerminalController& contr
 
 //--------------------------------------------------
 void TerminalController::run(MainWindow& window,VirtualHardwareController& virtualController){
-    songPlaying = false;
+    songPlaying = true;
     virtualController.playing = this->songPlaying;
     this->songIndex = 0;
     printSystemState();
@@ -190,6 +191,7 @@ void TerminalController::run(MainWindow& window,VirtualHardwareController& virtu
         window.setSongs(getLeftSong(),getSong(),getRightSong());
         window.setPlayButton(songPlaying);
         virtualController.playing = this->songPlaying;
+        cout << virtualController.playing <<" controller in TerminalCon \n";
     }
 
 }

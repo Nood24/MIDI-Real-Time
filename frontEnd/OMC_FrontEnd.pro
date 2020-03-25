@@ -34,7 +34,8 @@ SOURCES += hardwareController_Terminal_prototype/TerminalController.cpp \
     mainwindow.cpp \
     ../midi_driver/driver/Controller.cpp \
     ../midi_driver/driver/fluidCustomAPI.c \
-    ../rtmidi/RtMidi.cpp 
+    ../rtmidi/RtMidi.cpp \
+    ../midi_driver/driver/VirtualHardwareController.cpp
 
 HEADERS += hardwareController_Terminal_prototype/TerminalController.h \
     ../midi_driver/driver/DanceSet.h \

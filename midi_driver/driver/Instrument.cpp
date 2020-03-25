@@ -4,7 +4,7 @@
 
 #include "Instrument.h"
 
-Instrument::Instrument(std::string csv_file, int tempo, HardwareController hw, int channel_number, int sf_ID){
+Instrument::Instrument(std::string csv_file, int tempo, VirtualHardwareController& hw, int channel_number, int sf_ID){
 	//vector<int> timeDeltas, channels, onOff;
         extract_from_csv(csv_file);
         this->size = this->timeDeltas.size();
@@ -34,7 +34,8 @@ void Instrument::updateNote(int channel){
 
 void Instrument::run() {
     int d = 0;
-    while(this->hardware.playing || d%this->size!=0){
+    while(this->hardware.playing ){
+        cout << this->hardware.playing <<" controller in instrumentRun\n";
         usleep(this->timing_factor*this->timeDeltas[d%this->size]);
         if (this->channels[d%this->size]==2){
             sendNote(this->onOff[d%this->size],this->FS_channel,this->bassNote);
@@ -56,9 +57,8 @@ void Instrument::extract_from_csv(string filename){
 
     ifstream csvfile;
     cout<<filename<<"\n";
-    csvfile.open(filename);
+    csvfile.open(filename);    
     assert(csvfile.is_open());
-
     while(csvfile.good()){
         getline(csvfile,strdelta,',');
         getline(csvfile,strchannel,',');
