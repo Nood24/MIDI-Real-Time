@@ -50,11 +50,11 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = hardwareController_Terminal_prototype/HardwareController.cpp \
+SOURCES       = hardwareController_Terminal_prototype/TerminalController.cpp \
 		main.cpp \
 		mainwindow.cpp qrc_images.cpp \
 		moc_mainwindow.cpp
-OBJECTS       = HardwareController.o \
+OBJECTS       = TerminalController.o \
 		main.o \
 		mainwindow.o \
 		qrc_images.o \
@@ -237,7 +237,7 @@ DIST          = ../../anaconda3/mkspecs/features/spec_pre.prf \
 		../../anaconda3/mkspecs/features/yacc.prf \
 		../../anaconda3/mkspecs/features/lex.prf \
 		OMC_FrontEnd.pro hardwareController_Terminal_prototype/HardwareController.h \
-		mainwindow.h hardwareController_Terminal_prototype/HardwareController.cpp \
+		mainwindow.h hardwareController_Terminal_prototype/TerminalController.cpp \
 		main.cpp \
 		mainwindow.cpp
 QMAKE_TARGET  = OMC_FrontEnd
@@ -633,7 +633,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents images.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../anaconda3/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents hardwareController_Terminal_prototype/HardwareController.h mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents hardwareController_Terminal_prototype/HardwareController.cpp main.cpp mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents hardwareController_Terminal_prototype/TerminalController.cpp main.cpp mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
 
@@ -805,7 +805,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 
 ####### Compile
 
-HardwareController.o: hardwareController_Terminal_prototype/HardwareController.cpp hardwareController_Terminal_prototype/HardwareController.h \
+TerminalController.o: hardwareController_Terminal_prototype/TerminalController.cpp hardwareController_Terminal_prototype/TerminalController.h \
 		mainwindow.h \
 		../../anaconda3/include/qt/QtWidgets/QMainWindow \
 		../../anaconda3/include/qt/QtWidgets/qmainwindow.h \
@@ -910,7 +910,7 @@ HardwareController.o: hardwareController_Terminal_prototype/HardwareController.c
 		../../anaconda3/include/qt/QtGui/qtouchdevice.h \
 		../../anaconda3/include/qt/QtWidgets/qtabwidget.h \
 		../../anaconda3/include/qt/QtGui/qicon.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o HardwareController.o hardwareController_Terminal_prototype/HardwareController.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o TerminalController.o hardwareController_Terminal_prototype/TerminalController.cpp
 
 main.o: main.cpp mainwindow.h \
 		../../anaconda3/include/qt/QtWidgets/QMainWindow \
@@ -1016,7 +1016,7 @@ main.o: main.cpp mainwindow.h \
 		../../anaconda3/include/qt/QtGui/qtouchdevice.h \
 		../../anaconda3/include/qt/QtWidgets/qtabwidget.h \
 		../../anaconda3/include/qt/QtGui/qicon.h \
-		hardwareController_Terminal_prototype/HardwareController.h \
+		hardwareController_Terminal_prototype/TerminalController.h \
 		../../anaconda3/include/qt/QtWidgets/QApplication \
 		../../anaconda3/include/qt/QtWidgets/qapplication.h \
 		../../anaconda3/include/qt/QtCore/qcoreapplication.h \
@@ -1131,53 +1131,7 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../anaconda3/include/qt/QtWidgets/qtabwidget.h \
 		../../anaconda3/include/qt/QtGui/qicon.h \
 		ui_mainwindow.h \
-		../../anaconda3/include/qt/QtCore/QVariant \
-		../../anaconda3/include/qt/QtWidgets/QAction \
-		../../anaconda3/include/qt/QtWidgets/qaction.h \
-		../../anaconda3/include/qt/QtWidgets/qactiongroup.h \
-		../../anaconda3/include/qt/QtWidgets/QApplication \
-		../../anaconda3/include/qt/QtWidgets/qapplication.h \
-		../../anaconda3/include/qt/QtCore/qcoreapplication.h \
-		../../anaconda3/include/qt/QtCore/qeventloop.h \
-		../../anaconda3/include/qt/QtWidgets/qdesktopwidget.h \
-		../../anaconda3/include/qt/QtGui/qguiapplication.h \
-		../../anaconda3/include/qt/QtGui/qinputmethod.h \
-		../../anaconda3/include/qt/QtWidgets/QButtonGroup \
-		../../anaconda3/include/qt/QtWidgets/qbuttongroup.h \
-		../../anaconda3/include/qt/QtWidgets/QHBoxLayout \
-		../../anaconda3/include/qt/QtWidgets/qboxlayout.h \
-		../../anaconda3/include/qt/QtWidgets/qlayout.h \
-		../../anaconda3/include/qt/QtWidgets/qlayoutitem.h \
-		../../anaconda3/include/qt/QtWidgets/qgridlayout.h \
-		../../anaconda3/include/qt/QtWidgets/QHeaderView \
-		../../anaconda3/include/qt/QtWidgets/qheaderview.h \
-		../../anaconda3/include/qt/QtWidgets/qabstractitemview.h \
-		../../anaconda3/include/qt/QtWidgets/qabstractscrollarea.h \
-		../../anaconda3/include/qt/QtWidgets/qframe.h \
-		../../anaconda3/include/qt/QtCore/qabstractitemmodel.h \
-		../../anaconda3/include/qt/QtCore/qitemselectionmodel.h \
-		../../anaconda3/include/qt/QtWidgets/qabstractitemdelegate.h \
-		../../anaconda3/include/qt/QtWidgets/qstyleoption.h \
-		../../anaconda3/include/qt/QtWidgets/qabstractspinbox.h \
-		../../anaconda3/include/qt/QtGui/qvalidator.h \
-		../../anaconda3/include/qt/QtCore/qregularexpression.h \
-		../../anaconda3/include/qt/QtWidgets/qslider.h \
-		../../anaconda3/include/qt/QtWidgets/qabstractslider.h \
-		../../anaconda3/include/qt/QtWidgets/qstyle.h \
-		../../anaconda3/include/qt/QtWidgets/qtabbar.h \
-		../../anaconda3/include/qt/QtWidgets/qrubberband.h \
-		../../anaconda3/include/qt/QtWidgets/QLabel \
-		../../anaconda3/include/qt/QtWidgets/qlabel.h \
-		../../anaconda3/include/qt/QtWidgets/QMenuBar \
-		../../anaconda3/include/qt/QtWidgets/qmenubar.h \
-		../../anaconda3/include/qt/QtWidgets/qmenu.h \
-		../../anaconda3/include/qt/QtWidgets/QSpacerItem \
-		../../anaconda3/include/qt/QtWidgets/QStatusBar \
-		../../anaconda3/include/qt/QtWidgets/qstatusbar.h \
-		../../anaconda3/include/qt/QtWidgets/QVBoxLayout \
-		../../anaconda3/include/qt/QtWidgets/QWidget \
-		../../anaconda3/include/qt/QtGui/QPixmap \
-		hardwareController_Terminal_prototype/HardwareController.h
+		../../anaconda3/include/qt/QtGui/QPixmap
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 qrc_images.o: qrc_images.cpp 

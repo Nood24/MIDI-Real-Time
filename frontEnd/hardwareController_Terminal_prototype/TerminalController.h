@@ -9,12 +9,12 @@
 #include <mutex>
 #include "../mainwindow.h"
 
-class HardwareController
+class TerminalController
 {
 
 public:
     bool IsSongPlaying();
-    void runThread(MainWindow& window, HardwareController& controller);
+    void runThread(MainWindow& window, TerminalController& controller);
 
 private:
     void processInput(int input);

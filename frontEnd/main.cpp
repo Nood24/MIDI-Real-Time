@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include "hardwareController_Terminal_prototype/HardwareController.h"
+#include "hardwareController_Terminal_prototype/TerminalController.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
@@ -7,9 +7,9 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     MainWindow w;
-    HardwareController controller;
+    TerminalController terminal_controller;
 
-    controller.runThread(w, controller);
+    terminal_controller.runThread(w, terminal_controller);
     w.controllerInit();
     w.showMaximized();
     w.show();

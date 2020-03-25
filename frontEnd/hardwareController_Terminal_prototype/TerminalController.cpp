@@ -1,6 +1,6 @@
 //*****************************************//
 //  
-//  HardwareController.cpp
+//  TerminalController.cpp
 //  Class Interfacing with hardware and
 //  maintaining system state
 //
@@ -14,7 +14,7 @@
 //*****************************************//
 
 
-#include "HardwareController.h"
+#include "TerminalController.h"
 #include <iostream>
 using namespace std;
 #include <cstring>
@@ -25,7 +25,7 @@ using namespace std;
 
 //--------------------------------------------------
 
-int HardwareController::getInput(){
+int TerminalController::getInput(){
     int i;
     cout << "\nPlease enter an integer value between 1-4 for pedal press: ";
     cin >> i;
@@ -34,7 +34,7 @@ int HardwareController::getInput(){
 
 //--------------------------------------------------
 
-void HardwareController::shiftSongLeft(){
+void TerminalController::shiftSongLeft(){
     this->mutex_songs.lock();
     this->mutex_songIndex.lock();
     if (this->songIndex == 0){
@@ -50,7 +50,7 @@ void HardwareController::shiftSongLeft(){
 
 //--------------------------------------------------
 
-void HardwareController::shiftSongRight(){
+void TerminalController::shiftSongRight(){
     mutex_songs.lock();
     mutex_songIndex.lock();
     if(songIndex == (sizeof(songs)/sizeof(*songs))-1){
@@ -66,7 +66,7 @@ void HardwareController::shiftSongRight(){
 
 //--------------------------------------------------
 
-void HardwareController::startStopSong(){
+void TerminalController::startStopSong(){
     if(songPlaying){
         songPlaying = false;
     }
@@ -77,7 +77,7 @@ void HardwareController::startStopSong(){
 
 //--------------------------------------------------
 
-void HardwareController::printSystemState(){
+void TerminalController::printSystemState(){
     mutex_songs.lock();
     mutex_songIndex.lock();
     mutex_songPlaying.lock();
@@ -96,7 +96,7 @@ void HardwareController::printSystemState(){
 
 //--------------------------------------------------
 
-void HardwareController::processInput(int input){
+void TerminalController::processInput(int input){
     mutex_songPlaying.lock();
     if(input == 1 && !songPlaying){
         shiftSongLeft();
@@ -125,12 +125,12 @@ void HardwareController::processInput(int input){
 
 //--------------------------------------------------
 
-char * HardwareController:: getSong(){
+char * TerminalController:: getSong(){
     return songs[songIndex];
 }
 //--------------------------------------------------
 
-char * HardwareController::getLeftSong(){
+char * TerminalController::getLeftSong(){
     mutex_songs.lock();
     mutex_songIndex.lock();
     int temp = this->songIndex;
@@ -146,7 +146,7 @@ char * HardwareController::getLeftSong(){
 }
 //--------------------------------------------------
 
-char * HardwareController:: getRightSong(){
+char * TerminalController:: getRightSong(){
     mutex_songs.lock();
     mutex_songIndex.lock();
     int temp = this->songIndex;
@@ -163,19 +163,19 @@ char * HardwareController:: getRightSong(){
 
 //--------------------------------------------------
 
-bool HardwareController::IsSongPlaying(){
+bool TerminalController::IsSongPlaying(){
     return songPlaying;
 }
 
 //--------------------------------------------------
-void HardwareController::runThread(MainWindow& window, HardwareController& controller){
+void TerminalController::runThread(MainWindow& window, TerminalController& controller){
      cout << "hello";
-     std::thread t1(&HardwareController::run, &controller, std::ref(window));
+     std::thread t1(&TerminalController::run, &controller, std::ref(window));
      t1.detach();
 }
 
 //--------------------------------------------------
-void HardwareController::run(MainWindow& window){
+void TerminalController::run(MainWindow& window){
     songPlaying = false;
     this->songIndex = 0;
     printSystemState();
