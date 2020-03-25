@@ -4,7 +4,7 @@
 
 #ifndef PLAYING_VAR
 #define PLAYING_VAR
-#include "HardwareController.h"
+#include "VirtualHardwareController.h"
 #endif
 
 #ifndef CEILIDHBAND_INSTRUMENT_H
@@ -38,9 +38,9 @@ void sendNote(bool on, int channel, int note);
 
 class Instrument : public CppThread {
 public:
-    Instrument(std::string csv_file, int tempo, HardwareController hw, int sf_ID, int channel_number);
+    Instrument(std::string csv_file, int tempo, VirtualHardwareController& hw, int sf_ID, int channel_number);
     void updateNote(int channel);
-
+    VirtualHardwareController hardware;
 private:
     void run();
 
@@ -49,7 +49,7 @@ private:
     vector<int> timeDeltas, channels, onOff;
     bool chordOn = false;
     bool bassOn = false;
-    HardwareController hardware;
+
     int size;
     int previousChord[3] = {60,64,67};
     int chordNotes[3] = {60,64,67};

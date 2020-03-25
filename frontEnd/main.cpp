@@ -7,25 +7,21 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-
-
     MainWindow w;
     TerminalController terminal_controller;
 
     VirtualHardwareController vitrualHardware;
 
     terminal_controller.runThread(w, terminal_controller,vitrualHardware);
-
-    Controller controller = Controller(vitrualHardware);
+    Controller MidiController = Controller(vitrualHardware);
     //Set create_midi_reader(1)on pi
-    controller.create_midi_reader(1);
+    MidiController.create_midi_reader(1);
 
 
-    controller.load_dance("gaygordons", 120);
-    cout<<"finished loading\n";
-
+    MidiController.load_dance("gaygordons", 120);
+    cout << vitrualHardware.playing <<"In main.cpp\n";
     //controller.start_playing();
-    std::thread t1(&Controller::start_playing, &controller);
+    std::thread t1(&Controller::start_playing, std::ref(MidiController), std::ref(vitrualHardware));
 
 
 

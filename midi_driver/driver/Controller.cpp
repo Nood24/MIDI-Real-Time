@@ -1,36 +1,37 @@
 #//
 // Created by Cameron Bennett on 11/03/2020.
 //
-
+#include "../../rtmidi/RtMidi.h"
 #include "Controller.h"
 #define DEFAULT_DANCE "gaygordons"
 #define DEFAULT_TEMPO 210
 
 void Controller::load_dance(string dance_name, int tempo){
     file_location = CSV_FILES + dance_name + "/";
-    current_dance = new DanceSet(dance_name, tempo, file_location, hardware);
+    current_dance = new DanceSet(dance_name, tempo, file_location, this->hardware);
     current_dance->load_instruments();
 }
 
-void Controller::start_playing(){
+void Controller::start_playing(VirtualHardwareController& vhc){
     //stop rtmidi out
     //while (not playing){};
-    this->hardware.playing = true;
-    this->current_dance->start_dance();
+    //this->hardware.playing = true;
+    cout<< vhc.playing << "In Controler.cpp \n";
+    this->current_dance->start_dance(vhc);
 }
 
 void Controller::stop_playing(){
-    hardware.playing = false;
+    //this->hardware.playing = false;
     current_dance->wait_loop_end();
     //midiin->setCallback( &replicate_midi );
 }
 
 void Controller::set_playing(bool play){
-    hardware.playing = play;
+    this->hardware.playing = play;
 }
 
 void change_notes( double deltatime, vector< unsigned char > *message, Controller *controller ){
-    controller->hardware.playing = true;
+    //controller->hardware.playing = true;
     controller->current_dance->set_notes(message);
 }
 
@@ -71,8 +72,9 @@ void Controller::create_midi_reader(int port_no){
         error.printMessage();
     }
 }
-
+/*
 int main(){
+
     HardwareController hwtest;
     Controller controller = Controller(hwtest);
     //Set create_midi_reader(1)on pi
@@ -84,3 +86,4 @@ int main(){
     controller.start_playing();
     
 }
+*/
