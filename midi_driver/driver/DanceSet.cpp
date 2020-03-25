@@ -11,10 +11,10 @@ using namespace std;
 void DanceSet::load_instruments() {
     fluid_synth_init();
     //See instruments https://musical-artifacts.com/artifacts/738
-    Instrument* piano = new Instrument(this->file_location + "piano.csv", this->tempo,this->hardware,0, 1,this);
-    Instrument* accordion = new Instrument(this->file_location + "Accordion.csv", this->tempo, this->hardware, 1, 21,this);
-    //Instrument* drums = new Instrument(this->file_location + "Drums.csv", this->tempo,this->hardware,2, 118,this);
-    Instrument* bass = new Instrument(this->file_location + "Bass.csv", this->tempo, this->hardware, 3, 34,this);
+    Instrument* piano = new Instrument(this->file_location + "piano.csv", this->tempo,this->hardware,0, 0, 1,this);
+    Instrument* accordion = new Instrument(this->file_location + "Accordion.csv", this->tempo, this->hardware, 1, 1, 9,this);
+    //Instrument* drums = new Instrument(this->file_location + "Drums.csv", this->tempo,this->hardware,2, 0, 118,this);
+    Instrument* bass = new Instrument(this->file_location + "Bass.csv", this->tempo, this->hardware, 3, 0, 34,this);
    
     this->instruments.push_back(accordion);
     this->instruments.push_back(piano);

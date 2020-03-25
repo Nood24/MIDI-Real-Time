@@ -4,7 +4,7 @@
 
 #include "Instrument.h"
 
-Instrument::Instrument(std::string csv_file, int tempo, HardwareController hw, int channel_number, int sf_ID, DanceSet *dance){
+Instrument::Instrument(std::string csv_file, int tempo, HardwareController hw, int channel_number, int bank, int sf_ID, DanceSet *dance){
 	//vector<int> timeDeltas, channels, onOff;
         extract_from_csv(csv_file);
         this->size = this->timeDeltas.size();
@@ -12,7 +12,7 @@ Instrument::Instrument(std::string csv_file, int tempo, HardwareController hw, i
         this->hardware = hw;
         this->instrument_sfID = sf_ID;
         this->FS_channel = channel_number;
-        changeInstrument(this->FS_channel,this->instrument_sfID);
+        changeInstrument(this->FS_channel,bank,this->instrument_sfID);
         this->dance = dance;
     }
 
