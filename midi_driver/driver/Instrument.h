@@ -40,7 +40,7 @@ class DanceSet;
 
 class Instrument : public CppThread {
 public:
-    Instrument(std::string csv_file, int tempo, HardwareController hw, int sf_ID, int channel_number, DanceSet* dance);
+    Instrument(std::string csv_file, int tempo, HardwareController hw, int channel, int bank, int sf_ID, DanceSet* dance);
     void updateNote(int channel);
 
 private:

@@ -84,8 +84,8 @@ void deleteFluidSynth(){
 }
 
 /* Changing Intruments */
-void changeInstrument(int channel, int instrument){
-    fluid_synth_program_select(synth, channel, sf_id,0, instrument);
+void changeInstrument(int channel, int bank, int instrument){
+    fluid_synth_program_select(synth, channel, sf_id, bank, instrument);
 }
 
 /* Send On or Off Notes */
