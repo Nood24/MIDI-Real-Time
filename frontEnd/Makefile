@@ -253,7 +253,8 @@ DIST          = ../../anaconda3/mkspecs/features/spec_pre.prf \
 		mainwindow.h \
 		../midi_driver/driver/Controller.h \
 		../midi_driver/driver/fluidCustomAPI.h \
-		../rtmidi/RtMidi.h hardwareController_Terminal_prototype/TerminalController.cpp \
+		../rtmidi/RtMidi.h \
+		../midi_driver/driver/VirtualHardwareController.h hardwareController_Terminal_prototype/TerminalController.cpp \
 		../midi_driver/driver/DanceSet.cpp \
 		../midi_driver/driver/Instrument.cpp \
 		main.cpp \
@@ -655,7 +656,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents images.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../anaconda3/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents hardwareController_Terminal_prototype/TerminalController.h ../midi_driver/driver/DanceSet.h ../midi_driver/driver/Instrument.h mainwindow.h ../midi_driver/driver/Controller.h ../midi_driver/driver/fluidCustomAPI.h ../rtmidi/RtMidi.h $(DISTDIR)/
+	$(COPY_FILE) --parents hardwareController_Terminal_prototype/TerminalController.h ../midi_driver/driver/DanceSet.h ../midi_driver/driver/Instrument.h mainwindow.h ../midi_driver/driver/Controller.h ../midi_driver/driver/fluidCustomAPI.h ../rtmidi/RtMidi.h ../midi_driver/driver/VirtualHardwareController.h $(DISTDIR)/
 	$(COPY_FILE) --parents hardwareController_Terminal_prototype/TerminalController.cpp ../midi_driver/driver/DanceSet.cpp ../midi_driver/driver/Instrument.cpp main.cpp mainwindow.cpp ../midi_driver/driver/Controller.cpp ../midi_driver/driver/fluidCustomAPI.c ../rtmidi/RtMidi.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
@@ -932,18 +933,19 @@ TerminalController.o: hardwareController_Terminal_prototype/TerminalController.c
 		../../anaconda3/include/qt/QtGui/qvector2d.h \
 		../../anaconda3/include/qt/QtGui/qtouchdevice.h \
 		../../anaconda3/include/qt/QtWidgets/qtabwidget.h \
-		../../anaconda3/include/qt/QtGui/qicon.h
+		../../anaconda3/include/qt/QtGui/qicon.h \
+		../midi_driver/driver/VirtualHardwareController.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o TerminalController.o hardwareController_Terminal_prototype/TerminalController.cpp
 
 DanceSet.o: ../midi_driver/driver/DanceSet.cpp ../midi_driver/driver/DanceSet.h \
 		../midi_driver/driver/Instrument.h \
-		../midi_driver/driver/HardwareController.h \
+		../midi_driver/driver/VirtualHardwareController.h \
 		../midi_driver/driver/cppThread-master/CppThread.h \
 		../midi_driver/driver/fluidCustomAPI.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DanceSet.o ../midi_driver/driver/DanceSet.cpp
 
 Instrument.o: ../midi_driver/driver/Instrument.cpp ../midi_driver/driver/Instrument.h \
-		../midi_driver/driver/HardwareController.h \
+		../midi_driver/driver/VirtualHardwareController.h \
 		../midi_driver/driver/cppThread-master/CppThread.h \
 		../midi_driver/driver/fluidCustomAPI.h \
 		../midi_driver/driver/DanceSet.h
@@ -1054,8 +1056,8 @@ main.o: main.cpp mainwindow.h \
 		../../anaconda3/include/qt/QtWidgets/qtabwidget.h \
 		../../anaconda3/include/qt/QtGui/qicon.h \
 		hardwareController_Terminal_prototype/TerminalController.h \
+		../midi_driver/driver/VirtualHardwareController.h \
 		../midi_driver/driver/Controller.h \
-		../midi_driver/driver/HardwareController.h \
 		../rtmidi/RtMidi.h \
 		../midi_driver/driver/DanceSet.h \
 		../midi_driver/driver/Instrument.h \
@@ -1176,12 +1178,13 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../anaconda3/include/qt/QtGui/qicon.h \
 		ui_mainwindow.h \
 		../../anaconda3/include/qt/QtGui/QPixmap \
-		hardwareController_Terminal_prototype/TerminalController.h
+		hardwareController_Terminal_prototype/TerminalController.h \
+		../midi_driver/driver/VirtualHardwareController.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 Controller.o: ../midi_driver/driver/Controller.cpp ../rtmidi/RtMidi.h \
 		../midi_driver/driver/Controller.h \
-		../midi_driver/driver/HardwareController.h \
+		../midi_driver/driver/VirtualHardwareController.h \
 		../midi_driver/driver/DanceSet.h \
 		../midi_driver/driver/Instrument.h \
 		../midi_driver/driver/cppThread-master/CppThread.h \

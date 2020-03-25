@@ -42,7 +42,9 @@ HEADERS += hardwareController_Terminal_prototype/TerminalController.h \
     mainwindow.h \
     ../midi_driver/driver/Controller.h \
     ../midi_driver/driver/fluidCustomAPI.h \
-    ../rtmidi/RtMidi.h
+    ../rtmidi/RtMidi.h \
+    ../midi_driver/driver/VirtualHardwareController.h
+
 
 
 INCLUDEPATH += hardwareController_Terminal_prototype/HardwareController.h
