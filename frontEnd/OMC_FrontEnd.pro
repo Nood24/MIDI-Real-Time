@@ -1,4 +1,4 @@
-QT       += core gui
+QT += core gui
 QT += gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -16,14 +16,33 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += \
-    hardwareController_Terminal_prototype/TerminalController.cpp \
-    main.cpp \
-    mainwindow.cpp
 
-HEADERS += \
-    hardwareController_Terminal_prototype/HardwareController.h \
-    mainwindow.h
+CONFIG += link_pkgconfig
+PKGCONFIG += 'fluidsynth'
+
+LIBS +=  -lpthread
+LIBS +=  -lasound 
+
+        
+QMAKE_CXXFLAGS += -D__LINUX_ALSA__
+QMAKE_CXXFLAGS += -Wall
+
+SOURCES += hardwareController_Terminal_prototype/TerminalController.cpp \
+    ../midi_driver/driver/DanceSet.cpp \
+    ../midi_driver/driver/Instrument.cpp \
+    main.cpp \
+    mainwindow.cpp \
+    ../midi_driver/driver/Controller.cpp \
+    ../midi_driver/driver/fluidCustomAPI.c \
+    ../rtmidi/RtMidi.cpp 
+
+HEADERS += hardwareController_Terminal_prototype/TerminalController.h \
+    ../midi_driver/driver/DanceSet.h \
+    ../midi_driver/driver/Instrument.h \
+    mainwindow.h \
+    ../midi_driver/driver/Controller.h \
+    ../midi_driver/driver/fluidCustomAPI.h \
+    ../rtmidi/RtMidi.h
 
 
 INCLUDEPATH += hardwareController_Terminal_prototype/HardwareController.h
