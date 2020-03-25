@@ -36,9 +36,11 @@ using namespace std;
 
 void sendNote(bool on, int channel, int note);
 
+class DanceSet;
+
 class Instrument : public CppThread {
 public:
-    Instrument(std::string csv_file, int tempo, HardwareController hw, int sf_ID, int channel_number);
+    Instrument(std::string csv_file, int tempo, HardwareController hw, int sf_ID, int channel_number, DanceSet* dance);
     void updateNote(int channel);
 
 private:
@@ -58,6 +60,7 @@ private:
     std::vector<unsigned char>* message;
     double timing_factor;
     int FS_channel;
+    DanceSet *dance;
     int instrument_sfID;
 };
 

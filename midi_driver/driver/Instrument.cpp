@@ -4,31 +4,32 @@
 
 #include "Instrument.h"
 
-Instrument::Instrument(std::string csv_file, int tempo, HardwareController hw, int channel_number, int sf_ID){
+Instrument::Instrument(std::string csv_file, int tempo, HardwareController hw, int channel_number, int sf_ID, DanceSet *dance){
 	//vector<int> timeDeltas, channels, onOff;
         extract_from_csv(csv_file);
         this->size = this->timeDeltas.size();
         this->timing_factor = 20000000*60.0/tempo/12000.0;
-	this->hardware = hw;
+        this->hardware = hw;
         this->instrument_sfID = sf_ID;
         this->FS_channel = channel_number;
         changeInstrument(this->FS_channel,this->instrument_sfID);
+        this->dance = dance;
     }
 
 
 void Instrument::updateNote(int channel){
     return;
     if (this->bassOn){
-        sendNote(0,this->FS_channel,this->previousBass);
-        sendNote(1,this->FS_channel,this->bassNote);
+        sendNote(0,this->FS_channel,this->dance->previousBass);
+        sendNote(1,this->FS_channel,this->dance->bassNote);
     }
     if (this->chordOn){
-        sendNote(0,this->FS_channel,this->previousChord[0]);
-        sendNote(0,this->FS_channel,this->previousChord[1]);
-        sendNote(0,this->FS_channel,this->previousChord[2]);
-        sendNote(1,this->FS_channel,this->chordNotes[0]);
-        sendNote(1,this->FS_channel,this->chordNotes[1]);
-        sendNote(1,this->FS_channel,this->chordNotes[2]);
+        sendNote(0,this->FS_channel,this->dance->previousChord[0]);
+        sendNote(0,this->FS_channel,this->dance->previousChord[1]);
+        sendNote(0,this->FS_channel,this->dance->previousChord[2]);
+        sendNote(1,this->FS_channel,this->dance->chordNotes[0]);
+        sendNote(1,this->FS_channel,this->dance->chordNotes[1]);
+        sendNote(1,this->FS_channel,this->dance->chordNotes[2]);
     }
 }
 
@@ -37,13 +38,13 @@ void Instrument::run() {
     while(this->hardware.playing || d%this->size!=0){
         usleep(this->timing_factor*this->timeDeltas[d%this->size]);
         if (this->channels[d%this->size]==2){
-            sendNote(this->onOff[d%this->size],this->FS_channel,this->bassNote);
+            sendNote(this->onOff[d%this->size],this->FS_channel,this->dance->bassNote);
             this->bassOn = this->onOff[d%this->size];
         }
         else{
-            sendNote(this->onOff[d%this->size],this->FS_channel,this->chordNotes[0]);
-            sendNote(this->onOff[d%this->size],this->FS_channel,this->chordNotes[1]);
-            sendNote(this->onOff[d%this->size],this->FS_channel,this->chordNotes[2]);
+            sendNote(this->onOff[d%this->size],this->FS_channel,this->dance->chordNotes[0]);
+            sendNote(this->onOff[d%this->size],this->FS_channel,this->dance->chordNotes[1]);
+            sendNote(this->onOff[d%this->size],this->FS_channel,this->dance->chordNotes[2]);
             this->chordOn = this->onOff[d%this->size];
         }
         d=d+1;
