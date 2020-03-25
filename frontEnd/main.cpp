@@ -7,9 +7,10 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+
+
     MainWindow w;
     TerminalController terminal_controller;
-
     terminal_controller.runThread(w, terminal_controller);
 
     HardwareController hwtest;
@@ -20,7 +21,9 @@ int main(int argc, char *argv[])
 
     controller.load_dance("gaygordons", 120);
     cout<<"finished loading\n";
-    controller.start_playing();
+
+    //controller.start_playing();
+    std::thread t1(&Controller::start_playing, &controller);
 
 
 
@@ -28,5 +31,8 @@ int main(int argc, char *argv[])
     w.controllerInit();
     w.showMaximized();
     w.show();
+
+
+
     return a.exec();
 }

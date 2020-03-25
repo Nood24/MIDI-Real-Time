@@ -14,7 +14,7 @@ CC            = gcc
 CXX           = g++
 DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-CXXFLAGS      = -pipe -D__LINUX_ALSA__ -g -std=gnu++11 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
+CXXFLAGS      = -pipe -D__LINUX_ALSA__ -Wall -g -std=gnu++11 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 INCPATH       = -I../../frontEnd -I. -IhardwareController_Terminal_prototype/HardwareController.h -I../../../anaconda3/include/qt -I../../../anaconda3/include/qt/QtWidgets -I../../../anaconda3/include/qt/QtGui -I../../../anaconda3/include/qt/QtCore -I. -I. -I../../../anaconda3/mkspecs/linux-g++
 QMAKE         = /home/neil/anaconda3/bin/qmake
 DEL_FILE      = rm -f
@@ -56,7 +56,8 @@ SOURCES       = ../hardwareController_Terminal_prototype/TerminalController.cpp 
 		../main.cpp \
 		../mainwindow.cpp \
 		../../midi_driver/driver/Controller.cpp \
-		../../midi_driver/driver/fluidCustomAPI.c qrc_images.cpp \
+		../../midi_driver/driver/fluidCustomAPI.c \
+		../../rtmidi/RtMidi.cpp qrc_images.cpp \
 		moc_mainwindow.cpp
 OBJECTS       = TerminalController.o \
 		DanceSet.o \
@@ -65,6 +66,7 @@ OBJECTS       = TerminalController.o \
 		mainwindow.o \
 		Controller.o \
 		fluidCustomAPI.o \
+		RtMidi.o \
 		qrc_images.o \
 		moc_mainwindow.o
 DIST          = ../../../../anaconda3/mkspecs/features/spec_pre.prf \
@@ -258,7 +260,8 @@ DIST          = ../../../../anaconda3/mkspecs/features/spec_pre.prf \
 		../main.cpp \
 		../mainwindow.cpp \
 		../../midi_driver/driver/Controller.cpp \
-		../../midi_driver/driver/fluidCustomAPI.c
+		../../midi_driver/driver/fluidCustomAPI.c \
+		../../rtmidi/RtMidi.cpp
 QMAKE_TARGET  = OMC_FrontEnd
 DESTDIR       = 
 TARGET        = OMC_FrontEnd
@@ -656,7 +659,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents ../images.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../anaconda3/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../hardwareController_Terminal_prototype/TerminalController.h ../../midi_driver/driver/DanceSet.h ../../midi_driver/driver/Instrument.h ../mainwindow.h ../../midi_driver/driver/Controller.h ../../midi_driver/driver/fluidCustomAPI.h ../../rtmidi/RtMidi.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../hardwareController_Terminal_prototype/TerminalController.cpp ../../midi_driver/driver/DanceSet.cpp ../../midi_driver/driver/Instrument.cpp ../main.cpp ../mainwindow.cpp ../../midi_driver/driver/Controller.cpp ../../midi_driver/driver/fluidCustomAPI.c $(DISTDIR)/
+	$(COPY_FILE) --parents ../hardwareController_Terminal_prototype/TerminalController.cpp ../../midi_driver/driver/DanceSet.cpp ../../midi_driver/driver/Instrument.cpp ../main.cpp ../mainwindow.cpp ../../midi_driver/driver/Controller.cpp ../../midi_driver/driver/fluidCustomAPI.c ../../rtmidi/RtMidi.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../mainwindow.ui $(DISTDIR)/
 
 
@@ -695,7 +698,7 @@ compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
 moc_predefs.h: ../../../anaconda3/mkspecs/features/data/dummy.cpp
-	g++ -pipe -D__LINUX_ALSA__ -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h ../../../anaconda3/mkspecs/features/data/dummy.cpp
+	g++ -pipe -D__LINUX_ALSA__ -Wall -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h ../../../anaconda3/mkspecs/features/data/dummy.cpp
 
 compiler_moc_header_make_all: moc_mainwindow.cpp
 compiler_moc_header_clean:
@@ -1173,7 +1176,7 @@ mainwindow.o: ../mainwindow.cpp ../mainwindow.h \
 		../../../anaconda3/include/qt/QtGui/qtouchdevice.h \
 		../../../anaconda3/include/qt/QtWidgets/qtabwidget.h \
 		../../../anaconda3/include/qt/QtGui/qicon.h \
-		../ui_mainwindow.h \
+		ui_mainwindow.h \
 		../../../anaconda3/include/qt/QtCore/QVariant \
 		../../../anaconda3/include/qt/QtWidgets/QAction \
 		../../../anaconda3/include/qt/QtWidgets/qaction.h \
@@ -1223,9 +1226,9 @@ mainwindow.o: ../mainwindow.cpp ../mainwindow.h \
 		../hardwareController_Terminal_prototype/TerminalController.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../mainwindow.cpp
 
-Controller.o: ../../midi_driver/driver/Controller.cpp ../../midi_driver/driver/Controller.h \
+Controller.o: ../../midi_driver/driver/Controller.cpp ../../rtmidi/RtMidi.h \
+		../../midi_driver/driver/Controller.h \
 		../../midi_driver/driver/HardwareController.h \
-		../../rtmidi/RtMidi.h \
 		../../midi_driver/driver/DanceSet.h \
 		../../midi_driver/driver/Instrument.h \
 		../../midi_driver/driver/cppThread-master/CppThread.h \
@@ -1234,6 +1237,9 @@ Controller.o: ../../midi_driver/driver/Controller.cpp ../../midi_driver/driver/C
 
 fluidCustomAPI.o: ../../midi_driver/driver/fluidCustomAPI.c 
 	$(CC) -c $(CFLAGS) $(INCPATH) -o fluidCustomAPI.o ../../midi_driver/driver/fluidCustomAPI.c
+
+RtMidi.o: ../../rtmidi/RtMidi.cpp ../../rtmidi/RtMidi.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o RtMidi.o ../../rtmidi/RtMidi.cpp
 
 qrc_images.o: qrc_images.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_images.o qrc_images.cpp
