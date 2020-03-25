@@ -168,25 +168,28 @@ bool TerminalController::IsSongPlaying(){
 }
 
 //--------------------------------------------------
-void TerminalController::runThread(MainWindow& window, TerminalController& controller){
+
+void TerminalController::runThread(MainWindow& window, TerminalController& controller,VirtualHardwareController& virtualController){
      cout << "hello";
-     std::thread t1(&TerminalController::run, &controller, std::ref(window));
+     std::thread t1(&TerminalController::run, &controller, std::ref(window),std::ref(virtualController) );
      t1.detach();
 }
 
 //--------------------------------------------------
-void TerminalController::run(MainWindow& window){
+void TerminalController::run(MainWindow& window,VirtualHardwareController& virtualController){
     songPlaying = false;
+    virtualController.playing = this->songPlaying;
     this->songIndex = 0;
     printSystemState();
     int input; 
     window.setSongs(getLeftSong(),getSong(),getRightSong());
     window.setPlayButton(songPlaying);
     while(true){
-    input = getInput();
-    processInput(input);
-    window.setSongs(getLeftSong(),getSong(),getRightSong());
-    window.setPlayButton(songPlaying);
+        input = getInput();
+        processInput(input);
+        window.setSongs(getLeftSong(),getSong(),getRightSong());
+        window.setPlayButton(songPlaying);
+        virtualController.playing = this->songPlaying;
     }
 
 }

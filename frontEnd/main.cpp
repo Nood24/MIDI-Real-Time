@@ -11,10 +11,12 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     TerminalController terminal_controller;
-    terminal_controller.runThread(w, terminal_controller);
 
-    HardwareController hwtest;
-    Controller controller = Controller(hwtest);
+    VirtualHardwareController vitrualHardware;
+
+    terminal_controller.runThread(w, terminal_controller,vitrualHardware);
+
+    Controller controller = Controller(vitrualHardware);
     //Set create_midi_reader(1)on pi
     controller.create_midi_reader(1);
 

@@ -9,12 +9,19 @@
 #include <mutex>
 #include "../mainwindow.h"
 
+#ifndef PLAYING_VAR
+#define PLAYING_VAR
+#include "../../midi_driver/driver/VirtualHardwareController.h"
+#endif
+
+
+
 class TerminalController
 {
 
 public:
     bool IsSongPlaying();
-    void runThread(MainWindow& window, TerminalController& controller);
+    void runThread(MainWindow& window, TerminalController& controller,VirtualHardwareController& virtualController);
 
 private:
     void processInput(int input);
@@ -23,7 +30,7 @@ private:
     void shiftSongRight();
     void shiftSongLeft();
     int getInput();
-    void run(MainWindow& window);
+    void run(MainWindow& window,VirtualHardwareController& virtualController);
     char * getSong();
     char * getLeftSong();
     char * getRightSong();
