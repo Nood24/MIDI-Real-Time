@@ -65,9 +65,10 @@ void DanceSet::start_dance(VirtualHardwareController& vhc){
         //vhc does not work once in here? Want to pass it into start. :O Fuck these c++ treads man!
         this->instruments[i]->start(vhc);
     }
-    }
+
     for (int i=0; i<4; i++){
         this->instruments[i]->join();
+    }
     }
     }
 }
