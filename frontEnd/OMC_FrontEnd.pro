@@ -48,7 +48,7 @@ HEADERS += hardwareController_Terminal_prototype/TerminalController.h \
 
 
 
-INCLUDEPATH += hardwareController_Terminal_prototype/HardwareController.h
+INCLUDEPATH += ../midi_driver/driver
 
 FORMS += \
     mainwindow.ui
