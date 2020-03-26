@@ -1,5 +1,8 @@
 all:
 	rm -f  OneManCeilidh
+	rm -f -r CSVFiles
+	cd ../midi_driver/driver && cp -r CSVFiles temp
+	cd ../midi_driver/driver && mv temp ../../buid_and_run/CSVFiles
 	cd ../frontEnd && make clean
 	cd ../frontEnd && qmake
 	cd ../frontEnd && make
