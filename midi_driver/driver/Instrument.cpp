@@ -32,10 +32,15 @@ void Instrument::updateNote(int channel){
     }
 }
 
-void Instrument::run() {
+void Instrument::setVirtualHardware(VirtualHardwareController& hw){
+    this->hardware = hw;
+}
+
+
+void Instrument::run(VirtualHardwareController& vhw) {
     int d = 0;
-    while(this->hardware.playing ){
-        cout << this->hardware.playing <<" controller in instrumentRun\n";
+    this->hardware.playing = vhw.playing;
+    while(vhw.playing ){
         usleep(this->timing_factor*this->timeDeltas[d%this->size]);
         if (this->channels[d%this->size]==2){
             sendNote(this->onOff[d%this->size],this->FS_channel,this->bassNote);

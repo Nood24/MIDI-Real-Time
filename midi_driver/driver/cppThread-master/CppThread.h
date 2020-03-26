@@ -9,13 +9,19 @@
  **/
 #include <iostream>
 #include <thread>
+
+#ifndef PLAYING_VAR
+#define PLAYING_VAR
+#include "../VirtualHardwareController.h"
+#endif
+
 // abstract thread which contains the inner workings of the thread model
 class CppThread {
 
 public:
-	void start() {
+        void start(VirtualHardwareController& hw) {
 		std::cout<<"creating new thread\n";
-		uthread = new std::thread(CppThread::exec, this);
+                uthread = new std::thread(CppThread::exec, this,  std::ref(hw));
 	}
 
 	void join() {
@@ -34,14 +40,14 @@ public:
 
 protected:
 	// is implemented by its ancestors
-	virtual void run() = 0;	
+        virtual void run(VirtualHardwareController& hw) = 0;
 
 private:
 	std::thread* uthread = NULL;
 
 	// static function which points back to the class
-	static void exec(CppThread* cppThread) {
-		cppThread->run();
+        static void exec(CppThread* cppThread, VirtualHardwareController& hw) {
+                cppThread->run(hw);
 	}
 };
 

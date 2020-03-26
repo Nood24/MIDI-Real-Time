@@ -40,16 +40,17 @@ class Instrument : public CppThread {
 public:
     Instrument(std::string csv_file, int tempo, VirtualHardwareController& hw, int sf_ID, int channel_number);
     void updateNote(int channel);
-    VirtualHardwareController hardware;
+    void setVirtualHardware(VirtualHardwareController& hw);
+
 private:
-    void run();
+    void run(VirtualHardwareController& hw);
 
 private:
     void extract_from_csv(string filename);
     vector<int> timeDeltas, channels, onOff;
     bool chordOn = false;
     bool bassOn = false;
-
+    VirtualHardwareController hardware;
     int size;
     int previousChord[3] = {60,64,67};
     int chordNotes[3] = {60,64,67};
