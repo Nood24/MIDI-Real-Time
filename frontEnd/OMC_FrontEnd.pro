@@ -44,7 +44,8 @@ HEADERS += hardwareController_Terminal_prototype/TerminalController.h \
     ../midi_driver/driver/Controller.h \
     ../midi_driver/driver/fluidCustomAPI.h \
     ../rtmidi/RtMidi.h \
-    ../midi_driver/driver/VirtualHardwareController.h
+    ../midi_driver/driver/VirtualHardwareController.h \
+    ../midi_driver/driver/cppThread-master/CppThread.h
 
 
 

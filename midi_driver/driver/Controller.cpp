@@ -13,11 +13,9 @@ void Controller::load_dance(string dance_name, int tempo){
 }
 
 void Controller::start_playing(VirtualHardwareController& vhc){
-    //stop rtmidi out
-    //while (not playing){};
-    //this->hardware.playing = true;
-    cout<< vhc.playing << "In Controler.cpp \n";
+   //vhc is working here
     this->current_dance->start_dance(vhc);
+
 }
 
 void Controller::stop_playing(){
