@@ -59,19 +59,17 @@ void DanceSet::set_notes(std::vector< unsigned char >* message){
 void DanceSet::start_dance(VirtualHardwareController& vhc){
     this->hardware = vhc;
     //vhc works here
+    while (true){
+    if(vhc.playing){
     for (int i=0; i<4; i++){
         //vhc does not work once in here? Want to pass it into start. :O Fuck these c++ treads man!
         this->instruments[i]->start(vhc);
     }
-    for (int i=0; i<4; i++){
-        this->instruments[i]->setVirtualHardware(vhc);
-        i= i+1;
     }
-    sleep(3);
     for (int i=0; i<4; i++){
         this->instruments[i]->join();
     }
-    
+    }
 }
 
 int DanceSet::get_tempo(){

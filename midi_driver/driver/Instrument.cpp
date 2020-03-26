@@ -42,6 +42,9 @@ void Instrument::run(VirtualHardwareController& vhw) {
     this->hardware.playing = vhw.playing;
     while(vhw.playing ){
         usleep(this->timing_factor*this->timeDeltas[d%this->size]);
+        if(!vhw.playing){
+            return;
+        }
         if (this->channels[d%this->size]==2){
             sendNote(this->onOff[d%this->size],this->FS_channel,this->bassNote);
             this->bassOn = this->onOff[d%this->size];
