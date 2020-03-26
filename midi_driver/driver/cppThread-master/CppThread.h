@@ -20,7 +20,6 @@ class CppThread {
 
 public:
         void start(VirtualHardwareController& hw) {
-		std::cout<<"creating new thread\n";
                 uthread = new std::thread(CppThread::exec, this,  std::ref(hw));
 	}
 

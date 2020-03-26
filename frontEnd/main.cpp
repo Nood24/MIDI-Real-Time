@@ -16,15 +16,13 @@ int main(int argc, char *argv[])
     //Set create_midi_reader(1)on pi
     MidiController.create_midi_reader(1);
 
-
-    MidiController.load_dance("gaygordons", 120);
-
-    //controller.start_playing();
-    std::thread t1(&Controller::start_playing, std::ref(MidiController), std::ref(vitrualHardware));
     w.controllerInit();
     w.showMaximized();
     w.show();
 
+    MidiController.load_dance("gaygordons", 120);
+    //controller.start_playing();
+    std::thread t1(&Controller::start_playing, std::ref(MidiController), std::ref(vitrualHardware));  
 
 
     return a.exec();

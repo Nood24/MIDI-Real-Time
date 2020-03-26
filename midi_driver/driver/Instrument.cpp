@@ -43,7 +43,7 @@ void Instrument::run(VirtualHardwareController& vhw) {
     while(vhw.playing ){
         usleep(this->timing_factor*this->timeDeltas[d%this->size]);
         if(!vhw.playing){
-            return;
+            continue;
         }
         if (this->channels[d%this->size]==2){
             sendNote(this->onOff[d%this->size],this->FS_channel,this->bassNote);
@@ -64,7 +64,6 @@ void Instrument::extract_from_csv(string filename){
     string strdelta, strchannel, stron;
 
     ifstream csvfile;
-    cout<<filename<<"\n";
     csvfile.open(filename);    
     assert(csvfile.is_open());
     while(csvfile.good()){
