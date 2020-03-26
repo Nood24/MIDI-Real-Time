@@ -10,6 +10,7 @@ using namespace std;
 
 void DanceSet::load_instruments() {
     fluid_synth_init();
+    this->instruments.clear();
     //See instruments https://musical-artifacts.com/artifacts/738
     Instrument* piano = new Instrument(this->file_location + "piano.csv", this->tempo,this->hardware,0, 1);
     Instrument* accordion = new Instrument(this->file_location + "Accordion.csv", this->tempo, this->hardware, 1, 21);
@@ -58,11 +59,11 @@ void DanceSet::set_notes(std::vector< unsigned char >* message){
 
 void DanceSet::start_dance(VirtualHardwareController& vhc){
     this->hardware = vhc;
-    //vhc works here
     while (true){
+        sleep(1);
     if(vhc.playing){
+        load_instruments();
     for (int i=0; i<4; i++){
-        //vhc does not work once in here? Want to pass it into start. :O Fuck these c++ treads man!
         this->instruments[i]->start(vhc);
     }
 
