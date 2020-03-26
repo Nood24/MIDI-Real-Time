@@ -191,7 +191,6 @@ void TerminalController::run(MainWindow& window,VirtualHardwareController& virtu
         window.setSongs(getLeftSong(),getSong(),getRightSong());
         window.setPlayButton(songPlaying);
         virtualController.playing = this->songPlaying;
-        cout << virtualController.playing <<" controller in TerminalCon \n";
     }
 
 }

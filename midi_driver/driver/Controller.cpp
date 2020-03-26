@@ -13,7 +13,6 @@ void Controller::load_dance(string dance_name, int tempo){
 }
 
 void Controller::start_playing(VirtualHardwareController& vhc){
-   //vhc is working here
     this->current_dance->start_dance(vhc);
 
 }
