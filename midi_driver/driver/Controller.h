@@ -12,6 +12,8 @@
 
 #include "../../rtmidi/RtMidi.h"
 #include "DanceSet.h"
+#include <fluidsynth.h>
+#include "fluidCustomAPI.h"
 
 using namespace std;
 

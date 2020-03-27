@@ -8,7 +8,7 @@ Instrument::Instrument(std::string csv_file, int tempo, HardwareController hw, i
 	//vector<int> timeDeltas, channels, onOff;
         extract_from_csv(csv_file);
         this->size = this->timeDeltas.size();
-        this->timing_factor = 20000000*60.0/tempo/12000.0;
+        this->timing_factor = 1000000*60.0/(tempo*480.0);
         this->hardware = hw;
         this->instrument_sfID = sf_ID;
         this->FS_channel = channel_number;
@@ -18,12 +18,12 @@ Instrument::Instrument(std::string csv_file, int tempo, HardwareController hw, i
     }
 
 
-void Instrument::updateNote(int channel){
-    if (this->bassOn){
+void Instrument::updateNote(bool bass,bool chord){
+    if (bass && this->bassOn){
         sendNote(0,this->FS_channel,this->dance->previousBass+this->pitch_transform);
         sendNote(1,this->FS_channel,this->dance->bassNote+this->pitch_transform);
     }
-    if (this->chordOn){
+    if (chord && this->chordOn){
         sendNote(0,this->FS_channel,this->dance->previousChord[0]+this->pitch_transform);
         sendNote(0,this->FS_channel,this->dance->previousChord[1]+this->pitch_transform);
         sendNote(0,this->FS_channel,this->dance->previousChord[2]+this->pitch_transform);
