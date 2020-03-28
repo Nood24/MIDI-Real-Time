@@ -50,6 +50,7 @@ private:
     vector<int> timeDeltas, channels, onOff;
     bool chordOn = false;
     bool bassOn = false;
+    int pitch_transform;
     VirtualHardwareController hardware;
     int size;
     int previousChord[3] = {60,64,67};
@@ -59,6 +60,7 @@ private:
     std::vector<unsigned char>* message;
     double timing_factor;
     int FS_channel;
+    DanceSet *dance;
     int instrument_sfID;
 };
 

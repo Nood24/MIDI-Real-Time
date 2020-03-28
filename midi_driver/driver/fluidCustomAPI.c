@@ -28,9 +28,9 @@ void fluid_synth_init(){
     /* Set Settings */
     settings = new_fluid_settings();
     fluid_settings_setstr(settings,"audio.driver","alsa");
-    fluid_settings_setstr(settings,"audio.periods",4);
-    fluid_settings_setstr(settings,"synth.min-note-length", 50);
-    fluid_settings_setstr(settings,"synth.sample-rate", 22050); 
+    fluid_settings_setint(settings,"audio.periods",4);
+    fluid_settings_setint(settings,"synth.min-note-length", 20);
+    fluid_settings_setint(settings,"synth.sample-rate", 220); 
 
     /* create the synth, driver and sequencer instances */
     synth = new_fluid_synth(settings);
@@ -84,12 +84,12 @@ void deleteFluidSynth(){
 }
 
 /* Changing Intruments */
-void changeInstrument(int channel, int instrument){
-    fluid_synth_program_select(synth, channel, sf_id,0, instrument);
+void changeInstrument(int channel, int bank, int instrument){
+    fluid_synth_program_select(synth, channel, sf_id, bank, instrument);
 }
 
 /* Send On or Off Notes */
-void sendNote(bool on, int channel, int note){  
+void sendNote(bool on, int channel, int note){ 
     if (on)
         noteOn(channel,note);
     else

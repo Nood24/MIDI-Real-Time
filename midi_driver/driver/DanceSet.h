@@ -34,6 +34,7 @@ public:
     int chordIdx = 0;
     int bassNote = 48;
     int previousBass = 48;
+    bool checkEqual(int *first, int *second);
 private:
     string dance_name;
     int tempo;
