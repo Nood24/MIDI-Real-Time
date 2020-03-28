@@ -8,27 +8,28 @@ Instrument::Instrument(std::string csv_file, int tempo, VirtualHardwareControlle
 	//vector<int> timeDeltas, channels, onOff;
         extract_from_csv(csv_file);
         this->size = this->timeDeltas.size();
-        this->timing_factor = 20000000*60.0/tempo/12000.0;
-	this->hardware = hw;
+        this->timing_factor = 1000000*60.0/(tempo*480.0);
+        this->hardware = hw;
         this->instrument_sfID = sf_ID;
         this->FS_channel = channel_number;
-        changeInstrument(this->FS_channel,this->instrument_sfID);
+        changeInstrument(this->FS_channel,bank,this->instrument_sfID);
+        this->dance = dance;
+        this->pitch_transform = pitch_transform;
     }
 
 
-void Instrument::updateNote(int channel){
-    return;
-    if (this->bassOn){
-        sendNote(0,this->FS_channel,this->previousBass);
-        sendNote(1,this->FS_channel,this->bassNote);
+void Instrument::updateNote(bool bass,bool chord){
+    if (bass && this->bassOn){
+        sendNote(0,this->FS_channel,this->dance->previousBass+this->pitch_transform);
+        sendNote(1,this->FS_channel,this->dance->bassNote+this->pitch_transform);
     }
-    if (this->chordOn){
-        sendNote(0,this->FS_channel,this->previousChord[0]);
-        sendNote(0,this->FS_channel,this->previousChord[1]);
-        sendNote(0,this->FS_channel,this->previousChord[2]);
-        sendNote(1,this->FS_channel,this->chordNotes[0]);
-        sendNote(1,this->FS_channel,this->chordNotes[1]);
-        sendNote(1,this->FS_channel,this->chordNotes[2]);
+    if (chord && this->chordOn){
+        sendNote(0,this->FS_channel,this->dance->previousChord[0]+this->pitch_transform);
+        sendNote(0,this->FS_channel,this->dance->previousChord[1]+this->pitch_transform);
+        sendNote(0,this->FS_channel,this->dance->previousChord[2]+this->pitch_transform);
+        sendNote(1,this->FS_channel,this->dance->chordNotes[0]+this->pitch_transform);
+        sendNote(1,this->FS_channel,this->dance->chordNotes[1]+this->pitch_transform);
+        sendNote(1,this->FS_channel,this->dance->chordNotes[2]+this->pitch_transform);
     }
 }
 
@@ -46,13 +47,13 @@ void Instrument::run(VirtualHardwareController& vhw) {
             continue;
         }
         if (this->channels[d%this->size]==2){
-            sendNote(this->onOff[d%this->size],this->FS_channel,this->bassNote);
+            sendNote(this->onOff[d%this->size],this->FS_channel,this->dance->bassNote+this->pitch_transform);
             this->bassOn = this->onOff[d%this->size];
         }
         else{
-            sendNote(this->onOff[d%this->size],this->FS_channel,this->chordNotes[0]);
-            sendNote(this->onOff[d%this->size],this->FS_channel,this->chordNotes[1]);
-            sendNote(this->onOff[d%this->size],this->FS_channel,this->chordNotes[2]);
+            sendNote(this->onOff[d%this->size],this->FS_channel,this->dance->chordNotes[0]+this->pitch_transform);
+            sendNote(this->onOff[d%this->size],this->FS_channel,this->dance->chordNotes[1]+this->pitch_transform);
+            sendNote(this->onOff[d%this->size],this->FS_channel,this->dance->chordNotes[2]+this->pitch_transform);
             this->chordOn = this->onOff[d%this->size];
         }
         d=d+1;
@@ -66,6 +67,7 @@ void Instrument::extract_from_csv(string filename){
     ifstream csvfile;
     csvfile.open(filename);    
     assert(csvfile.is_open());
+
     while(csvfile.good()){
         getline(csvfile,strdelta,',');
         getline(csvfile,strchannel,',');
