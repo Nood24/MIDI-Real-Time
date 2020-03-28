@@ -14,7 +14,7 @@ void playNoteOfLength(int chan, short key, short length);
 
 void deleteFluidSynth();
 
-void changeInstrument(int channel, int instrument);
+void changeInstrument(int channel, int bank, int instrument);
 
 void sendNote(bool on, int channel, int note);
 

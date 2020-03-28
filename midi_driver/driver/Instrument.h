@@ -36,11 +36,12 @@ using namespace std;
 
 void sendNote(bool on, int channel, int note);
 
+class DanceSet;
+
 class Instrument : public CppThread {
 public:
-    Instrument(std::string csv_file, int tempo, VirtualHardwareController& hw, int sf_ID, int channel_number);
-    void updateNote(int channel);
-    void setVirtualHardware(VirtualHardwareController& hw);
+    Instrument(std::string csv_file, int tempo, VirtualHardwareController& hw, int channel, int bank, int sf_ID, DanceSet* dance ,int = 0);
+    void updateNote(bool bass, bool chord);
 
 private:
     void run(VirtualHardwareController& hw);
@@ -50,6 +51,7 @@ private:
     vector<int> timeDeltas, channels, onOff;
     bool chordOn = false;
     bool bassOn = false;
+    int pitch_transform;
     VirtualHardwareController hardware;
     int size;
     int previousChord[3] = {60,64,67};
@@ -59,6 +61,7 @@ private:
     std::vector<unsigned char>* message;
     double timing_factor;
     int FS_channel;
+    DanceSet *dance;
     int instrument_sfID;
 };
 
