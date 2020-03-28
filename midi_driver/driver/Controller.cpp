@@ -34,11 +34,12 @@ void change_notes( double deltatime, vector< unsigned char > *message, Controlle
 
 
 void callback( double deltatime, vector< unsigned char > *message, void *controller ){
+    //cout<<"in callback"<<endl;
     if (((Controller *)controller)->hardware.playing){
-	((Controller *)controller)->current_dance->set_notes(message);
+        ((Controller *)controller)->current_dance->set_notes(message);
     }
     else{
-	sendNote(((message->at(0)>> 4) & 1),0,message->at(1));
+        sendNote(((message->at(0)>> 4) & 1),0,message->at(1));
     }
 }
 
@@ -71,13 +72,16 @@ void Controller::create_midi_reader(int port_no){
 /*
 int main(){
 
+int main(){
     HardwareController hwtest;
     Controller controller = Controller(hwtest);
     //Set create_midi_reader(1)on pi
     controller.create_midi_reader(1);
-
+    char c;
+    cin.get(c);
     
-    controller.load_dance("gaygordons", 120);
+    
+    controller.load_dance("gaygordons", 175);
     cout<<"finished loading\n";
     controller.start_playing();
     
