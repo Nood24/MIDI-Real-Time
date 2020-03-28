@@ -40,7 +40,8 @@ void Instrument::setVirtualHardware(VirtualHardwareController& hw){
 
 void Instrument::run(VirtualHardwareController& vhw) {
     int d = 0;
-    while(this->hardware.playing || d%this->size!=0){
+    this->hardware.playing = vhw.playing;
+    while(vhw.playing ){
         usleep(this->timing_factor*this->timeDeltas[d%this->size]);
         if(!vhw.playing){
             continue;
@@ -66,7 +67,6 @@ void Instrument::extract_from_csv(string filename){
     ifstream csvfile;
     csvfile.open(filename);    
     assert(csvfile.is_open());
-
     while(csvfile.good()){
         getline(csvfile,strdelta,',');
         getline(csvfile,strchannel,',');

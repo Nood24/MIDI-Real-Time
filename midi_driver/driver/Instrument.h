@@ -42,6 +42,7 @@ class Instrument : public CppThread {
 public:
     Instrument(std::string csv_file, int tempo, VirtualHardwareController& hw, int channel, int bank, int sf_ID, DanceSet* dance ,int = 0);
     void updateNote(bool bass, bool chord);
+    void setVirtualHardware(VirtualHardwareController& hw);
 
 private:
     void run(VirtualHardwareController& hw);
