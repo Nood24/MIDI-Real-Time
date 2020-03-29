@@ -71,13 +71,12 @@ void DanceSet::set_notes(std::vector< unsigned char >* message){
 }
 
 void DanceSet::start_dance(VirtualHardwareController* vhc){
-    this->hardware = vhc;
     while (true){
         sleep(1);
-    if(vhc->playing){
+    if(this->hardware->playing){
         load_instruments();
     for (int i=0; i<4; i++){
-        this->instruments[i]->start(vhc);
+        this->instruments[i]->start();
     }
 
     for (int i=0; i<4; i++){

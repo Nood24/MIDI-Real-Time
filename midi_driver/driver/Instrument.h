@@ -45,7 +45,7 @@ public:
     void setVirtualHardware(VirtualHardwareController* hw);
 
 private:
-    void run(VirtualHardwareController* hw);
+    void run();
 
 private:
     void extract_from_csv(string filename);
