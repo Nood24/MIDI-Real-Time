@@ -29,7 +29,7 @@ void fluid_synth_init(){
     settings = new_fluid_settings();
     fluid_settings_setstr(settings,"audio.driver","alsa");
     fluid_settings_setint(settings,"audio.periods",4);
-    fluid_settings_setint(settings,"synth.min-note-length", 20);
+    fluid_settings_setint(settings,"synth.min-note-length", 100);
     fluid_settings_setint(settings,"synth.sample-rate", 220); 
 
     /* create the synth, driver and sequencer instances */
@@ -48,11 +48,11 @@ void fluid_synth_init(){
 }
 
 /* schedule a note on message */
-void noteOn(int chan, short key){
+void noteOn(int chan, short key, short vel){
     fluid_event_t *ev = new_fluid_event();
     fluid_event_set_source(ev, -1);
     fluid_event_set_dest(ev, synth_destination);
-    fluid_event_noteon(ev, chan, key, 127);
+    fluid_event_noteon(ev, chan, key, vel);
     fluid_sequencer_send_now(sequencer, ev);
     delete_fluid_event(ev);
 }
@@ -70,7 +70,7 @@ void noteOff(int chan, short key){
 /* Play a note with a length in seconds*/
 void playNoteOfLength(int chan, short key, short length){
     printf("Playing Note of length ");
-    noteOn(chan, key);
+    noteOn(chan, key,90);
     sleep(length);
     noteOff(chan, key);
 }
@@ -89,9 +89,10 @@ void changeInstrument(int channel, int bank, int instrument){
 }
 
 /* Send On or Off Notes */
-void sendNote(bool on, int channel, int note){ 
+void sendNote(bool on, int channel, int note, int velocity){ 
+    printf("Sending note: %d to channel %d and its %d\n",note,channel,on);
     if (on)
-        noteOn(channel,note);
+        noteOn(channel,note,velocity);
     else
         noteOff(channel,note);
 }

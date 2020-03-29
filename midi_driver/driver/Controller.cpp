@@ -39,7 +39,7 @@ void callback( double deltatime, vector< unsigned char > *message, void *control
         ((Controller *)controller)->current_dance->set_notes(message);
     }
     else{
-        sendNote(((message->at(0)>> 4) & 1),0,message->at(1));
+        sendNote(((message->at(0)>> 4) & 1),0,message->at(1),90);
     }
 }
 
@@ -81,7 +81,7 @@ int main(){
     cin.get(c);
     
     
-    controller.load_dance("gaygordons", 175);
+    controller.load_dance("gaygordons", 190);
     cout<<"finished loading\n";
     controller.start_playing();
     
