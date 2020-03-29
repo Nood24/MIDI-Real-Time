@@ -7,7 +7,7 @@ This project aims to use the MIDI signal from the playing of a single accordion 
  
 The system is made up of a custom pedal box, a Rasperry Pi 3B+ and an LCD display. The Pedals and LCD display allow the system to be controlled in a hands free environment and the pi will provide the procesing of the accordion MIDI signal into an AUX output of a full ceilidh band.
 
-![High level system architecture](/Documentation/systemArchitecture.PNG)
+![High level system architecture](/other/Documentation/systemArchitecture.PNG)
 
 Authors:
 
@@ -36,3 +36,5 @@ sudo apt-get install fluidsynth : Synth MIDI into analogue output.
 sudo apt-get install libfluidsynth-dev: Allows use of fluidsynth API.
 
 sudo apt-get install wiringpi: Used to interface with pi GPIO pins
+
+Qt 5, Qmake: Front End
