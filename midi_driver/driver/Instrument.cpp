@@ -38,7 +38,7 @@ void Instrument::setVirtualHardware(VirtualHardwareController* hw){
 }
 
 
-void Instrument::run(VirtualHardwareController* vhw) {
+void Instrument::run() {
     int d = 0;
     while(this->hardware->playing ){
         usleep(this->timing_factor*this->timeDeltas[d%this->size]);

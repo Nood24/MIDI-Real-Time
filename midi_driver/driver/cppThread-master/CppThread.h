@@ -19,35 +19,35 @@
 class CppThread {
 
 public:
-        void start(VirtualHardwareController* hw) {
-                uthread = new std::thread(CppThread::exec, this,  hw);
-	}
+        void start() {
+                uthread = new std::thread(CppThread::exec, this);
+    }
 
-	void join() {
-		uthread->join();
-		delete uthread;
-		uthread = NULL;
-	}
+    void join() {
+        uthread->join();
+        delete uthread;
+        uthread = NULL;
+    }
 
-	CppThread() {};
-	
-	virtual ~CppThread() {
-		if (uthread) {
-			delete uthread;
-		}
-	}
+    CppThread() {};
+
+    virtual ~CppThread() {
+        if (uthread) {
+            delete uthread;
+        }
+    }
 
 protected:
-	// is implemented by its ancestors
-        virtual void run(VirtualHardwareController* hw) = 0;
+    // is implemented by its ancestors
+        virtual void run() = 0;
 
 private:
-	std::thread* uthread = NULL;
+    std::thread* uthread = NULL;
 
-	// static function which points back to the class
-        static void exec(CppThread* cppThread, VirtualHardwareController* hw) {
-                cppThread->run(hw);
-	}
+    // static function which points back to the class
+        static void exec(CppThread* cppThread) {
+                cppThread->run();
+    }
 };
 
 
