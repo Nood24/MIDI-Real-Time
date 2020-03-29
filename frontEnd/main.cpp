@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 
     MidiController.load_dance("gaygordons", 120);
     //controller.start_playing();
-    std::thread t1(&Controller::start_playing, std::ref(MidiController), std::ref(vitrualHardware));  
+    std::thread t1(&Controller::start_playing, std::ref(MidiController));
 
 
     return a.exec();
