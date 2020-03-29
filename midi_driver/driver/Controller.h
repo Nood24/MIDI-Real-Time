@@ -25,7 +25,7 @@ public:
     };
     static string get_file_location(string dance, int tempo);
     void load_dance(string dance_name, int tempo);
-    void start_playing(VirtualHardwareController* vhc);
+    void start_playing();
     void stop_playing();
     void set_playing(bool play);
     void create_midi_reader(int port_no);

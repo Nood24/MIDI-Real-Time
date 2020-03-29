@@ -12,8 +12,8 @@ void Controller::load_dance(string dance_name, int tempo){
     current_dance->load_instruments();
 }
 
-void Controller::start_playing(VirtualHardwareController* vhc){
-    this->current_dance->start_dance(vhc);
+void Controller::start_playing(){
+    this->current_dance->start_dance();
 
 }
 

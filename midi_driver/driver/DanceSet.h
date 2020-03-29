@@ -21,7 +21,7 @@ public:
        this->file_location = file_location;
        this->hardware = hw;
     }
-    void start_dance(VirtualHardwareController* vhc);
+    void start_dance();
     VirtualHardwareController * hardware;
     void set_notes(std::vector<unsigned char>* message);
     void load_instruments();
