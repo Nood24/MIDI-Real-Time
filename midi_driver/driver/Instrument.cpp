@@ -40,10 +40,9 @@ void Instrument::setVirtualHardware(VirtualHardwareController* hw){
 
 void Instrument::run(VirtualHardwareController* vhw) {
     int d = 0;
-    this->hardware->playing = vhw->playing;
-    while(vhw->playing ){
+    while(this->hardware->playing ){
         usleep(this->timing_factor*this->timeDeltas[d%this->size]);
-        if(!vhw->playing){
+        if(!this->hardware->playing){
             continue;
         }
         if (this->channels[d%this->size]==2){
