@@ -36,3 +36,5 @@ sudo apt-get install fluidsynth : Synth MIDI into analogue output.
 sudo apt-get install libfluidsynth-dev: Allows use of fluidsynth API.
 
 sudo apt-get install wiringpi: Used to interface with pi GPIO pins
+
+Qt 5, Qmake: Front End
