@@ -19,8 +19,8 @@
 class CppThread {
 
 public:
-        void start(VirtualHardwareController& hw) {
-                uthread = new std::thread(CppThread::exec, this,  std::ref(hw));
+        void start(VirtualHardwareController* hw) {
+                uthread = new std::thread(CppThread::exec, this,  hw);
 	}
 
 	void join() {
@@ -39,13 +39,13 @@ public:
 
 protected:
 	// is implemented by its ancestors
-        virtual void run(VirtualHardwareController& hw) = 0;
+        virtual void run(VirtualHardwareController* hw) = 0;
 
 private:
 	std::thread* uthread = NULL;
 
 	// static function which points back to the class
-        static void exec(CppThread* cppThread, VirtualHardwareController& hw) {
+        static void exec(CppThread* cppThread, VirtualHardwareController* hw) {
                 cppThread->run(hw);
 	}
 };

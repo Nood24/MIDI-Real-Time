@@ -21,7 +21,7 @@ class TerminalController
 
 public:
     bool IsSongPlaying();
-    void runThread(MainWindow& window, TerminalController& controller,VirtualHardwareController& virtualController);
+    void runThread(MainWindow& window, TerminalController& controller,VirtualHardwareController* virtualController);
 
 private:
     void processInput(int input);
@@ -30,7 +30,7 @@ private:
     void shiftSongRight();
     void shiftSongLeft();
     int getInput();
-    void run(MainWindow& window,VirtualHardwareController& virtualController);
+    void run(MainWindow& window,VirtualHardwareController* virtualController);
     char * getSong();
     char * getLeftSong();
     char * getRightSong();

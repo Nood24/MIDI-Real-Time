@@ -4,7 +4,7 @@
 
 #include "Instrument.h"
 
-Instrument::Instrument(std::string csv_file, int tempo, VirtualHardwareController& hw, int channel_number, int bank, int sf_ID, DanceSet *dance, int pitch_transform){
+Instrument::Instrument(std::string csv_file, int tempo, VirtualHardwareController* hw, int channel_number, int bank, int sf_ID, DanceSet *dance, int pitch_transform){
 	//vector<int> timeDeltas, channels, onOff;
         extract_from_csv(csv_file);
         this->size = this->timeDeltas.size();
@@ -33,17 +33,17 @@ void Instrument::updateNote(bool bass,bool chord){
     }
 }
 
-void Instrument::setVirtualHardware(VirtualHardwareController& hw){
+void Instrument::setVirtualHardware(VirtualHardwareController* hw){
     this->hardware = hw;
 }
 
 
-void Instrument::run(VirtualHardwareController& vhw) {
+void Instrument::run(VirtualHardwareController* vhw) {
     int d = 0;
-    this->hardware.playing = vhw.playing;
-    while(vhw.playing ){
+    this->hardware->playing = vhw->playing;
+    while(vhw->playing ){
         usleep(this->timing_factor*this->timeDeltas[d%this->size]);
-        if(!vhw.playing){
+        if(!vhw->playing){
             continue;
         }
         if (this->channels[d%this->size]==2){

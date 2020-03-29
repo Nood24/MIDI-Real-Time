@@ -40,12 +40,12 @@ class DanceSet;
 
 class Instrument : public CppThread {
 public:
-    Instrument(std::string csv_file, int tempo, VirtualHardwareController& hw, int channel, int bank, int sf_ID, DanceSet* dance ,int = 0);
+    Instrument(std::string csv_file, int tempo, VirtualHardwareController* hw, int channel, int bank, int sf_ID, DanceSet* dance ,int = 0);
     void updateNote(bool bass, bool chord);
-    void setVirtualHardware(VirtualHardwareController& hw);
+    void setVirtualHardware(VirtualHardwareController* hw);
 
 private:
-    void run(VirtualHardwareController& hw);
+    void run(VirtualHardwareController* hw);
 
 private:
     void extract_from_csv(string filename);
@@ -53,7 +53,7 @@ private:
     bool chordOn = false;
     bool bassOn = false;
     int pitch_transform;
-    VirtualHardwareController hardware;
+    VirtualHardwareController* hardware;
     int size;
     int previousChord[3] = {60,64,67};
     int chordNotes[3] = {60,64,67};
