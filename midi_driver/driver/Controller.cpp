@@ -12,7 +12,7 @@ void Controller::load_dance(string dance_name, int tempo){
     current_dance->load_instruments();
 }
 
-void Controller::start_playing(VirtualHardwareController& vhc){
+void Controller::start_playing(VirtualHardwareController* vhc){
     this->current_dance->start_dance(vhc);
 
 }
@@ -24,7 +24,7 @@ void Controller::stop_playing(){
 }
 
 void Controller::set_playing(bool play){
-    this->hardware.playing = play;
+    this->hardware->playing = play;
 }
 
 void change_notes( double deltatime, vector< unsigned char > *message, Controller *controller ){
@@ -35,7 +35,7 @@ void change_notes( double deltatime, vector< unsigned char > *message, Controlle
 
 void callback( double deltatime, vector< unsigned char > *message, void *controller ){
     //cout<<"in callback"<<endl;
-    if (((Controller *)controller)->hardware.playing){
+    if (((Controller *)controller)->hardware->playing){
         ((Controller *)controller)->current_dance->set_notes(message);
     }
     else{
