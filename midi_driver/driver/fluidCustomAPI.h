@@ -18,6 +18,8 @@ void changeInstrument(int channel, int bank, int instrument);
 
 void sendNote(bool on, int channel, int note);
 
+void all_notes_off(int chan);
+
 #ifdef __cplusplus
 }
 #endif
