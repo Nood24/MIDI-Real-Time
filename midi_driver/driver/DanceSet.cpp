@@ -72,6 +72,7 @@ void DanceSet::set_notes(std::vector< unsigned char >* message){
 
 void DanceSet::start_dance(){
     while (true){
+        //cout<< "ready\n";
         if(this->hardware->playing){
             load_instruments();
             for (int i=0; i<4; i++){
