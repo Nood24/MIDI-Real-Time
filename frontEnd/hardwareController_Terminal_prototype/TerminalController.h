@@ -38,6 +38,7 @@ private:
     bool songPlaying;
     char songs [4][30] = {"The Gay \nGordons", "The Dashing White \nSergeant", "Canadian \nBarn Dance","Highland \nSchottishe"};
     int songIndex;
+    VirtualHardwareController* virtualController;
 
     std::mutex mutex_songPlaying;
     std::mutex mutex_songs;
