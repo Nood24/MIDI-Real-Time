@@ -96,3 +96,8 @@ void sendNote(bool on, int channel, int note){
         noteOff(channel,note);
 }
 
+/* Set All Notes on a Channel Off*/
+void all_notes_off(int chan){
+    fluid_synth_all_notes_off(synth, chan);
+}
+

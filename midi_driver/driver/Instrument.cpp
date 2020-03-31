@@ -43,6 +43,7 @@ void Instrument::run() {
     while(this->hardware->playing ){
         usleep(this->timing_factor*this->timeDeltas[d%this->size]);
         if(!this->hardware->playing){
+            all_notes_off(this->FS_channel);
             continue;
         }
         if (this->channels[d%this->size]==2){
