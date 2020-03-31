@@ -71,8 +71,11 @@ void TerminalController::startStopSong(){
         songPlaying = false;
 
     }
-    else{
+    else if (this->virtualController->playing_ready){
         songPlaying = true;
+    }
+    else{
+        cout<< "\n\nPlease wait the song is not yet ready to start This may take a few seconds\n";
     }
 }
 
@@ -178,6 +181,7 @@ void TerminalController::runThread(MainWindow& window, TerminalController& contr
 
 //--------------------------------------------------
 void TerminalController::run(MainWindow& window,VirtualHardwareController* virtualController){
+    this->virtualController = virtualController;
     songPlaying = true;
     virtualController->playing = this->songPlaying;
     this->songIndex = 0;
