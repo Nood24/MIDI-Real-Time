@@ -21,7 +21,6 @@ class Controller {
 public:
     Controller(VirtualHardwareController* hw){
     	this->hardware = hw;
-        cout<<hw->playing << "controler.h\n";
     };
     static string get_file_location(string dance, int tempo);
     void load_dance(string dance_name, int tempo);

@@ -72,16 +72,16 @@ void DanceSet::set_notes(std::vector< unsigned char >* message){
 
 void DanceSet::start_dance(){
     while (true){
-    if(this->hardware->playing){
-        load_instruments();
-    for (int i=0; i<4; i++){
-        this->instruments[i]->start();
-    }
+        if(this->hardware->playing){
+            load_instruments();
+            for (int i=0; i<4; i++){
+                this->instruments[i]->start();
+            }
 
-    for (int i=0; i<4; i++){
-        this->instruments[i]->join();
-    }
-    }
+            for (int i=0; i<4; i++){
+                this->instruments[i]->join();
+            }
+        }
     }
 }
 
