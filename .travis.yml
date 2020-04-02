@@ -34,7 +34,6 @@ before_install:
   
   
   # Go to the Root directory  
-  - cd ..
 
 # Build steps
 script:
