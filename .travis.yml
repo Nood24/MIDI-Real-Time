@@ -1,5 +1,14 @@
 sudo: required
 
+# Enable C++ support
+language: cpp
+
+# Compiler selection
+compiler:
+  - gcc
+  - g++
+
+
 matrix:
   include:
     # works on Precise and Trusty
@@ -22,13 +31,6 @@ before_install:
   - sudo apt-get install fluidsynth 
   - sudo apt-get install libfluidsynth-dev
   
-# Enable C++ support
-language: cpp
-
-# Compiler selection
-compiler:
-  - gcc
-  
 #install:
 #  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
 #  - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
@@ -39,6 +41,7 @@ compiler:
 
 # Build steps
 script:
+  - g++ --version
   - pwd
   - cd buid_and_run
   - make
