@@ -6,19 +6,25 @@ os:
 # Enable C++ 7 support
 language: cpp
 dist: trusty
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - gcc-7
-      - g++-7
+matrix:
+  include:
+    # works on Precise and Trusty
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      env:
+         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
 
 
 # Compiler selection
 
 before_install:
+  - eval "${MATRIX_EVAL}"
   - sudo apt-get install libtool
   - sudo apt-get install automake
   - sudo apt-get install autoconf
@@ -39,6 +45,7 @@ before_install:
 script:
   - pwd
   - ls
+  - g++ --version
   - export CC=gcc-7
   - export CXX=g++-7
   - cd buid_and_run
