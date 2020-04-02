@@ -5,7 +5,7 @@ os:
 
 # Enable C++ 7 support
 language: cpp
-dist: trusty
+dist: Bionic
 matrix:
   include:
     # works on Precise and Trusty
