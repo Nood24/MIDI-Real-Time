@@ -39,6 +39,7 @@ before_install:
 # Build steps
 script:
   - pwd
+  - ls
   - export CC=gcc-7
   - export CXX=g++-7
   - cd buid_and_run
