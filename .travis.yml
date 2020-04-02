@@ -1,35 +1,20 @@
 sudo: required
 
-# Enable C++ support
-language: cpp
-
-# Compiler selection
-compiler:
-  - gcc
-  - g++
-
-
-matrix:
-  include:
-    # works on Precise and Trusty
-    - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-7
-      env:
-        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
 before_install:
-  - eval "${MATRIX_EVAL}"
   - sudo apt-get install libtool
   - sudo apt-get install automake
   - sudo apt-get install autoconf
   - sudo apt-get install libasound2-dev
   - sudo apt-get install fluidsynth 
   - sudo apt-get install libfluidsynth-dev
+  
+# Enable C++ support
+language: cpp
+
+# Compiler selection
+compiler:
+  - gcc
   
 #install:
 #  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
@@ -41,8 +26,6 @@ before_install:
 
 # Build steps
 script:
-  - g++ --version
   - pwd
-  - cd buid_and_run
-  - make
-
+    #- cd buid_and_run
+    #- make
