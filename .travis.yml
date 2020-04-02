@@ -1,11 +1,13 @@
 sudo: required
 
 
-#before_install:
-#  - sudo apt-get install libao-dev
-#  - sudo apt-get install libcurl4-openssl-dev
-#  - chmod +x installMPG123.sh
-#  - ./installMPG123.sh
+before_install:
+  - sudo apt-get install libtool
+  - sudo apt-get install automake
+  - sudo apt-get install autoconf
+  - sudo apt-get install libasound2-dev
+  - sudo apt-get install fluidsynth 
+  - sudo apt-get install libfluidsynth-dev
   
 # Enable C++ support
 language: cpp
