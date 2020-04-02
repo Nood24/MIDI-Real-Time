@@ -1,21 +1,33 @@
 sudo: required
 
+os:
+  - linux
+
+# Enable C++ 7 support
+language: cpp
+dist: trusty
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-7
+      - g++-7
+
+
+
+# Compiler selection
 
 before_install:
   - sudo apt-get install libtool
   - sudo apt-get install automake
   - sudo apt-get install autoconf
   - sudo apt-get install libasound2-dev
-  - sudo apt-get install fluidsynth 
+  - sudo apt-get install fluidsynth
   - sudo apt-get install libfluidsynth-dev
-  
-# Enable C++ support
-language: cpp
 
-# Compiler selection
-compiler:
-  - gcc
-  
+
+
 #install:
 #  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
 #  - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
@@ -27,5 +39,7 @@ compiler:
 # Build steps
 script:
   - pwd
-    #- cd buid_and_run
-    #- make
+  - export CC=gcc-7
+  - export CXX=g++-7
+  - cd buid_and_run
+  - make
