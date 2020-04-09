@@ -131,4 +131,4 @@ To compile the project do the following.
 
 ### Detailed How to Compile
 
-The make file in the build_and_run directory is for convienience. The project compies using Qmake. Qmake is called on the project .pro file at MIDI-Real-Time/frontEnd/OMC_FrontEnd.pro. This produces a make file which can be run to compile the project.  
+The make file in the build_and_run directory is for user convienience. It makes calls in other files and copies the built executibles into the buildAndRun directory. The project compiles using Qmake. Qmake is called on the project .pro file at MIDI-Real-Time/frontEnd/OMC_FrontEnd.pro. This produces a make file which can be run to compile the project. The OMC_FrontEnd.pro file contains all the programs that make up the project and the libraries that they depend upon. If a new file is created and you wish to integrate it into the project, you must add this file name to the .pro file so that it will link and compile. 
