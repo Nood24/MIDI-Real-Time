@@ -1,6 +1,6 @@
 # Welcome to the One Man Ceilidh Wiki
 
-One Man Ceilidh is a University of Glasgow project Masters project that aims to allow an accordion player to put on a full ceilidh solo by synthesizing backing music in real time off of a midi input from the addordion.
+One Man Ceilidh is a University of Glasgow project Masters project that aims to allow an accordion player to put on a full ceilidh solo by synthesizing backing music in real time off of a midi input from the accordion.
 
 This site aims to provide useful information to aid in working with the codebase. 
 
@@ -8,7 +8,7 @@ Key topics covered include the Tools, the Codebase and Compiling the project.
 
 ## Tools
 
-Three open source toos have been used to create this project. These tools are fluidsynth, RtMidi and Qt. This section will provide a short overview of tool with the use of said tools being detaied in the codebase section.
+Three open source tools have been used to create this project. These tools are fluidsynth, RtMidi and Qt. This section will provide a short overview of tool with the use of said tools being detaied in the codebase section.
 
 ### RtMidi
 
