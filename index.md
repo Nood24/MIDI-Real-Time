@@ -8,7 +8,7 @@ Key topics covered include the Tools, the Codebase and Compiling the project.
 
 ## Tools
 
-Three open source tools have been used to create this project. These tools are fluidsynth, [rtmidi](RtMidi) and Qt. This section will provide a short overview of tool with the use of said tools being detaied in the codebase section.
+Three open source tools have been used to create this project. These tools are fluidsynth, [rtmidi][RtMidi] and Qt. This section will provide a short overview of tool with the use of said tools being detaied in the codebase section.
 
 ### RtMidi
 
