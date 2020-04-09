@@ -1,6 +1,6 @@
 # Welcome to the One Man Ceilidh Wiki
 
-One Man Ceilidh is a University of Glasgow project Masters project that aims to allow an accordion player to put on a full ceilidh solo by synthesizing backing music in real time off of a midi input from the accordion.
+One Man Ceilidh is a University of Glasgow Masters project that aims to allow an accordion player to put on a full ceilidh solo by synthesizing backing music in real time off of a midi input from the accordion.
 
 This site aims to provide useful information to aid in working with the codebase. 
 
