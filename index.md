@@ -22,7 +22,7 @@ See the rtmidi git for more information:
 
 FluidSynth is an open source and real time synthesizer used by the One Man Ceilidh project to synthesize the sounds of the Ceilidh band via the use of SoundFont files.  
 
-![Branching](https://github.com/Nood24/MIDI-Real-Time/tree/master/other/images/)
+![Branching](https://github.com/Nood24/MIDI-Real-Time/blob/master/other/images/QtCreator.png)
 
 See the FluidSynth homepage and github for more information:
 
