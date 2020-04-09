@@ -4,21 +4,38 @@ One Man Ceilidh is a University of Glasgow project Masters project that aims to 
 
 This site aims to provide useful information to aid in working with the codebase. 
 
+Key topics covered include the Tools, the Codebase and Compiling the project. 
+
 ## Tools
 
-Three open source toos have been used to create this project. These tools are fluidsynth, RtMidi and Qt.
+Three open source toos have been used to create this project. These tools are fluidsynth, RtMidi and Qt. This section will provide a short overview of tool with the use of said tools being detaied in the codebase section.
 
 ### RtMidi
 
-blah
+RtMidi is an open source project providing an API that allows systems to interface with Midi input and outputs. One Man Ceilidh used this software to revieve midi input from the accordion. 
+
+See the rtmidi git for more information:
+
+<https://github.com/thestk/rtmidi>
+
+### FluidSynth
+
+FluidSynth is an open source and real time synthesizer used by the One Man Ceilidh project to synthesize the sounds of the Ceilidh band via the use of SoundFont files.  
+
+See the FluidSynth homepage and github for more information:
+
+<http://www.fluidsynth.org/>
+<https://github.com/FluidSynth/fluidsynth>
+
+
 
 ### Qt
 
-blah
+Qt is an open source widget toolkit which is used by One Man Ceilidh to provide the front end and to compile the project. The Qt Creator IDE is the reccomended way of working on the priject. Downloading Qt Creator and opening the MIDI-Real-Time/frontEnd/OMC_FrontEnd.pro file in the IDE will import all One Man Ceilidh code into the IDE.
 
-### Fluidsynth
+For more information see the qt website.
 
-blah
+<https://www.qt.io/>
 
 ## Codebase
 
