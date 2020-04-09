@@ -133,7 +133,7 @@ CppThread.h can be found at <https://github.com/Nood24/MIDI-Real-Time/blob/maste
 To compile the project do the following.
 
 1. Get yourself a machine running linux. Eg Raspberry Pi or Ubuntu system.
-1. Clone the projec with git clone --recurse-submodules -j8 https://github.com/Nood24/MIDI-Real-Time.git
+1. Clone the project with git clone --recurse-submodules -j8 https://github.com/Nood24/MIDI-Real-Time.git
 1. Install dependancies. They are listed in the project README and in .travis.yml <https://github.com/Nood24/MIDI-Real-Time/blob/master/README.md>.
 1. cd into the build_and_run directory
 1. run make
