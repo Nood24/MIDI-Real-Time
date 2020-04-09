@@ -15,9 +15,9 @@ Neil Wood: neilwood1997@gmail.com
 Cameron Bennett:Cameron.b97.cb@gmail.com
 Seun Ajijola: sajijola@gmail.com
 
-Twitter: https://twitter.com/OneManCeilidh
+Project Twitter: https://twitter.com/OneManCeilidh
 
-Wiki Page: https://nood24.github.io/MIDI-Real-Time/?fbclid=IwAR27X-9Kugiw643k3CEA-yfcTT6ZXq6-MGSo7AEuBK4x8Z-nUWYBc6VSuKA
+Project Wiki Page: https://nood24.github.io/MIDI-Real-Time/?fbclid=IwAR27X-9Kugiw643k3CEA-yfcTT6ZXq6-MGSo7AEuBK4x8Z-nUWYBc6VSuKA
 
 Dependancies:
 
