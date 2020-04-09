@@ -4,30 +4,52 @@ One Man Ceilidh is a University of Glasgow project Masters project that aims to 
 
 This site aims to provide useful information to aid in working with the codebase. 
 
-##Tools
+## Tools
 
 Three open source toos have been used to create this project. These tools are fluidsynth, RtMidi and Qt.
 
-###RtMidi
+### RtMidi
 
-###Qt
+blah
 
-###Fluidsynth
+### Qt
 
-##Codebase
+blah
 
-###main.pp
+### Fluidsynth
 
-###TerminalController.cpp
+blah
 
-###vitrualHardware.cpp
+## Codebase
 
-###controller.cpp
+blah
 
-###DanceSet.cpp
+### main.pp
 
-###Instrument.cpp
+blah
 
-###fluidCustomApi.c
+### TerminalController.cpp
 
-##Compiling 
+blah
+
+### vitrualHardware.cpp
+
+blah
+
+### controller.cpp
+
+blah
+
+### DanceSet.cpp
+
+blah
+
+### Instrument.cpp
+
+blah
+
+### fluidCustomApi.c
+
+blah
+
+## Compiling 
