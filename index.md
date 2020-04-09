@@ -8,11 +8,11 @@ Key topics covered include the Tools, the Codebase and Compiling the project.
 
 ## Tools
 
-Three open source tools have been used to create this project. These tools are fluidsynth, [rtmidi][RtMidi] and Qt. This section will provide a short overview of tool with the use of said tools being detaied in the codebase section.
+Three open source tools have been used to create this project. These tools are fluidsynth, RtMidi and Qt. This section will provide a short overview of tool with the use of said tools being detaied in the codebase section.
 
 ### RtMidi
 
-[rtmidi]: RtMidi is an open source project providing an API that allows systems to interface with Midi input and outputs. One Man Ceilidh used this software to revieve midi input from the accordion. 
+[rtidi]: RtMidi is an open source project providing an API that allows systems to interface with Midi input and outputs. One Man Ceilidh used this software to revieve midi input from the accordion. 
 
 See the rtmidi git for more information:
 
