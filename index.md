@@ -44,6 +44,8 @@ The One Man Ceilidh project is primariy written in C++ to gain the perfamance re
 
 This section will walk through the files within the system. 
 
+Note: This section will only discus .cpp files. Each .cpp file also has a .h file associated with it.
+
 ### main.pp
 
 main.cpp is the file with the highest level of abstraction in the One Man Ceilidh project. It instantiates the key objects in the system and sets them runnig. main.cpp can be found at  <https://github.com/Nood24/MIDI-Real-Time/blob/master/frontEnd/main.cpp>.
@@ -113,7 +115,16 @@ Instrument.cpp is the object which plays sounds via the fluidsynth API. It can b
 
 ### fluidCustomApi.c
 
-The fluidCustomApi.c is a wrapper written for the FuildSynth API to simplify functionality. Note that this is a c file as the FluidSynth API is written in c.
+The fluidCustomApi.c is a wrapper written for the FuildSynth API to simplify functionality. Note that this is a c file as the FluidSynth API is written in c. This is a very DRY bit of code. It is very reusable and could be used for many real time FluidSynth applications. 
+
+The fluidcustomAPI can be found at <https://github.com/Nood24/MIDI-Real-Time/blob/master/midi_driver/driver/fluidCustomAPI.c>.
+
+
+### CppThread.h
+
+CppThread.h is a class which is extended by instrument.h and instrument.cpp to allow the instruments to run concurrently in threads. Elsewere in the project std:thread method is used to run threads. This is not ideal as these classes are less extensible. However they are perfecly functional. 
+
+CppThread.h can be found at <https://github.com/Nood24/MIDI-Real-Time/blob/master/midi_driver/driver/cppThread-master/CppThread.h>. 
 
 ## Compiling 
 
