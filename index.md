@@ -22,7 +22,7 @@ See the rtmidi git for more information:
 
 FluidSynth is an open source and real time synthesizer used by the One Man Ceilidh project to synthesize the sounds of the Ceilidh band via the use of SoundFont files.  
 
-![Branching](https://github.com/Nood24/MIDI-Real-Time/blob/master/other/images/QtCreator.png)
+![](https://github.com/Nood24/MIDI-Real-Time/blob/master/other/images/QtCreator.png =100x20)
 
 See the FluidSynth homepage and github for more information:
 
@@ -47,7 +47,40 @@ This section will walk through the files within the system.
 
 ### main.pp
 
-blah
+main.cpp is the file with the highest level of abstraction in the One Man Ceilidh project. It instantiates the key objects in the system and sets them runnig. main.cpp can be found at  <https://github.com/Nood24/MIDI-Real-Time/blob/master/frontEnd/main.cpp>.
+
+It is worth running through this file quickly. A figure of it's operation is shown below. 
+
+
+```cpp
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+
+    MainWindow w;
+    TerminalController terminal_controller;
+
+    w.controllerInit();
+    w.showMaximized();
+    w.show();
+
+    VirtualHardwareController* vitrualHardware = new VirtualHardwareController();
+    cout << "vitrualHardware\n";
+    terminal_controller.runThread(w, terminal_controller,vitrualHardware);
+
+    Controller MidiController = Controller(vitrualHardware);
+    //Set create_midi_reader(1)on pi
+    MidiController.create_midi_reader(1);
+
+    MidiController.load_dance("gaygordons", 175);
+    //controller.start_playing();
+    std::thread t1(&Controller::start_playing, std::ref(MidiController));
+
+    return a.exec();
+
+}
+}
+```
 
 ### TerminalController.cpp
 
