@@ -79,7 +79,6 @@ int main(int argc, char *argv[])
     return a.exec();
 
 }
-}
 ```
 
 main.cpp does the following:
@@ -90,6 +89,8 @@ main.cpp does the following:
 
 
 ### mainwindow.cpp
+
+mainwindow.cpp implements the Qt front end of the system. It can be seen at <https://github.com/Nood24/MIDI-Real-Time/blob/master/frontEnd/mainwindow.cpp>.
 
 ### TerminalController.cpp
 
