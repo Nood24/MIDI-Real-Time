@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/isaiah/MIDI-Real-Time/hardwareController/Tests/sqrt.cpp
+math.h
+-
+
+/home/isaiah/MIDI-Real-Time/hardwareController/Tests/sqrt_test.cpp
+sqrt.cpp
+/home/isaiah/MIDI-Real-Time/hardwareController/Tests/sqrt.cpp
+gtest/gtest.h
+-
+
