@@ -4,7 +4,7 @@
 
 #include "Instrument.h"
 
-Instrument::Instrument(std::string csv_file, int tempo, VirtualHardwareController* hw, int channel_number, int bank, int sf_ID, DanceSet *dance, int pitch_transform){
+Instrument::Instrument(std::string csv_file, int tempo, VirtualHardwareController& hw, int channel_number, int bank, int sf_ID, DanceSet *dance, int pitch_transform){
 	//vector<int> timeDeltas, channels, onOff;
         extract_from_csv(csv_file);
         this->size = this->timeDeltas.size();
@@ -15,21 +15,25 @@ Instrument::Instrument(std::string csv_file, int tempo, VirtualHardwareControlle
         changeInstrument(this->FS_channel,bank,this->instrument_sfID);
         this->dance = dance;
         this->pitch_transform = pitch_transform;
+	this->drumkit = drumkit;
+	this->velocity = velocity;
     }
 
 
 void Instrument::updateNote(bool bass,bool chord){
+    if (this->drumkit)
+	return;
     if (bass && this->bassOn){
-        sendNote(0,this->FS_channel,this->dance->previousBass+this->pitch_transform);
-        sendNote(1,this->FS_channel,this->dance->bassNote+this->pitch_transform);
+        sendNote(0,this->FS_channel,this->dance->previousBass+this->pitch_transform,this->velocity);
+        sendNote(1,this->FS_channel,this->dance->bassNote+this->pitch_transform,this->velocity);
     }
     if (chord && this->chordOn){
-        sendNote(0,this->FS_channel,this->dance->previousChord[0]+this->pitch_transform);
-        sendNote(0,this->FS_channel,this->dance->previousChord[1]+this->pitch_transform);
-        sendNote(0,this->FS_channel,this->dance->previousChord[2]+this->pitch_transform);
-        sendNote(1,this->FS_channel,this->dance->chordNotes[0]+this->pitch_transform);
-        sendNote(1,this->FS_channel,this->dance->chordNotes[1]+this->pitch_transform);
-        sendNote(1,this->FS_channel,this->dance->chordNotes[2]+this->pitch_transform);
+        sendNote(0,this->FS_channel,this->dance->previousChord[0]+this->pitch_transform,this->velocity);
+        sendNote(0,this->FS_channel,this->dance->previousChord[1]+this->pitch_transform,this->velocity);
+        sendNote(0,this->FS_channel,this->dance->previousChord[2]+this->pitch_transform,this->velocity);
+        sendNote(1,this->FS_channel,this->dance->chordNotes[0]+this->pitch_transform,this->velocity);
+        sendNote(1,this->FS_channel,this->dance->chordNotes[1]+this->pitch_transform,this->velocity);
+        sendNote(1,this->FS_channel,this->dance->chordNotes[2]+this->pitch_transform,this->velocity);
     }
 }
 
@@ -40,20 +44,20 @@ void Instrument::setVirtualHardware(VirtualHardwareController* hw){
 
 void Instrument::run() {
     int d = 0;
-    while(this->hardware->playing ){
+    int drumnotes[3] = {0,59,52};
+    while(this->hardware->playing || d%this->size!=0){
         usleep(this->timing_factor*this->timeDeltas[d%this->size]);
-        if(!this->hardware->playing){
-            all_notes_off(this->FS_channel);
-            continue;
-        }
-        if (this->channels[d%this->size]==2){
-            sendNote(this->onOff[d%this->size],this->FS_channel,this->dance->bassNote+this->pitch_transform);
+	if (this->drumkit){
+		cout<< "sending: "<< drumnotes[this->channels[d%this->size]]<<endl;
+		sendNote(this->onOff[d%this->size],this->FS_channel,drumnotes[this->channels[d%this->size]],this->velocity);}
+        else if (this->channels[d%this->size]==2){
+            sendNote(this->onOff[d%this->size],this->FS_channel,this->dance->bassNote+this->pitch_transform,this->velocity);
             this->bassOn = this->onOff[d%this->size];
         }
         else{
-            sendNote(this->onOff[d%this->size],this->FS_channel,this->dance->chordNotes[0]+this->pitch_transform);
-            sendNote(this->onOff[d%this->size],this->FS_channel,this->dance->chordNotes[1]+this->pitch_transform);
-            sendNote(this->onOff[d%this->size],this->FS_channel,this->dance->chordNotes[2]+this->pitch_transform);
+            sendNote(this->onOff[d%this->size],this->FS_channel,this->dance->chordNotes[0]+this->pitch_transform,this->velocity);
+            sendNote(this->onOff[d%this->size],this->FS_channel,this->dance->chordNotes[1]+this->pitch_transform,this->velocity);
+            sendNote(this->onOff[d%this->size],this->FS_channel,this->dance->chordNotes[2]+this->pitch_transform,this->velocity);
             this->chordOn = this->onOff[d%this->size];
         }
         d=d+1;
