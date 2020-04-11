@@ -13,8 +13,17 @@ void Controller::load_dance(string dance_name, int tempo){
 }
 
 void Controller::start_playing(){
+    this->hardware->playing_ready = true;
     while(true){
-        this->current_dance->start_dance();
+        if (!this->hardware->playing_ready){
+            this->hardware->playing_ready = true;
+            cout << "\nThe song is now ready\n";
+        }
+        if(this->hardware->playing){
+            cout << "\n\n\n\nTHE HARDWARE IS PLAYING!!!!\n\n\n";
+            this->current_dance->start_dance();
+        }
+
     }
 }
 

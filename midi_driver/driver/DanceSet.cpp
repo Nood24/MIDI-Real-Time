@@ -72,10 +72,7 @@ void DanceSet::set_notes(std::vector< unsigned char >* message){
 
 void DanceSet::start_dance(){
 
-    if (!this->hardware->playing_ready){
-        this->hardware->playing_ready = true;
-        cout << "\nThe song is now ready\n";
-    }
+
 
     if(this->hardware->playing){
         load_instruments();
