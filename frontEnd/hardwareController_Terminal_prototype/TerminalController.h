@@ -36,7 +36,7 @@ private:
     char * getRightSong();
 
     bool songPlaying;
-    char songs [4][30] = {"The Gay \nGordons", "The Dashing White \nSergeant", "Canadian \nBarn Dance","Highland \nSchottishe"};
+    std::vector<std::vector<std::string>> songs{{"The Gay \nGordons", "gaygordons"},{"The Dashing White \nSergeant", "gaygordons"},{"Canadian \nBarn Dance", "gaygordons"},{"Highland \nSchottishe", "gaygordons"}};
     int songIndex;
     VirtualHardwareController* virtualController;
 

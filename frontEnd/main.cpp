@@ -26,7 +26,6 @@ int main(int argc, char *argv[])
 
 
     //MidiController.load_dance("gaygordons", 175);
-    //controller.start_playing();
     std::thread t1(&Controller::start_playing, std::ref(MidiController));
 
 

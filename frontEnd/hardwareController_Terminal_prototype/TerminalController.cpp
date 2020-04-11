@@ -38,7 +38,7 @@ void TerminalController::shiftSongLeft(){
     this->mutex_songs.lock();
     this->mutex_songIndex.lock();
     if (this->songIndex == 0){
-        this->songIndex = (sizeof(this->songs)/sizeof(*(this->songs)))-1;
+        this->songIndex = (int)this->songs.size() -1;
     }
     else{
         this->songIndex = this->songIndex - 1;
@@ -53,7 +53,7 @@ void TerminalController::shiftSongLeft(){
 void TerminalController::shiftSongRight(){
     mutex_songs.lock();
     mutex_songIndex.lock();
-    if(songIndex == (sizeof(songs)/sizeof(*songs))-1){
+    if(this->songIndex == (int)this->songs.size()-1){
         songIndex = 0;
     }
     else{
@@ -85,7 +85,7 @@ void TerminalController::printSystemState(){
     mutex_songs.lock();
     mutex_songIndex.lock();
     mutex_songPlaying.lock();
-    cout << "\nCurrent Song is " << songs[songIndex];
+    cout << "\nCurrent Song is " << songs[songIndex][1];
     if(songPlaying){
         cout << "\nA song is currently playing\n---------------\n";
     }
@@ -130,7 +130,7 @@ void TerminalController::processInput(int input){
 //--------------------------------------------------
 
 char * TerminalController:: getSong(){
-    return songs[songIndex];
+    return (char*)this->songs[this->songIndex][0].c_str();
 }
 //--------------------------------------------------
 
@@ -139,14 +139,14 @@ char * TerminalController::getLeftSong(){
     mutex_songIndex.lock();
     int temp = this->songIndex;
     if (temp == 0){
-        temp = (sizeof(this->songs)/sizeof(*(this->songs)))-1;
+        temp = this->songs.size()-1;
     }
     else{
         temp = this->songIndex - 1;
     }
     mutex_songs.unlock();
     mutex_songIndex.unlock();
-    return songs[temp];
+    return  (char*)songs[temp][0].c_str();
 }
 //--------------------------------------------------
 
@@ -154,7 +154,7 @@ char * TerminalController:: getRightSong(){
     mutex_songs.lock();
     mutex_songIndex.lock();
     int temp = this->songIndex;
-    if(temp == (sizeof(songs)/sizeof(*songs))-1){
+    if(temp == (int)this->songs.size()-1){
         temp = 0;
     }
     else{
@@ -162,7 +162,7 @@ char * TerminalController:: getRightSong(){
     }
     mutex_songs.unlock();
     mutex_songIndex.unlock();
-    return songs[temp];
+    return  (char*)songs[temp][0].c_str();
 }
 
 //--------------------------------------------------
