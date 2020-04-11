@@ -13,8 +13,9 @@ void Controller::load_dance(string dance_name, int tempo){
 }
 
 void Controller::start_playing(){
-    this->current_dance->start_dance();
-
+    while(true){
+        this->current_dance->start_dance();
+    }
 }
 
 void Controller::stop_playing(){
