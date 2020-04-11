@@ -195,6 +195,7 @@ void TerminalController::run(MainWindow& window,VirtualHardwareController* virtu
         window.setSongs(getLeftSong(),getSong(),getRightSong());
         window.setPlayButton(songPlaying);
         virtualController->playing = this->songPlaying;
+        virtualController->song = this->songs[this->songIndex][1].c_str();
     }
 
 }

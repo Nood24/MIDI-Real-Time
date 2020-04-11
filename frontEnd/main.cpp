@@ -25,7 +25,6 @@ int main(int argc, char *argv[])
     MidiController.create_midi_reader(1);
 
 
-    //MidiController.load_dance("gaygordons", 175);
     std::thread t1(&Controller::start_playing, std::ref(MidiController));
 
 

@@ -20,7 +20,8 @@ void Controller::start_playing(){
             cout << "\nThe song is now ready\n";
         }
         if(this->hardware->playing){
-            this->load_dance("gaygordons", 175);
+            //cout << this->hardware->song <<"\n";
+            this->load_dance(this->hardware->song, 175);
             this->current_dance->start_dance();
         }
 
