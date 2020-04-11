@@ -4,19 +4,19 @@
 
 #include "Instrument.h"
 
-Instrument::Instrument(std::string csv_file, int tempo, VirtualHardwareController& hw, int channel_number, int bank, int sf_ID, DanceSet *dance, int pitch_transform){
+Instrument::Instrument(std::string csv_file, int tempo, VirtualHardwareController *hw, int channel, int bank, int sf_ID, DanceSet* dance ,int pitch_transform, int velocity, bool drumkit){
 	//vector<int> timeDeltas, channels, onOff;
         extract_from_csv(csv_file);
         this->size = this->timeDeltas.size();
         this->timing_factor = 1000000*60.0/(tempo*480.0);
         this->hardware = hw;
         this->instrument_sfID = sf_ID;
-        this->FS_channel = channel_number;
+        this->FS_channel = channel;
         changeInstrument(this->FS_channel,bank,this->instrument_sfID);
         this->dance = dance;
         this->pitch_transform = pitch_transform;
-	this->drumkit = drumkit;
-	this->velocity = velocity;
+        this->drumkit = drumkit;
+        this->velocity = velocity;
     }
 
 
@@ -47,9 +47,8 @@ void Instrument::run() {
     int drumnotes[3] = {0,59,52};
     while(this->hardware->playing || d%this->size!=0){
         usleep(this->timing_factor*this->timeDeltas[d%this->size]);
-	if (this->drumkit){
-		cout<< "sending: "<< drumnotes[this->channels[d%this->size]]<<endl;
-		sendNote(this->onOff[d%this->size],this->FS_channel,drumnotes[this->channels[d%this->size]],this->velocity);}
+        if (this->drumkit){
+            sendNote(this->onOff[d%this->size],this->FS_channel,drumnotes[this->channels[d%this->size]],this->velocity);}
         else if (this->channels[d%this->size]==2){
             sendNote(this->onOff[d%this->size],this->FS_channel,this->dance->bassNote+this->pitch_transform,this->velocity);
             this->bassOn = this->onOff[d%this->size];

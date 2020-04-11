@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include "hardwareController_Terminal_prototype/TerminalController.h"
+//#include "hardwareController_Terminal_prototype/TerminalController.h"
 #include "../midi_driver/driver/Controller.h"
 #include <QApplication>
 
@@ -7,29 +7,30 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    MainWindow w;
-    TerminalController terminal_controller;
+    MainWindow window;
+    //TerminalController terminal_controller;
 
-    w.controllerInit();
-    w.showMaximized();
-    w.show();
-
-
-    VirtualHardwareController* vitrualHardware = new VirtualHardwareController();
-    cout << "vitrualHardware\n";
-    terminal_controller.runThread(w, terminal_controller,vitrualHardware);
+    window.showMaximized();
+    window.show();
 
 
-    Controller MidiController = Controller(vitrualHardware);
-    //Set create_midi_reader(1)on pi
-    MidiController.create_midi_reader(1);
+    VirtualHardwareController *virtualHardware = new VirtualHardwareController();
+
+    Controller *MidiController = new Controller(virtualHardware,&window);
+    
+    std::thread t1(&Controller::run, std::ref(MidiController));
 
 
-    MidiController.load_dance("gaygordons", 175);
+    
     //controller.start_playing();
-    std::thread t1(&Controller::start_playing, std::ref(MidiController));
+    //std::thread t1(&Controller::start_playing, std::ref(MidiController));
 
 
-    return a.exec();
+    a.exec();
+    
+    MidiController->free_current_dance();
+    delete MidiController;
+    
+    delete virtualHardware;
 
 }

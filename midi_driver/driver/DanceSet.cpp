@@ -16,17 +16,23 @@ void DanceSet::load_instruments() {
     Instrument* accordion = new Instrument(this->file_location + "Accordion.csv", this->tempo, this->hardware, 1, 1, 1,this,-12,80);
     Instrument* drums = new Instrument(this->file_location + "Drums.csv", this->tempo,this->hardware,2, 1, 3,this,0,80,true);
     Instrument* bass = new Instrument(this->file_location + "Bass.csv", this->tempo, this->hardware, 3, 1, 4,this,-12,127);
-   
-    this->instruments.push_back(accordion);
+    
     this->instruments.push_back(piano);
+    this->instruments.push_back(accordion);
     this->instruments.push_back(drums);
     this->instruments.push_back(bass);
 
 }
 
 void DanceSet::wait_loop_end(){
-    for (int i=0;i< this->instruments.size();i++){
+    for (int i=0; i < this->instruments.size();i++){
         this->instruments[i]->join();
+    }
+}
+
+void DanceSet::free_instruments(){
+    for (int i=0;i< this->instruments.size();i++){
+        delete this->instruments[i];
     }
 }
 
