@@ -174,7 +174,6 @@ bool TerminalController::IsSongPlaying(){
 //--------------------------------------------------
 
 void TerminalController::runThread(MainWindow& window, TerminalController& controller,VirtualHardwareController* virtualController){
-     cout << "hello";
      std::thread t1(&TerminalController::run, &controller, std::ref(window),std::ref(virtualController) );
      t1.detach();
 }

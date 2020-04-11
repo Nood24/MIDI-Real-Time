@@ -16,7 +16,6 @@ int main(int argc, char *argv[])
 
 
     VirtualHardwareController* vitrualHardware = new VirtualHardwareController();
-    cout << "vitrualHardware\n";
     terminal_controller.runThread(w, terminal_controller,vitrualHardware);
 
 
