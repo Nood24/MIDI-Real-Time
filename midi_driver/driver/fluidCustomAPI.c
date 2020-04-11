@@ -69,7 +69,7 @@ void noteOff(int chan, short key){
 
 /* Play a note with a length in seconds*/
 void playNoteOfLength(int chan, short key, short length){
-    printf("Playing Note of length ");
+    //printf("Playing Note of length ");
     noteOn(chan, key,90);
     sleep(length);
     noteOff(chan, key);
@@ -90,7 +90,7 @@ void changeInstrument(int channel, int bank, int instrument){
 
 /* Send On or Off Notes */
 void sendNote(bool on, int channel, int note, int velocity){ 
-    printf("Sending note: %d to channel %d and its %d\n",note,channel,on);
+    //printf("Sending note: %d to channel %d and its %d\n",note,channel,on);
     if (on)
         noteOn(channel,note,velocity);
     else

@@ -40,7 +40,7 @@ class DanceSet;
 
 class Instrument : public CppThread {
 public:
-    Instrument(std::string csv_file, int tempo, HardwareController hw, int channel, int bank, int sf_ID, DanceSet* dance ,int pitch_transform = 0, int velocity = 90, bool drumkit = false);
+    Instrument(std::string csv_file, int tempo, VirtualHardwareController *hw, int channel, int bank, int sf_ID, DanceSet* dance ,int pitch_transform = 0, int velocity = 90, bool drumkit = false);
     void updateNote(bool bass, bool chord);
     void setVirtualHardware(VirtualHardwareController* hw);
 
