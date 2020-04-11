@@ -1,6 +1,7 @@
 #include "VirtualHardwareController.h"
 
 VirtualHardwareController::VirtualHardwareController(){
-	this->playing = true;
+    this->playing = false;
+    this->song = "gaygordons";
     }
 

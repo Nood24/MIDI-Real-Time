@@ -182,7 +182,7 @@ void TerminalController::runThread(MainWindow& window, TerminalController& contr
 //--------------------------------------------------
 void TerminalController::run(MainWindow& window,VirtualHardwareController* virtualController){
     this->virtualController = virtualController;
-    songPlaying = true;
+    songPlaying = false;
     virtualController->playing = this->songPlaying;
     this->songIndex = 0;
     printSystemState();
