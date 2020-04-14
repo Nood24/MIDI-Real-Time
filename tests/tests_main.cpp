@@ -163,6 +163,27 @@ TEST_CASE( "Switch Song Left" ) {
 }
 
 
+TEST_CASE( "System innits as not playing" ) {
+    VirtualHardwareController *virtualHardware = new VirtualHardwareController();
+    REQUIRE( true );
+    int mock_int;
+    char** mock_array;
+    REQUIRE( true );
+    QApplication a(mock_int, mock_array);
+    REQUIRE( true );
+    MainWindow window;
+    REQUIRE( true );
+    Controller *MidiController = new Controller(virtualHardware,&window);
+    REQUIRE( true );
+    MidiController->load_dance("gaygordons",175);
+    REQUIRE( true );
+    MidiController->find_installed_dances("./CSVFiles/");
+    REQUIRE("gaygordons"==MidiController->get_dance_name());
+    string left_song =  MidiController->get_left_dance();
+    MidiController->shift_dance_left();
+    MidiController->hardware->playing;
+    REQUIRE(!MidiController->hardware->playing);
+}
 
 
 
