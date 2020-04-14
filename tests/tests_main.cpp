@@ -186,51 +186,6 @@ TEST_CASE( "System innits as not playing" ) {
 }
 
 
-
-//------ Fluidsynth API Tests ---------------------------------------------
-
-TEST_CASE( "Create a Synth" ) {
-    fluid_synth_init();
-    REQUIRE( true );
-}
-
-TEST_CASE( "Create and delete a Synth" ) {
-    fluid_synth_init();
-    REQUIRE( true );
-    deleteFluidSynth();
-    REQUIRE( true );
-}
-
-
-
-TEST_CASE( "Play a Note" ) {
-    fluid_synth_init();
-    REQUIRE( true );
-    cout << "Playing 3 second note!\n";
-    playNoteOfLength(0,60,3);
-    REQUIRE( true );
-}
-
-TEST_CASE( "Change Instrument" ) {
-    fluid_synth_init();
-    REQUIRE( true );
-    cout << "Change Instrument!\n";
-    REQUIRE( true );
-    changeInstrument(0, 0, 20);
-    REQUIRE( true );
-    void changeInstrument(int channel, int bank, int instrument);
-    REQUIRE( true );
-    cout << "Playing 3 second note!\n";
-    REQUIRE( true );
-    playNoteOfLength(0,60,3);
-    REQUIRE( true );
-    deleteFluidSynth();
-    REQUIRE( true );
-}
-
-//------ Instrument Tests API Tests ---------------------------------------------
-
-
 TEST_CASE( "Create Danceset" ) {
     VirtualHardwareController *virtualHardware = new VirtualHardwareController();
     REQUIRE( true );
@@ -303,4 +258,48 @@ TEST_CASE( "Get current Dance Name" ) {
 }
 
 
+
+
+
+
+//------ Fluidsynth API Tests ---------------------------------------------
+
+TEST_CASE( "Create a Synth" ) {
+    fluid_synth_init();
+    REQUIRE( true );
+}
+
+TEST_CASE( "Create and delete a Synth" ) {
+    fluid_synth_init();
+    REQUIRE( true );
+    deleteFluidSynth();
+    REQUIRE( true );
+}
+
+
+
+TEST_CASE( "Play a Note" ) {
+    fluid_synth_init();
+    REQUIRE( true );
+    cout << "Playing 3 second note!\n";
+    playNoteOfLength(0,60,3);
+    REQUIRE( true );
+}
+
+TEST_CASE( "Change Instrument" ) {
+    fluid_synth_init();
+    REQUIRE( true );
+    cout << "Change Instrument!\n";
+    REQUIRE( true );
+    changeInstrument(0, 0, 20);
+    REQUIRE( true );
+    void changeInstrument(int channel, int bank, int instrument);
+    REQUIRE( true );
+    cout << "Playing 3 second note!\n";
+    REQUIRE( true );
+    playNoteOfLength(0,60,3);
+    REQUIRE( true );
+    deleteFluidSynth();
+    REQUIRE( true );
+}
 
