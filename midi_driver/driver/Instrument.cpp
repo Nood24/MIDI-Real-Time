@@ -69,7 +69,6 @@ void Instrument::extract_from_csv(string filename){
 
     ifstream csvfile;
     csvfile.open(filename);    
-    assert(csvfile.is_open());
     while(csvfile.good()){
         getline(csvfile,strdelta,',');
         getline(csvfile,strchannel,',');
