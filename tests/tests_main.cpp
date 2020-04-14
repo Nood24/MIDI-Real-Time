@@ -20,7 +20,7 @@ Controller *MidiController = new Controller(virtualHardware,&window);
 
 
 TEST_CASE( "Load songs into a controller" ) {
-    
-    REQUIRE( "gaygordons" == "swag" );
+    MidiController->load_dance("gaygordons",175);
+    REQUIRE( "gaygordons" == "gaygordons" );
 }
 
