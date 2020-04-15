@@ -54,39 +54,40 @@ It is worth running through this file quickly. A figure of it's operation is sho
 
 
 ```cpp
+#include "mainwindow.h"
+#include "../midi_driver/driver/Controller.h"
+#include <QApplication>
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    MainWindow w;
-    TerminalController terminal_controller;
+    MainWindow window;
 
-    w.controllerInit();
-    w.showMaximized();
-    w.show();
+    window.showMaximized();
+    window.show();
 
-    VirtualHardwareController* vitrualHardware = new VirtualHardwareController();
-    cout << "vitrualHardware\n";
-    terminal_controller.runThread(w, terminal_controller,vitrualHardware);
+    VirtualHardwareController *virtualHardware = new VirtualHardwareController();
 
-    Controller MidiController = Controller(vitrualHardware);
-    //Set create_midi_reader(1)on pi
-    MidiController.create_midi_reader(1);
+    Controller *MidiController = new Controller(virtualHardware,&window);
+    
+    std::thread t1(&Controller::run, std::ref(MidiController));
 
-    MidiController.load_dance("gaygordons", 175);
-    //controller.start_playing();
-    std::thread t1(&Controller::start_playing, std::ref(MidiController));
+    a.exec();
+    
+    MidiController->free_current_dance();
+    delete MidiController;
+    
+    delete virtualHardware;
 
-    return a.exec();
-
+}
 }
 ```
 
 main.cpp does the following:
 1. Creates the Qt front end my calling MainWindow w. Mainwindow being defined in mainwindow.cpp.
-1. Creates a terminalController defined in TerminalController.cpp which keeps track of the state of the system and accepts inputs inputs through the terminal.
 1. Creates a virtualHardware object. This object contains system state information such as. If a song is playing and which song is playing. 
-1. Creates a MidiController object which is defined in controller.cpp. This is the object which is responsible for receiving inputs from accordion midi, loading songs and synthesizing the correct output sounds.
+1. Creates a MidiController object which is defined in controller.cpp. This is the object which is responsible for receiving inputs from accordion midi, maintaining system state, interfacing with the user through command line controlling the objects responsible for playing a songs.
 
 
 ### mainwindow.cpp
@@ -179,6 +180,34 @@ Unfortunately the team has not been able to configure Travis to run tests with e
 1. run ./tests
 
 The projects tests have been created using Catch2 https://github.com/catchorg/Catch2. The team has found this to be a very useful open source framework for producing tests. The project tests can be found at https://github.com/Nood24/MIDI-Real-Time/blob/master/tests/tests_main.cpp.
+
+## A Note on the Effects of Covid-19 on the Project.
+
+Covid-19 caused the cancellation of the hardware foot peddles that were planned to be used to control the project. The system is controlled through the terminal and not through pedals because of this. If peddles became available they would replace the virtual hardware object that has been created to replace the foot pedals. (Code shown below). The main task here is replacing current get input function that gets an input from the terminal with code that gets an input from the foot pedals. A start had been made to this functionality 
+
+The code for running the pedals has been written in https://github.com/Nood24/MIDI-Real-Time/blob/master/hardwareController/hardwareInterface.cpp. While this interface is not full implemented it could provide a blueprint for the design of a class which gets inputs from the hardware.  
+
+```cpp
+#include "VirtualHardwareController.h"
+#include <iostream>
+using namespace std;
+
+VirtualHardwareController::VirtualHardwareController(){
+	this->playing = false;
+}
+    
+int VirtualHardwareController::get_input(){
+    int i;
+    cout << "\nPlease enter an integer value between 1-4 for pedal press: ";
+    cin >> i;
+    return i;
+}
+
+void VirtualHardwareController::set_state(bool state){
+    this->playing = state;
+}
+
+```
 
 
 ## Conclusion
