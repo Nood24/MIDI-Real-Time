@@ -109,7 +109,7 @@ DanceSet is an object initializes and keeps track of individual instruments in a
 
 ### Instrument.cpp
 
-Instrument.cpp is the object which plays sounds via the fluidsynth API. It can be found at <https://github.com/Nood24/MIDI-Real-Time/blob/master/midi_driver/driver/Instrument.cpp>.
+Instrument.cpp is the object which plays sounds via the FluidSynth API. This class contains the logic responsible for paying notes and making sure that the sound output is synchronized, musical and responding to the MIDI input from the accordion. It can be found at <https://github.com/Nood24/MIDI-Real-Time/blob/master/midi_driver/driver/Instrument.cpp>.
 
 ### fluidCustomApi.c
 
