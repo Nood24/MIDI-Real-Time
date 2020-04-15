@@ -181,4 +181,14 @@ Unfortunately the team has not been able to configure Travis to run tests with e
 The projects tests have been created using Catch2 https://github.com/catchorg/Catch2. The team has found this to be a very useful open source framework for producing tests. The project tests can be found at https://github.com/Nood24/MIDI-Real-Time/blob/master/tests/tests_main.cpp.
 
 
+## Conclusion
+
+The One Man Ceilidh team have had good fun working on this project and we hope you do too! If you have any questions feel free to drop us a message on twitter @OneManCeilidh https://twitter.com/OneManCeilidh.
+
+Best Regards,
+
+The One Man Ceilidh Team. 
+
+
+
 
