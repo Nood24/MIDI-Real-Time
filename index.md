@@ -4,7 +4,9 @@ One Man Ceilidh is a University of Glasgow Masters project that aims to allow an
 
 This site aims to provide useful information to aid in working with the codebase. 
 
-Key topics covered include the Tools, the Codebase and Compiling the project. 
+Key topics covered include the Tools, the Codebase, Compiling the project, running the project and the testing/CI of the girhub project. 
+
+---
 
 ## Tools
 
@@ -29,6 +31,7 @@ See the FluidSynth homepage and github for more information:
 <https://github.com/FluidSynth/fluidsynth>
 
 
+---
 
 ### Qt
 
@@ -129,6 +132,8 @@ CppThread.h can be found at <https://github.com/Nood24/MIDI-Real-Time/blob/maste
 
 TerminalController.cpp is a depricated replacement for the planned hardware pedals which unfortunaty coud not be completed due to the closure of labs. This class has been merged with the controler class. It was last used in the change_song branch. This object can be found at <https://github.com/Nood24/MIDI-Real-Time/blob/master/frontEnd/hardwareController_Terminal_prototype/TerminalController.cpp>. The terminal controller is responsible for receiving inputs from the terminal, keeping track of system state and then updating the virtual hardware object which is passed to other parts of the system to make this information accessible. 
 
+---
+
 ## Compiling 
 
 ### Simple How to Compile
@@ -147,6 +152,8 @@ To compile the project do the following.
 
 The make file in the build_and_run directory is for user convenience. It makes calls in other files and copies the built executibles into the buildAndRun directory. The project compiles using Qmake. Qmake is called on the project .pro file at MIDI-Real-Time/frontEnd/OMC_FrontEnd.pro. This produces a make file which can be run to compile the project. The OMC_FrontEnd.pro file contains all the programs that make up the project and the libraries that they depend upon. If a new file is created and you wish to integrate it into the project, you must add this file name to the .pro file so that it will link and compile. 
 
+---
+
 ## Using the System
 
 ### Basic Opperation
@@ -160,6 +167,8 @@ When pausing a song the song will always continue to the end of the tune before 
 ### Installing a New Song
 
 Songs are installed as CSV files made up of a top level directory with a song name and then sub direcroties of CSV files providing the notes of the different instruments. Add a song directory to the following directory /MIDI-Real-Time/midi_driver/driver/CSVFiles for the song to be automaticay loaded into the system on startup. 
+
+---
 
 ## CI and Testing 
 
@@ -180,6 +189,8 @@ Unfortunately the team has not been able to configure Travis to run tests with e
 1. run ./tests
 
 The projects tests have been created using Catch2 https://github.com/catchorg/Catch2. The team has found this to be a very useful open source framework for producing tests. The project tests can be found at https://github.com/Nood24/MIDI-Real-Time/blob/master/tests/tests_main.cpp.
+
+---
 
 ## A Note on the Effects of Covid-19 on the Project.
 
@@ -209,6 +220,7 @@ void VirtualHardwareController::set_state(bool state){
 
 ```
 
+---
 
 ## Conclusion
 
