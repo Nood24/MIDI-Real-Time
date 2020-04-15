@@ -54,4 +54,3 @@ script:
   - cd tests
   - qmake
   - make
-  - ./tests
