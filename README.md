@@ -37,11 +37,13 @@ RTMidi Dependancies:
 * sudo apt-get install automake
 * sudo apt-get install autoconf
 
-Other:
+FluidSynth Dependancies:
 
 * sudo apt-get install libasound2-dev : Allows RTMIDI to interacvt with ALSA.
 * sudo apt-get install fluidsynth : Synth MIDI into analogue output.
 * sudo apt-get install libfluidsynth-dev: Allows use of fluidsynth API.
-* sudo apt-get install wiringpi: Used to interface with pi GPIO pins.
+
+Other Dependancies:
+
 * Qt 5, Qmake: Support front end and build the project. 
  
