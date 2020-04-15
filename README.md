@@ -19,9 +19,9 @@ If you have any questions please feel free to message us via twitter @OneManCeil
 
 Authors:
 
-Neil Wood: neilwood1997@gmail.com
-Cameron Bennett:Cameron.b97.cb@gmail.com
-Seun Ajijola: sajijola@gmail.com
+*  Neil Wood: neilwood1997@gmail.com	
+*  Cameron Bennett:Cameron.b97.cb@gmail.com
+*  Seun Ajijola: sajijola@gmail.com
 
 Project Twitter: https://twitter.com/OneManCeilidh
 
