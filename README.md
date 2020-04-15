@@ -5,9 +5,15 @@ A University of Glasgow ENG5220: Real Time Embedded Programming (2019-20) projec
 
 This project aims to use the MIDI signal from the playing of a single accordion to produce the sound of a full ceilidh band. 
  
-The system is made up of a custom pedal box, a Rasperry Pi 3B+ and an LCD display. The Pedals and LCD display allow the system to be controlled in a hands free environment and the pi will provide the procesing of the accordion MIDI signal into an AUX output of a full ceilidh band.
+The system is made up of a Rasperry Pi 3B+ with a normal monitor and keyboard. The keyboard and monitor allow the the system to be controlled the pi provides the procesing of the accordion MIDI signal into an AUX output of a full ceilidh band.
 
-![High level system architecture](/other/Documentation/systemArchitecture.PNG)
+You can get up this system on a Raspberry Pi or Ubuntu computer. A list of project dependancies is kept at the bottom of this README which aims to help you set up you're environment and get started. 
+
+![One Man Ceilidh Front End](/other/images/Screenshot%20from%202020-04-15%2009-17-10.png)
+
+Please check out or wiki page for a detailed overview of the project or help getting started. https://nood24.github.io/MIDI-Real-Time/?fbclid=IwAR27X-9Kugiw643k3CEA-yfcTT6ZXq6-MGSo7AEuBK4x8Z-nUWYBc6VSuKA
+
+If you have any questions please feel free to message us via twitter @OneManCeilidh https://twitter.com/OneManCeilidh.
 
 Authors:
 
@@ -19,7 +25,7 @@ Project Twitter: https://twitter.com/OneManCeilidh
 
 Project Wiki Page: https://nood24.github.io/MIDI-Real-Time/?fbclid=IwAR27X-9Kugiw643k3CEA-yfcTT6ZXq6-MGSo7AEuBK4x8Z-nUWYBc6VSuKA
 
-Dependancies:
+Project Dependancies:
 
 RTMidi Dependancies:
 
@@ -39,4 +45,5 @@ sudo apt-get install libfluidsynth-dev: Allows use of fluidsynth API.
 
 sudo apt-get install wiringpi: Used to interface with pi GPIO pins
 
-Qt 5, Qmake: Front End
+Qt 5, Qmake: Support front end and build the project. 
+ 
