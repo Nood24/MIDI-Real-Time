@@ -50,3 +50,8 @@ script:
   - export CXX=g++-7
   - cd build_and_run
   - make
+  - cd ..
+  - cd tests
+  - qmake
+  - make
+  - ./tests
