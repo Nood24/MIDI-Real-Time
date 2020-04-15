@@ -15,6 +15,8 @@ Please check out or wiki page for a detailed overview of the project or help get
 
 If you have any questions please feel free to message us via twitter @OneManCeilidh https://twitter.com/OneManCeilidh.
 
+---
+
 Authors:
 
 Neil Wood: neilwood1997@gmail.com
@@ -24,6 +26,8 @@ Seun Ajijola: sajijola@gmail.com
 Project Twitter: https://twitter.com/OneManCeilidh
 
 Project Wiki Page: https://nood24.github.io/MIDI-Real-Time/?fbclid=IwAR27X-9Kugiw643k3CEA-yfcTT6ZXq6-MGSo7AEuBK4x8Z-nUWYBc6VSuKA
+
+---
 
 Project Dependancies:
 
