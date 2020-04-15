@@ -27,8 +27,8 @@ FluidSynth is an open source and real time synthesizer used by the One Man Ceili
 
 See the FluidSynth homepage and github for more information:
 
-<http://www.fluidsynth.org/>
-<https://github.com/FluidSynth/fluidsynth>
+1. <http://www.fluidsynth.org/>
+1. <https://github.com/FluidSynth/fluidsynth>
 
 
 ---
