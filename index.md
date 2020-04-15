@@ -93,9 +93,7 @@ main.cpp does the following:
 
 mainwindow.cpp implements the Qt front end of the system. It can be seen at <https://github.com/Nood24/MIDI-Real-Time/blob/master/frontEnd/mainwindow.cpp>.
 
-### TerminalController.cpp
 
-TerminalController.cpp is a replacement for the planned hardware pedals which unfortunaty coud not be completed due to the closure of labs. This object can be found at <https://github.com/Nood24/MIDI-Real-Time/blob/master/frontEnd/hardwareController_Terminal_prototype/TerminalController.cpp>. The terminal controler is responsible for revieing inputs from the terminal, keeping track of system state and then updateing the virtual hardware object which is passed to other parts of the system to make this information accessible. 
 
 ### vitrualHardware.cpp
 
@@ -103,7 +101,7 @@ vitrualHardware.cpp is a small class that keeps track of is a song is playing an
 
 ### controller.cpp
 
-controller.cpp is the object that loads songs, revieves Midi inputs and passes on those values to lower evels of abstraction. The object can be found at <https://github.com/Nood24/MIDI-Real-Time/blob/master/midi_driver/driver/Controller.cpp>. 
+controller.cpp is the object that loads songs, revieves Midi inputs and passes on those values to lower evels of abstraction and contrtolls the state of the system through interacting with the user through the terminal. The object can be found at <https://github.com/Nood24/MIDI-Real-Time/blob/master/midi_driver/driver/Controller.cpp>. 
 
 ### DanceSet.cpp
 
@@ -125,6 +123,10 @@ The fluidcustomAPI can be found at <https://github.com/Nood24/MIDI-Real-Time/blo
 CppThread.h is a class which is extended by instrument.h and instrument.cpp to allow the instruments to run concurrently in threads. Elsewere in the project std:thread method is used to run threads. This is not ideal as these classes are less extensible. However they are perfecly functional. 
 
 CppThread.h can be found at <https://github.com/Nood24/MIDI-Real-Time/blob/master/midi_driver/driver/cppThread-master/CppThread.h>. 
+
+### TerminalController.cpp
+
+TerminalController.cpp is a depricated replacement for the planned hardware pedals which unfortunaty coud not be completed due to the closure of labs. This class has been merged with the controler class. It was last used in the change_song branch. This object can be found at <https://github.com/Nood24/MIDI-Real-Time/blob/master/frontEnd/hardwareController_Terminal_prototype/TerminalController.cpp>. The terminal controler is responsible for revieing inputs from the terminal, keeping track of system state and then updateing the virtual hardware object which is passed to other parts of the system to make this information accessible. 
 
 ## Compiling 
 
