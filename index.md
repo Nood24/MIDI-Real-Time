@@ -145,3 +145,21 @@ To compile the project do the following.
 ### Detailed How to Compile
 
 The make file in the build_and_run directory is for user convienience. It makes calls in other files and copies the built executibles into the buildAndRun directory. The project compiles using Qmake. Qmake is called on the project .pro file at MIDI-Real-Time/frontEnd/OMC_FrontEnd.pro. This produces a make file which can be run to compile the project. The OMC_FrontEnd.pro file contains all the programs that make up the project and the libraries that they depend upon. If a new file is created and you wish to integrate it into the project, you must add this file name to the .pro file so that it will link and compile. 
+
+## Using the System
+
+### Basic Opperation
+
+Using the system is pretty staight forward. Running the system brings up a Qt display which shows left song, right song, current song and a play/pause button. 
+
+Interact with this Qt dispay via the terminal in which you are running the system. Enter "1" to switch song left, "2" to switch song right and "3" to play/pause a song. 
+
+When pausing a song the song will always continue to the end of the tune before ending. Text will become red when pause is pressed to show that a stop command has been queued. 
+
+### Installing a New Song
+
+Songs are instaled as CSV files made up of a top level directory with a snong name and then sub direcroties of CSV files providing the notes of the different instruments. Add a song directory to the following directory /MIDI-Real-Time/midi_driver/driver/CSVFiles for the song to be automaticay loaded into the system on startup. 
+
+
+
+
