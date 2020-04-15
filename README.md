@@ -39,7 +39,7 @@ RTMidi Dependancies:
 
 FluidSynth Dependancies:
 
-* sudo apt-get install libasound2-dev : Allows RTMIDI to interacvt with ALSA.
+* sudo apt-get install libasound2-dev : Allows RTMIDI to interact with ALSA.
 * sudo apt-get install fluidsynth : Synth MIDI into analogue output.
 * sudo apt-get install libfluidsynth-dev: Allows use of fluidsynth API.
 
