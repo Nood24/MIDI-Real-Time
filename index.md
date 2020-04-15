@@ -96,9 +96,9 @@ mainwindow.cpp implements the Qt front end of the system. It can be seen at <htt
 
 
 
-### vitrualHardware.cpp
+### VirtualHardwareController.cpp.cpp
 
-vitrualHardware.cpp is a small class that keeps track of is a song is playing and what song is playing. The system looks to this object to determine state. This file can be found at <https://github.com/Nood24/MIDI-Real-Time/blob/master/midi_driver/driver/VirtualHardwareController.cpp>
+vitrualHardware.cpp is a small class that has been made to replace the foot pedals which could not be completed due to Covid-19. The class  keeps track of is a song is playing, what song is playing and gets inputs from the user via the terminal. The system looks to this object to determine state. This file can be found at <https://github.com/Nood24/MIDI-Real-Time/blob/master/midi_driver/driver/VirtualHardwareController.cpp>
 
 ### controller.cpp
 
