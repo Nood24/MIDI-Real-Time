@@ -5,7 +5,7 @@ A University of Glasgow ENG5220: Real Time Embedded Programming (2019-20) projec
 
 This project aims to use the MIDI signal from the playing of a single accordion to produce the sound of a full ceilidh band. 
  
-The system is made up of a Rasperry Pi 3B+ with a normal monitor and keyboard. The keyboard and monitor allow the the system to be controlled the pi provides the procesing of the accordion MIDI signal into an AUX output of a full ceilidh band.
+The system is made up of a Rasperry Pi 3B+ with a normal monitor and keyboard. The keyboard and monitor allow the the system to be controlled the pi provides the procesing of the accordion MIDI signal into an AUX output of a full ceilidh band. An overview of the system software is shown in the UML at the bottom of this README.
 
 You can get up this system on a Raspberry Pi or Ubuntu computer. A list of project dependancies is kept at the bottom of this README which aims to help you set up you're environment and get started. 
 
@@ -47,3 +47,4 @@ Other Dependancies:
 
 * Qt 5, Qmake: Support front end and build the project. 
  
+ ![One Man Ceilidh UML](/other/images/UML.png)
