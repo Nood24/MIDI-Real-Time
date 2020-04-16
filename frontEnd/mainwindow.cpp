@@ -99,7 +99,7 @@ void MainWindow::set_play_button(bool playButtonState, bool text_red){
 
 }
 
-void MainWindow::set_songs(string leftSong, string rightSong, string selectedSong){
+void MainWindow::set_songs(string leftSong, string selectedSong, string rightSong){
     ui->right_song->setText(QString::fromStdString(rightSong));
     ui->left_song->setText(QString::fromStdString(leftSong));
     cout << "selectsong:"<<selectedSong<<endl;
@@ -107,9 +107,10 @@ void MainWindow::set_songs(string leftSong, string rightSong, string selectedSon
 }
 
 
+
 MainWindow::~MainWindow()
 {
-    
     delete ui;
+    QApplication::quit();
 }
 

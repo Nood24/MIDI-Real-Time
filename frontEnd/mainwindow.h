@@ -17,10 +17,12 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void controllerInit();
-    void set_songs(string leftSong, string rightSong, string selectedSong);
+    void set_songs(string leftSong, string selectedSong, string rightSong);
     void set_play_button(bool playButtonState, bool text_red=false);
-
-
+/*
+protected:
+    void closeEvent(QCloseEvent *event);
+*/    
 private:
     Ui::MainWindow *ui;
 };

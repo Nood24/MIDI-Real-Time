@@ -24,6 +24,8 @@
 #include <iostream>
 #include <bitset>
 #include <mutex>
+#include <thread>
+#include <condition_variable>
 #include <shared_mutex>
 #include <fstream>
 #include <vector>
@@ -43,13 +45,19 @@ public:
     Instrument(std::string csv_file, int tempo, VirtualHardwareController *hw, int channel, int bank, int sf_ID, DanceSet* dance ,int pitch_transform = 0, int velocity = 90, bool drumkit = false);
     void updateNote(bool bass, bool chord);
     void setVirtualHardware(VirtualHardwareController* hw);
-
+    void resize_midi_loops();
+    string name;
+    static int longest_loop_time;
 private:
     void run();
 
 private:
+    int total_loop_time;
     void extract_from_csv(string filename);
+    static void arrive_and_wait();
     vector<int> timeDeltas, channels, onOff;
+    static int threads_waiting;
+    static bool threads_finished;
     bool chordOn = false;
     int velocity;
     bool bassOn = false;
@@ -67,6 +75,7 @@ private:
     DanceSet *dance;
     int instrument_sfID;
 };
+
 
 
 #endif //CEILIDHBAND_INSTRUMENT_H

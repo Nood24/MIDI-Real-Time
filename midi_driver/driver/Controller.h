@@ -14,6 +14,7 @@
 #include "DanceSet.h"
 #include <fluidsynth.h>
 #include <iostream>
+#include <fstream>
 #include <dirent.h>
 #include "fluidCustomAPI.h"
 #include "../../frontEnd/mainwindow.h"
@@ -30,7 +31,7 @@ public:
     void run();
     void free_current_dance();
     static string get_file_location(string dance, int tempo);
-    void load_dance(string dance_name, int tempo);
+    void load_dance(string dance_name);
     void start_playing();
     void stop_playing();
     void set_playing(bool play);
@@ -44,6 +45,7 @@ public:
     string get_right_dance();
     string get_left_dance();
     string get_dance_name();
+    int get_tempo(string file_location);
     void monitor_input();
     static void start_current_dance(Controller* controller);
     int dance_index = 0;
@@ -53,6 +55,7 @@ public:
     vector<string> installed_dances;
     VirtualHardwareController* hardware;
     bool dance_playing = false;
+    RtMidiOut *midiout;
     //static void change_notes(double deltatime, vector< unsigned char > *message, void */*userData*/);
     //static void replicate_midi(double deltatime, std::vector<unsigned char> *message, void */*userdata*/);
 private:

@@ -7,14 +7,23 @@
 
 //MOVE TO PARAMETERS.H FILE
 #define DEFAULT_DANCE "gaygordons"
-#define DEFAULT_TEMPO 175
 #define INSTALL_PATH "./CSVFiles/"
 #define USB_PORT 1
 
-void Controller::load_dance(string dance_name, int tempo){
+void Controller::load_dance(string dance_name){
     file_location = CSV_FILES + dance_name + "/";
+    int tempo = get_tempo(file_location);
     current_dance = new DanceSet(dance_name, tempo, file_location, this->hardware);
     current_dance->load_instruments();
+}
+
+int Controller::get_tempo(string file_location){
+    ifstream file;
+    file.open (file_location+"Tempo.txt", ios::in);
+    int tempo;
+    file >> tempo;
+    file.close();
+    return tempo;
 }
 
 void Controller::free_current_dance(){
@@ -37,42 +46,32 @@ void Controller::set_playing(bool play){
 }
 
 void change_notes( double deltatime, vector< unsigned char > *message, Controller *controller ){
-    //controller->hardware.playing = true;
     controller->current_dance->set_notes(message);
 }
 
 
 void callback( double deltatime, vector< unsigned char > *message, void *controller ){
-    //cout<<"in callback"<<endl;
-    if (((Controller *)controller)->hardware->playing){
+    if (((Controller *)controller)->dance_playing){
         ((Controller *)controller)->current_dance->set_notes(message);
     }
     else{
-        sendNote(((message->at(0)>> 4) & 1),0,message->at(1),90);
+        sendNote(((message->at(0)>> 4) & 1),0,message->at(1),127);
+        ((Controller *)controller)->current_dance->set_notes(message);
     }
 }
 
-/*
-void callback( double deltatime, std::vector< unsigned char > *message, void *){
-    DanceSet::set_notes(message);
-}
-*/
-
 void Controller::create_midi_reader(int port_no){
-    midiin = 0;
-    RtMidiOut *midiout = new RtMidiOut();
+    this->midiin = 0;
+    this->midiout = new RtMidiOut();
 
     try {
-        // RtMidiIn constructor
-        midiin = new RtMidiIn();
+        this->midiin = new RtMidiIn();
+        this->midiin->openPort( port_no);
 
-        // Call function to select port.
-        midiin->openPort( port_no);
-
-        midiin->setCallback( &callback, (void *)this ); //&mycallback
+        this->midiin->setCallback( &callback, (void *)this );
 
         // Don't ignore sysex, timing, or active sensing messages.
-        midiin->ignoreTypes( false, false, false );
+        this->midiin->ignoreTypes( false, false, false );
 
     } catch ( RtMidiError &error ) {
         error.printMessage();
@@ -92,6 +91,10 @@ void Controller::find_installed_dances(const char* path){
       }
       closedir (dir);
     }
+    for (int i=0; i< this->installed_dances.size(); i++){
+        if (this->installed_dances[i] == DEFAULT_DANCE)
+            this->dance_index = i;
+    }
 }
 
 void Controller::shift_dance_left(){
@@ -100,16 +103,14 @@ void Controller::shift_dance_left(){
         return;
     }
     if (this->dance_index == 0){
-        this->dance_index = this->installed_dances.size()-1; //NEED A DIVIDE HERE?
+        this->dance_index = this->installed_dances.size()-1;
     }
     else{
         this->dance_index = this->dance_index - 1;
     }
     this->free_current_dance();
-    this->load_dance(this->installed_dances[this->dance_index], DEFAULT_TEMPO);
+    this->load_dance(this->installed_dances[this->dance_index]);
 }
-
-//--------------------------------------------------
 
 void Controller::shift_dance_right(){
     if (this->dance_playing){
@@ -123,7 +124,7 @@ void Controller::shift_dance_right(){
         this->dance_index = this->dance_index + 1;
     }
     this->free_current_dance();
-    load_dance(this->installed_dances[this->dance_index], DEFAULT_TEMPO);
+    load_dance(this->installed_dances[this->dance_index]);
 }
 
 void Controller::start_current_dance(Controller* controller){
@@ -145,8 +146,6 @@ void Controller::start_stop_dance(){
         cout<< "\n\nPlease wait the song is not yet ready to start. This may take a few seconds\n";
     }
 }
-
-//--------------------------------------------------
 
 void Controller::printSystemState(){
     cout << "\nCurrent Song is " << this->installed_dances[this->dance_index];
@@ -185,8 +184,6 @@ string Controller::get_left_dance(){
     int left_idx = this->dance_index - 1;
     if (this->dance_index == 0)
         left_idx = this->installed_dances.size()-1;
-    cout << "IDX:"<<left_idx <<endl;
-    cout << this->installed_dances[left_idx] << endl;
     return this->installed_dances[left_idx];
 }
 
@@ -196,7 +193,6 @@ string Controller::get_dance_name(){
 
 void Controller::monitor_input(){
     int input;
-    cout<<"monitoring..."<<endl;
     while(true){
         input = this->hardware->get_input();
         this->process_input(input);
@@ -208,34 +204,8 @@ void Controller::monitor_input(){
 void Controller::run(){
     this->create_midi_reader(USB_PORT);
     this->find_installed_dances(INSTALL_PATH);
-    //raise error if not loaded properly
-    cout << this->installed_dances[0]<<" and "<<this->installed_dances[1]<<endl;
-    this->load_dance(DEFAULT_DANCE, DEFAULT_TEMPO);
+    this->load_dance(DEFAULT_DANCE);
     this->gui->set_songs(this->get_left_dance(),this->get_dance_name(),this->get_right_dance());
     this->gui->set_play_button(this->dance_playing);
     this->monitor_input();
 }
-    
-        
-    //while true
-    //observe current state and if changes then free and load dance
-/*
-int main(){
-
-int main(){
-    HardwareController hwtest;
-    Controller controller = Controller(hwtest);
-    //Set create_midi_reader(1)on pi
-    controller.create_midi_reader(1);
-    char c;
-    cin.get(c);
-    
-    
-    controller.load_dance("gaygordons", 190);
-    cout<<"finished loading\n";
-    while true:
-    *   if 
-    controller.start_playing();
-    
-}
-*/

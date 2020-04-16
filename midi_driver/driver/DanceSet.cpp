@@ -12,16 +12,24 @@ void DanceSet::load_instruments() {
     fluid_synth_init();
     this->instruments.clear();
     //See instruments https://musical-artifacts.com/artifacts/738
-    Instrument* piano = new Instrument(this->file_location + "piano.csv", this->tempo,this->hardware,0, 0, 1,this);
-    Instrument* accordion = new Instrument(this->file_location + "Accordion.csv", this->tempo, this->hardware, 1, 1, 1,this,-12,80);
-    Instrument* drums = new Instrument(this->file_location + "Drums.csv", this->tempo,this->hardware,2, 1, 3,this,0,80,true);
-    Instrument* bass = new Instrument(this->file_location + "Bass.csv", this->tempo, this->hardware, 3, 1, 4,this,-12,127);
+    Instrument* piano = new Instrument(this->file_location + "Piano.csv", this->tempo,this->hardware,0, 0, 1,this);
+    Instrument* accordion = new Instrument(this->file_location + "Accordion.csv", this->tempo, this->hardware, 1, 1, 1,this,0,65);
+    Instrument* drums = new Instrument(this->file_location + "Drums.csv", this->tempo,this->hardware,2, 1, 3,this,0,90,true);
+    Instrument* bass = new Instrument(this->file_location + "Bass.csv", this->tempo, this->hardware, 3, 1, 4,this,-12);
     
     this->instruments.push_back(piano);
     this->instruments.push_back(accordion);
     this->instruments.push_back(drums);
     this->instruments.push_back(bass);
+    
+    //std::experimental::barrier::barrier next_part_barrier(this->instruments.size());
+    this->resize_midi_loops();
+}
 
+void DanceSet::resize_midi_loops(){
+    for (int i=0; i < this->instruments.size();i++){
+        this->instruments[i]->resize_midi_loops();
+    }
 }
 
 void DanceSet::wait_loop_end(){
@@ -34,6 +42,7 @@ void DanceSet::free_instruments(){
     for (int i=0;i< this->instruments.size();i++){
         delete this->instruments[i];
     }
+    Instrument::longest_loop_time = 0;
 }
 
 void DanceSet::setChordNote(int note){
@@ -69,7 +78,6 @@ void DanceSet::set_notes(std::vector< unsigned char >* message){
     }
     
     if (this->previousBass!=this->bassNote || !checkEqual(this->previousChord,this->chordNotes)){
-       cout<<"update \n";
        for (int i=0; i<4; i++){
          instruments[i]->updateNote(this->previousBass!=this->bassNote, this->previousChord!=this->chordNotes);
        } 

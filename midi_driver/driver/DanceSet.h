@@ -8,6 +8,7 @@
 #include <iostream>
 #include "Instrument.h"
 #include <cassert>
+//#include <experimental/barrier>
 
 using namespace std;
 
@@ -47,5 +48,6 @@ private:
     Instrument* piano;
     void setChordNote(int note);
     string file_location;
+    void resize_midi_loops();
 };
 #endif
