@@ -24,9 +24,10 @@ Instrument::Instrument(std::string csv_file, int tempo, VirtualHardwareControlle
         this->velocity = velocity;
     }
 
+
 void Instrument::updateNote(bool bass,bool chord){
     if (this->drumkit)
-        return;
+	return;
     if (bass && this->bassOn){
         sendNote(0,this->FS_channel,this->dance->previousBass+this->pitch_transform,0);
         usleep(100);
@@ -112,10 +113,10 @@ void Instrument::run() {
 void Instrument::extract_from_csv(string filename){
     int delta, channel, on;
     string strdelta, strchannel, stron;
+
     ifstream csvfile;
     csvfile.open(filename);    
     assert(csvfile.is_open());
-    this->total_loop_time = 0;
     while(csvfile.good()){
         getline(csvfile,strdelta,',');
         getline(csvfile,strchannel,',');
