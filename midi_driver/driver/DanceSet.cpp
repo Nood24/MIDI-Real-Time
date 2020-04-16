@@ -21,8 +21,6 @@ void DanceSet::load_instruments() {
     this->instruments.push_back(accordion);
     this->instruments.push_back(drums);
     this->instruments.push_back(bass);
-    
-    //std::experimental::barrier::barrier next_part_barrier(this->instruments.size());
     this->resize_midi_loops();
 }
 

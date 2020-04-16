@@ -70,6 +70,7 @@ void Instrument::setVirtualHardware(VirtualHardwareController* hw){
 
 void Instrument::arrive_and_wait(){
     Instrument::threads_waiting +=1;
+    cout<<"THREAD is waiting..."<<endl;
     if (Instrument::threads_waiting == 4){
         Instrument::threads_finished = true;
         synchronised.notify_all();
@@ -117,6 +118,8 @@ void Instrument::extract_from_csv(string filename){
     ifstream csvfile;
     csvfile.open(filename);    
     assert(csvfile.is_open());
+    this->total_loop_time = 0;
+    
     while(csvfile.good()){
         getline(csvfile,strdelta,',');
         getline(csvfile,strchannel,',');
@@ -134,6 +137,7 @@ void Instrument::extract_from_csv(string filename){
     }
     if (this->total_loop_time > Instrument::longest_loop_time){
         Instrument::longest_loop_time = this->total_loop_time;
+        cout<< "Longest Loop time: "<< Instrument::longest_loop_time << endl;
     }
 }
 
