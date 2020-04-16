@@ -47,4 +47,6 @@ Other Dependancies:
 
 * Qt 5, Qmake: Support front end and build the project. 
  
+ ---
+ 
  ![One Man Ceilidh UML](/other/images/UML.png)
