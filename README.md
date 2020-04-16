@@ -1,9 +1,6 @@
-# MIDI-Real-Time
-Real Time Project
+# One Man Ceiidh
 
-A University of Glasgow ENG5220: Real Time Embedded Programming (2019-20) project.
-
-This project aims to use the MIDI signal from the playing of a single accordion to produce the sound of a full ceilidh band. 
+A University of Glasgow ENG5220: Real Time Embedded Programming (2019-20) project that aims to allow a single accordion player to perform a full ceilidh solo by generating the backing music in real time as they play.
  
 The system is made up of a Rasperry Pi 3B+ with a normal monitor and keyboard. The keyboard and monitor allow the the system to be controlled the pi provides the procesing of the accordion MIDI signal into an AUX output of a full ceilidh band. An overview of the system software is shown in the UML at the bottom of this README.
 
