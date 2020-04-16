@@ -24,7 +24,14 @@ Project Twitter: https://twitter.com/OneManCeilidh
 
 Project Wiki Page: https://nood24.github.io/MIDI-Real-Time/?fbclid=IwAR27X-9Kugiw643k3CEA-yfcTT6ZXq6-MGSo7AEuBK4x8Z-nUWYBc6VSuKA
 
----
+
+ ---
+ 
+## One Man Ceilidh UML Diagram: Shows the system's software architecture. 
+ 
+ ![One Man Ceilidh UML](/other/images/UML.png)
+ 
+ ---
 
 ## Project Dependancies:
 
@@ -44,8 +51,3 @@ Other Dependancies:
 
 * Qt 5, Qmake: Support front end and build the project. 
  
- ---
- 
-## One Man Ceilidh UML Diagram: Shows the system's software architecture. 
- 
- ![One Man Ceilidh UML](/other/images/UML.png)
