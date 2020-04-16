@@ -17,7 +17,7 @@ If you have any questions please feel free to message us via twitter @OneManCeil
 
 ---
 
-Authors:
+## Authors:
 
 *  Neil Wood: neilwood1997@gmail.com	
 *  Cameron Bennett:Cameron.b97.cb@gmail.com
@@ -29,7 +29,7 @@ Project Wiki Page: https://nood24.github.io/MIDI-Real-Time/?fbclid=IwAR27X-9Kugi
 
 ---
 
-Project Dependancies:
+## Project Dependancies:
 
 RTMidi Dependancies:
 
@@ -49,6 +49,6 @@ Other Dependancies:
  
  ---
  
- One Man Ceilidh UML Diagram: Shows the system's software architecture. 
+## One Man Ceilidh UML Diagram: Shows the system's software architecture. 
  
  ![One Man Ceilidh UML](/other/images/UML.png)
