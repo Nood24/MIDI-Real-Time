@@ -59,7 +59,7 @@ void callback( double deltatime, vector< unsigned char > *message, void *control
         ((Controller *)controller)->current_dance->set_notes(message);
     }
     else{
-        sendNote(((message->at(0)>> 4) & 1),0,message->at(1),127);
+        send_note(((message->at(0)>> 4) & 1),0,message->at(1),127);
         ((Controller *)controller)->current_dance->set_notes(message);
     }
 }
