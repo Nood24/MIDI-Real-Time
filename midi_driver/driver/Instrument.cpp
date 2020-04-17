@@ -11,23 +11,23 @@ mutex cv_m;
 condition_variable synchronised;
 
 Instrument::Instrument(std::string csv_file, int tempo, VirtualHardwareController *hw, int channel, int bank, int sf_ID, DanceSet* dance ,int pitch_transform, int velocity, bool drumkit){
-        extract_from_csv(csv_file);
-        this->size = this->timeDeltas.size();
-        this->timing_factor = 1000000*60.0/(tempo*480.0);
-        this->hardware = hw;
-        this->instrument_sfID = sf_ID;
-        this->FS_channel = channel;
-        changeInstrument(this->FS_channel,bank,this->instrument_sfID);
-        this->dance = dance;
-        this->pitch_transform = pitch_transform;
-        this->drumkit = drumkit;
-        this->velocity = velocity;
-    }
+    extract_from_csv(csv_file);
+    this->size = this->timeDeltas.size();
+    this->timing_factor = 1000000*60.0/(tempo*480.0);
+    this->hardware = hw;
+    this->instrument_sfID = sf_ID;
+    this->FS_channel = channel;
+    changeInstrument(this->FS_channel,bank,this->instrument_sfID);
+    this->dance = dance;
+    this->pitch_transform = pitch_transform;
+    this->drumkit = drumkit;
+    this->velocity = velocity;
+}
 
 
 void Instrument::updateNote(bool bass,bool chord){
     if (this->drumkit)
-	return;
+        return;
     if (bass && this->bassOn){
         sendNote(0,this->FS_channel,this->dance->previousBass+this->pitch_transform,0);
         usleep(100);
@@ -62,7 +62,7 @@ void Instrument::resize_midi_loops(){
         total_time += this->timeDeltas[idx];
     }
 }
-    
+
 
 void Instrument::setVirtualHardware(VirtualHardwareController* hw){
     this->hardware = hw;
@@ -116,7 +116,7 @@ void Instrument::extract_from_csv(string filename){
     string strdelta, strchannel, stron;
 
     ifstream csvfile;
-    csvfile.open(filename);    
+    csvfile.open(filename);
     assert(csvfile.is_open());
     this->total_loop_time = 0;
     

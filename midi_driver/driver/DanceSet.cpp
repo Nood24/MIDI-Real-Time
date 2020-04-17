@@ -76,9 +76,9 @@ void DanceSet::set_notes(std::vector< unsigned char >* message){
     }
     
     if (this->previousBass!=this->bassNote || !checkEqual(this->previousChord,this->chordNotes)){
-       for (int i=0; i<4; i++){
-         instruments[i]->updateNote(this->previousBass!=this->bassNote, this->previousChord!=this->chordNotes);
-       } 
+        for (int i=0; i<4; i++){
+            instruments[i]->updateNote(this->previousBass!=this->bassNote, this->previousChord!=this->chordNotes);
+        }
     }
 }
 

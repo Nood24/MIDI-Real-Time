@@ -17,10 +17,10 @@ class Instrument;
 class DanceSet {
 public:
     DanceSet(string dance, int tempo, string file_location, VirtualHardwareController* hw) {
-       this->dance_name = dance;
-       this->tempo = tempo;
-       this->file_location = file_location;
-       this->hardware = hw;
+        this->dance_name = dance;
+        this->tempo = tempo;
+        this->file_location = file_location;
+        this->hardware = hw;
     }
     void start_dance();
     VirtualHardwareController * hardware;

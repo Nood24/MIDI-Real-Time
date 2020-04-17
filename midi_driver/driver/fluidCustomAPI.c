@@ -31,7 +31,7 @@ void fluid_synth_init(){
     fluid_settings_setint(settings,"audio.periods",4);
     fluid_settings_setnum(settings,"synth.gain",1);
     fluid_settings_setint(settings,"synth.min-note-length", 55);
-    fluid_settings_setint(settings,"synth.sample-rate", 44100); 
+    fluid_settings_setint(settings,"synth.sample-rate", 44100);
 
     /* create the synth, driver and sequencer instances */
     synth = new_fluid_synth(settings);
@@ -45,7 +45,7 @@ void fluid_synth_init(){
     client_destination = fluid_sequencer_register_client(sequencer,"MidiController", NULL, NULL);
 
     audiodriver = new_fluid_audio_driver(settings, synth);
- 
+
 }
 
 /* schedule a note on message */

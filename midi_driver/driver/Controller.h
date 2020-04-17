@@ -25,7 +25,7 @@ using namespace std;
 class Controller {
 public:
     Controller(VirtualHardwareController* hw, MainWindow* window){
-    	this->hardware = hw;
+        this->hardware = hw;
         this->gui = window;
     };
     void run();

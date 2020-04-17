@@ -64,10 +64,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->playButton->setPixmap(pix3.scaled(w*1.3,h*1.3,Qt::KeepAspectRatio));
 
     this->setWindowTitle(
-            QApplication::translate("toplevel", "One Man Ceilidh"));
+                QApplication::translate("toplevel", "One Man Ceilidh"));
 
 }
-    
+
 
 void MainWindow::set_play_button(bool playButtonState, bool text_red){
     int w = ui->OMC_logo->width();

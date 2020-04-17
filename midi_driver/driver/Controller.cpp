@@ -4,7 +4,6 @@
 #include "../../rtmidi/RtMidi.h"
 #include "Controller.h"
 
-
 //MOVE TO PARAMETERS.H FILE
 #define DEFAULT_DANCE "gaygordons"
 #define INSTALL_PATH "./CSVFiles/"
@@ -82,14 +81,14 @@ void Controller::find_installed_dances(const char* path){
     DIR *dir;
     struct dirent *ent;
     if ((dir = opendir (path)) != NULL) {
-      while ((ent = readdir (dir)) != NULL) {
+        while ((ent = readdir (dir)) != NULL) {
             if (ent->d_name[0]=='.'){
                 continue;
             }
             string dir_name(ent->d_name);
             this->installed_dances.push_back(dir_name);
-      }
-      closedir (dir);
+        }
+        closedir (dir);
     }
     for (int i=0; i< this->installed_dances.size(); i++){
         if (this->installed_dances[i] == DEFAULT_DANCE)
@@ -155,22 +154,22 @@ void Controller::printSystemState(){
     else{
         cout << "\nNo song is currently playing\n---------------\n";
     }
-      
+
 }
 
 void Controller::process_input(int input){
     switch(input){
-        case 1:
-            this->shift_dance_left();
-            break;
-        case 2:
-            this->shift_dance_right();
-            break;
-        case 3:
-            this->start_stop_dance();
-            break;
-        default:
-            cout << "\nInvalid Input\n";
+    case 1:
+        this->shift_dance_left();
+        break;
+    case 2:
+        this->shift_dance_right();
+        break;
+    case 3:
+        this->start_stop_dance();
+        break;
+    default:
+        cout << "\nInvalid Input\n";
     }
     this->printSystemState();
 }
