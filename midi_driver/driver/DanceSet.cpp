@@ -8,6 +8,13 @@
 
 using namespace std;
 
+DanceSet::DanceSet(string dance, int tempo, string file_location, VirtualHardwareController* hw) {
+    this->dance_name = dance;
+    this->tempo = tempo;
+    this->file_location = file_location;
+    this->hardware = hw;
+}
+
 void DanceSet::load_instruments() {
     fluid_synth_init();
     this->instruments.clear();

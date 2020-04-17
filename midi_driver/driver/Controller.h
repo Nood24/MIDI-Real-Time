@@ -24,10 +24,7 @@ using namespace std;
 
 class Controller {
 public:
-    Controller(VirtualHardwareController* hw, MainWindow* window){
-        this->hardware = hw;
-        this->gui = window;
-    };
+    Controller(VirtualHardwareController* hw, MainWindow* window);
     void run();
     void free_current_dance();
     static string get_file_location(string dance, int tempo);
