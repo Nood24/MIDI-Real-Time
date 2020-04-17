@@ -53,7 +53,7 @@ TEST_CASE( "Load song into a controller" ) {
     REQUIRE( true );
     Controller *MidiController = new Controller(virtualHardware,&window);
     REQUIRE( true );
-    MidiController->load_dance("gaygordons",175);
+    MidiController->load_dance("gaygordons");
     REQUIRE( true );
 }
 
@@ -69,7 +69,7 @@ TEST_CASE( "Find Installed Dances" ) {
     REQUIRE( true );
     Controller *MidiController = new Controller(virtualHardware,&window);
     REQUIRE( true );
-    MidiController->load_dance("gaygordons",175);
+    MidiController->load_dance("gaygordons");
     REQUIRE( true );
     MidiController->find_installed_dances("./CSVFiles/gaygordons/");
     REQUIRE( true );
@@ -88,7 +88,7 @@ TEST_CASE( "Print System State" ) {
     REQUIRE( true );
     Controller *MidiController = new Controller(virtualHardware,&window);
     REQUIRE( true );
-    MidiController->load_dance("gaygordons",175);
+    MidiController->load_dance("gaygordons");
     REQUIRE( true );
     MidiController->find_installed_dances("./CSVFiles/gaygordons/");
     REQUIRE( true );
@@ -109,7 +109,7 @@ TEST_CASE( "Get Default Song" ) {
     REQUIRE( true );
     Controller *MidiController = new Controller(virtualHardware,&window);
     REQUIRE( true );
-    MidiController->load_dance("gaygordons",175);
+    MidiController->load_dance("gaygordons");
     REQUIRE( true );
     MidiController->find_installed_dances("./CSVFiles/");
     REQUIRE("gaygordons"==MidiController->get_dance_name());
@@ -131,7 +131,7 @@ TEST_CASE( "Switch Song Right" ) {
     REQUIRE( true );
     Controller *MidiController = new Controller(virtualHardware,&window);
     REQUIRE( true );
-    MidiController->load_dance("gaygordons",175);
+    MidiController->load_dance("gaygordons");
     REQUIRE( true );
     MidiController->find_installed_dances("./CSVFiles/");
     REQUIRE("gaygordons"==MidiController->get_dance_name());
@@ -153,7 +153,7 @@ TEST_CASE( "Switch Song Left" ) {
     REQUIRE( true );
     Controller *MidiController = new Controller(virtualHardware,&window);
     REQUIRE( true );
-    MidiController->load_dance("gaygordons",175);
+    MidiController->load_dance("gaygordons");
     REQUIRE( true );
     MidiController->find_installed_dances("./CSVFiles/");
     REQUIRE("gaygordons"==MidiController->get_dance_name());
@@ -175,7 +175,7 @@ TEST_CASE( "System innits as not playing" ) {
     REQUIRE( true );
     Controller *MidiController = new Controller(virtualHardware,&window);
     REQUIRE( true );
-    MidiController->load_dance("gaygordons",175);
+    MidiController->load_dance("gaygordons");
     REQUIRE( true );
     MidiController->find_installed_dances("./CSVFiles/");
     REQUIRE("gaygordons"==MidiController->get_dance_name());
@@ -199,7 +199,7 @@ TEST_CASE( "Create Danceset" ) {
     REQUIRE( true );
     Controller *MidiController = new Controller(virtualHardware,&window);
     REQUIRE( true );
-    MidiController->load_dance("gaygordons",175);
+    MidiController->load_dance("gaygordons");
     REQUIRE( true );
     DanceSet *current_dance = new DanceSet("gaygordons", 175, "./CSVFiles/gaygordons/", virtualHardware);
     REQUIRE( true );
@@ -220,7 +220,7 @@ TEST_CASE( "Create Instrument" ) {
     REQUIRE( true );
     Controller *MidiController = new Controller(virtualHardware,&window);
     REQUIRE( true );
-    MidiController->load_dance("gaygordons",175);
+    MidiController->load_dance("gaygordons");
     REQUIRE( true );
     DanceSet *current_dance = new DanceSet("gaygordons", 175, "./CSVFiles/gaygordons/", virtualHardware);
     REQUIRE( true );
@@ -246,7 +246,7 @@ TEST_CASE( "Get current Dance Name" ) {
     REQUIRE( true );
     Controller *MidiController = new Controller(virtualHardware,&window);
     REQUIRE( true );
-    MidiController->load_dance("gaygordons",175);
+    MidiController->load_dance("gaygordons");
     REQUIRE( true );
     DanceSet *current_dance = new DanceSet("gaygordons", 175, "./CSVFiles/gaygordons/", virtualHardware);
     REQUIRE( true );
