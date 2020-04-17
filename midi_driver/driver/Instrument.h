@@ -36,7 +36,7 @@
 
 using namespace std;
 
-void sendNote(bool on, int channel, int note);
+void send_note(bool on, int channel, int note);
 
 class DanceSet;
 

@@ -49,7 +49,7 @@ void fluid_synth_init(){
 }
 
 /* schedule a note on message */
-void noteOn(int chan, short key, short vel){
+void note_on(int chan, short key, short vel){
     fluid_event_t *ev = new_fluid_event();
     fluid_event_set_source(ev, -1);
     fluid_event_set_dest(ev, synth_destination);
@@ -59,7 +59,7 @@ void noteOn(int chan, short key, short vel){
 }
 
 /* schedule a note off message */
-void noteOff(int chan, short key){
+void note_off(int chan, short key){
     fluid_event_t *ev = new_fluid_event();
     fluid_event_set_source(ev, -1);
     fluid_event_set_dest(ev, synth_destination);
@@ -69,15 +69,15 @@ void noteOff(int chan, short key){
 }
 
 /* Play a note with a length in seconds*/
-void playNoteOfLength(int chan, short key, short length){
+void play_note_of_length(int chan, short key, short length){
     //printf("Playing Note of length ");
-    noteOn(chan, key,90);
+    note_on(chan, key,90);
     sleep(length);
-    noteOff(chan, key);
+    note_off(chan, key);
 }
 
 /* Shutdown synth */
-void deleteFluidSynth(){
+void delete_fluidsynth(){
     delete_fluid_audio_driver(audiodriver);
     delete_fluid_sequencer(sequencer);
     delete_fluid_synth(synth);
@@ -85,17 +85,17 @@ void deleteFluidSynth(){
 }
 
 /* Changing Intruments */
-void changeInstrument(int channel, int bank, int instrument){
+void change_instrument(int channel, int bank, int instrument){
     fluid_synth_program_select(synth, channel, sf_id, bank, instrument);
 }
 
 /* Send On or Off Notes */
-void sendNote(bool on, int channel, int note, int velocity){ 
+void send_note(bool on, int channel, int note, int velocity){
     //printf("Sending note: %d to channel %d and its %d\n",note,channel,on);
     if (on)
-        noteOn(channel,note,velocity);
+        note_on(channel,note,velocity);
     else
-        noteOff(channel,note);
+        note_off(channel,note);
 }
 
 /* Set All Notes on a Channel Off*/
