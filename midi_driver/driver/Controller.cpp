@@ -9,6 +9,11 @@
 #define INSTALL_PATH "./CSVFiles/"
 #define USB_PORT 1
 
+Controller::Controller(VirtualHardwareController* hw, MainWindow* window){
+    this->hardware = hw;
+    this->gui = window;
+};
+
 void Controller::load_dance(string dance_name){
     file_location = CSV_FILES + dance_name + "/";
     int tempo = get_tempo(file_location);
