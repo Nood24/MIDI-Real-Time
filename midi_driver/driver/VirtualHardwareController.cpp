@@ -3,9 +3,9 @@
 using namespace std;
 
 VirtualHardwareController::VirtualHardwareController(){
-	this->playing = false;
+    this->playing = false;
 }
-    
+
 int VirtualHardwareController::get_input(){
     int i;
     cout << "\nPlease enter an integer value between 1-4 for pedal press: ";
