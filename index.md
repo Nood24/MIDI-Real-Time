@@ -1,16 +1,18 @@
 # Welcome to the One Man Ceilidh Wiki
 
-One Man Ceilidh is a University of Glasgow Masters project that aims to allow an accordion player to put on a full ceilidh solo by synthesizing backing music in real time off of a midi input from the accordion.
+One Man Ceilidh is a University of Glasgow Masters project that allows an accordion player to put on a full ceilidh solo by synthesizing backing music in real time off of a midi input from the accordion.
+
+The full system ran be run on a Raspberry Pi 3B+ or most other Linux systems, with the whole system being fully open source and avalable to the public. 
 
 This site aims to provide useful information to aid in working with the codebase. 
 
-Key topics covered include the Tools, the Codebase, Compiling the project, running the project and the testing/CI of the github project. 
+Key topics covered include the Tools, the Codebase, Compiling the project, running the project, a short program guide and the testing/CI of the github project. 
 
 ---
 
 ## Tools
 
-Three open source tools have been used to create this project. These tools are FluidSynth, RtMidi and Qt. This section will provide a short overview of tools, with the use of said tools being detailed in the codebase section.
+Three open source tools have been used to create this project. These tools are FluidSynth, RtMidi and Qt. This section will provide a short overview of these tools. 
 
 ### RtMidi
 
@@ -36,15 +38,15 @@ The One Man Ceilidh system uses a custom SoundFont file which is used to provide
 
 ### Qt
 
-Qt is an open source widget toolkit which is used by One Man Ceilidh to provide the front end and to compile the project. The Qt Creator IDE is the recommended way of working on the project. Downloading Qt Creator and opening the MIDI-Real-Time/frontEnd/OMC_FrontEnd.pro file in the IDE will import all One Man Ceilidh code into the IDE.
+Qt is an open source widget toolkit which is used by One Man Ceilidh to provide the front end of the project. Qmake is used to compile the project and the Qt Creator IDE is the recommended way of working on the project. Downloading Qt Creator and opening the MIDI-Real-Time/frontEnd/OMC_FrontEnd.pro file in the IDE will import all One Man Ceilidh code into the IDE and provides a good way of quickly getting up to speed with the source code. 
 
-For more information see the qt website.
+For more information see the Qt website.
 
 <https://www.qt.io/>
 
 ## Codebase
 
-The One Man Ceilidh project is primarily written in C++ to gain the performance-related benefits of this language in a real time system. 
+The One Man Ceilidh project is primarily written in C++ to gain the performance-related benefits of this language in a real time system.
 
 This section will walk through the files within the system. 
 
@@ -67,30 +69,25 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     MainWindow window;
-
     window.showMaximized();
     window.show();
 
     VirtualHardwareController *virtualHardware = new VirtualHardwareController();
-
     Controller *MidiController = new Controller(virtualHardware,&window);
-    
     std::thread t1(&Controller::run, std::ref(MidiController));
 
     a.exec();
-    
     MidiController->free_current_dance();
-    delete MidiController;
-    
+    delete MidiController->midiin;
+    delete MidiController->midiout;
     delete virtualHardware;
+}
 
-}
-}
 ```
 
 main.cpp does the following:
-1. Creates the Qt front end my calling MainWindow w. Mainwindow being defined in mainwindow.cpp.
-1. Creates a virtualHardware object. This object contains system state information such as. If a song is playing and which song is playing. 
+1. Creates the Qt front end my calling MainWindow window. Mainwindow being defined in mainwindow.cpp.
+1. Creates a virtualHardware object. This object contains system state information such as if a song is playing and which song is playing. 
 1. Creates a MidiController object which is defined in controller.cpp. This is the object which is responsible for receiving inputs from accordion midi, maintaining system state, interfacing with the user through command line controlling the objects responsible for playing a song.
 
 
@@ -131,7 +128,7 @@ CppThread.h can be found at <https://github.com/Nood24/MIDI-Real-Time/blob/maste
 
 ### TerminalController.cpp
 
-TerminalController.cpp is a deprecated replacement for the planned hardware pedals which unfortunately could not be completed due to the closure of labs. This class has been merged with the controller class. It was last used in the change_song branch. This object can be found at <https://github.com/Nood24/MIDI-Real-Time/blob/master/frontEnd/hardwareController_Terminal_prototype/TerminalController.cpp>. The terminal controller is responsible for receiving inputs from the terminal, keeping track of system state and then updating the virtual hardware object which is passed to other parts of the system to make this information accessible. 
+TerminalController.cpp is a deprecated replacement for the planned hardware pedals which unfortunately could not be completed due to the closure of labs. This class has been merged with the controller class. It was last used in the change_song branch. This object can be found at <https://github.com/Nood24/MIDI-Real-Time/blob/master/frontEnd/hardwareController_Terminal_prototype/TerminalController.cpp>. The terminal controller was responsible for receiving inputs from the terminal, keeping track of system state and then updating the virtual hardware object which is passed to other parts of the system to make this information accessible. It is included in this wiki as it is a useful reference to understand the systems state machine. 
 
 ---
 
@@ -151,7 +148,7 @@ To compile the project do the following.
 
 ### Detailed How to Compile
 
-The make file in the build_and_run directory is for user convenience. It makes calls in other files and copies the built executables into the buildAndRun directory. The project compiles using Qmake. Qmake is called on the project .pro file at MIDI-Real-Time/frontEnd/OMC_FrontEnd.pro. This produces a make file which can be run to compile the project. The OMC_FrontEnd.pro file contains all the programs that make up the project and the libraries that they depend upon. If a new file is created and you wish to integrate it into the project, you must add this file name to the .pro file so that it will link and compile. 
+The make file in the build_and_run directory is for user convenience. It makes calls in other files and copies the built executables into the buildAndRun directory. The project compiles using Qmake. Qmake is called on the project .pro file at MIDI-Real-Time/frontEnd/OMC_FrontEnd.pro. This produces a make file which can be run to compile the project. The OMC_FrontEnd.pro file contains all the programs that make up the project and the libraries that they depend upon. If a new file is created and you wish to integrate it into the project, you must add this file name to the .pro file so that it will compile and link. 
 
 ---
 
