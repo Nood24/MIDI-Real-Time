@@ -36,7 +36,7 @@ void fluid_synth_init(){
     /* create the synth, driver and sequencer instances */
     synth = new_fluid_synth(settings);
     /* load a SoundFont */
-    sf_id = fluid_synth_sfload(synth, "/usr/share/sounds/sf2/FluidR3_GM.sf2", 1);
+    sf_id = fluid_synth_sfload(synth, "../CustomSoundfonts/CeilidhSoundfont.sf2", 1);
 
     sequencer = new_fluid_sequencer2(0);
     /* register the synth with the sequencer */

@@ -19,8 +19,8 @@ void DanceSet::load_instruments() {
     fluid_synth_init();
     this->instruments.clear();
     //See instruments https://musical-artifacts.com/artifacts/738
-    Instrument* piano = new Instrument(this->file_location + "Piano.csv", this->tempo,this->hardware,0, 0, 1,this);
-    Instrument* accordion = new Instrument(this->file_location + "Accordion.csv", this->tempo, this->hardware, 1, 1, 1,this,0,65);
+    Instrument* piano = new Instrument(this->file_location + "Piano.csv", this->tempo,this->hardware,0, 0, 0,this);
+    Instrument* accordion = new Instrument(this->file_location + "Accordion.csv", this->tempo, this->hardware, 1, 0, 1,this,0,85);
     Instrument* drums = new Instrument(this->file_location + "Drums.csv", this->tempo,this->hardware,2, 1, 3,this,0,90,true);
     Instrument* bass = new Instrument(this->file_location + "Bass.csv", this->tempo, this->hardware, 3, 1, 4,this,-12);
     
