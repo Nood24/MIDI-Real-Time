@@ -190,6 +190,73 @@ Unfortunately, the team has not been able to configure Travis to run tests with 
 
 The projects tests have been created using Catch2 https://github.com/catchorg/Catch2. The team has found this to be a very useful open source framework for producing tests. The project tests can be found at https://github.com/Nood24/MIDI-Real-Time/blob/master/tests/tests_main.cpp.
 
+
+---
+## Program Execution Event Guide
+
+The project environment is set up in main.cpp this creates the highest level objects of the system and gets them running. The code snippet below shows main creating the front end window, creating a virtual hardware object, creating the backend controller and setting the controller running in a thread. 
+
+
+```cpp
+    MainWindow window;
+    VirtualHardwareController *virtualHardware = new VirtualHardwareController();
+    Controller *MidiController = new Controller(virtualHardware,&window);
+    std::thread t1(&Controller::run, std::ref(MidiController));
+```
+Running the controller causes the songs to be installed and set in the front end. Once this has happened the system waits to receive inputs from the terminal, processes those inputs accordingly and then updates the front end to reflect the new system state.  
+
+```cpp
+void Controller::monitor_input(){
+    int input;
+    while(true){
+        input = this->hardware->get_input();
+        this->process_input(input);
+        this->gui->set_songs(this->get_left_dance(),this->get_dance_name(),this->get_right_dance());
+        this->gui->set_play_button(this->dance_playing);
+    }
+}
+
+void Controller::run(){
+    this->create_midi_reader(USB_PORT);
+    this->find_installed_dances(INSTALL_PATH);
+    this->load_dance(DEFAULT_DANCE);
+    this->gui->set_songs(this->get_left_dance(),this->get_dance_name(),this->get_right_dance());
+    this->gui->set_play_button(this->dance_playing);
+    this->monitor_input();
+}
+```
+
+If the input process determines a song had been started then start_stop dance is called. This starts the selected dance by starting the selected Danceset object.
+
+
+```cpp
+void Controller::start_stop_dance(){
+    if(this->hardware->playing){
+        this->hardware->set_state(false);
+        this->gui->set_play_button(this->dance_playing, true);
+        this->stop_playing();
+    }
+    else if (!this->dance_playing){
+        this->hardware->set_state(true);
+        thread t1(&start_current_dance, this);
+        t1.detach();
+    }
+```
+A dance is made up of multiple instruments playing their part of a song. The instruments change the notes that they are playing to support music being played on the accordion through a callback function setup in the controller class that works with RtMidi to be called each time a Midi input is recieved. This callback function sets the key in the dance class to which all instruments refer, allowing instruments to generate real time musical acompanyment.
+
+```cpp
+void callback( double deltatime, vector< unsigned char > *message, void *controller ){
+    if (((Controller *)controller)->dance_playing){
+        ((Controller *)controller)->current_dance->set_notes(message);
+    }
+    else{
+        sendNote(((message->at(0)>> 4) & 1),0,message->at(1),127);
+        ((Controller *)controller)->current_dance->set_notes(message);
+    }
+}
+```
+Finally when a song is set to pause the instruments will reach the end of a tune and then return setting the system into a song paused state.
+
 ---
 
 ## A Note on the Effects of Covid-19 on the Project.
