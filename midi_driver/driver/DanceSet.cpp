@@ -20,7 +20,7 @@ void DanceSet::load_instruments() {
     this->instruments.clear();
     //See instruments https://musical-artifacts.com/artifacts/738
     Instrument* piano = new Instrument(this->file_location + "Piano.csv", this->tempo,this->hardware,0, 0, 0,this);
-    Instrument* accordion = new Instrument(this->file_location + "Accordion.csv", this->tempo, this->hardware, 1, 0, 1,this,0,85);
+    Instrument* accordion = new Instrument(this->file_location + "Accordion.csv", this->tempo, this->hardware, 1, 1, 1,this,0,75);
     Instrument* drums = new Instrument(this->file_location + "Drums.csv", this->tempo,this->hardware,2, 1, 3,this,0,90,true);
     Instrument* bass = new Instrument(this->file_location + "Bass.csv", this->tempo, this->hardware, 3, 1, 4,this,-12);
     
@@ -59,7 +59,7 @@ void DanceSet::setChordNote(int note){
 }
 
 bool DanceSet::checkEqual(int *first, int *second){
-    for (int i=0; i<4; i++){
+    for (int i=0; i<3; i++){
         if (first[i] != second[i])
             return 0;
     }
@@ -84,7 +84,7 @@ void DanceSet::set_notes(std::vector< unsigned char >* message){
     
     if (this->previousBass!=this->bassNote || !checkEqual(this->previousChord,this->chordNotes)){
         for (int i=0; i<4; i++){
-            instruments[i]->updateNote(this->previousBass!=this->bassNote, this->previousChord!=this->chordNotes);
+            instruments[i]->updateNote(this->previousBass!=this->bassNote, !checkEqual(this->previousChord,this->chordNotes));
         }
     }
 }

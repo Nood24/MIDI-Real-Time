@@ -56,7 +56,8 @@ void change_notes( double deltatime, vector< unsigned char > *message, Controlle
 
 void callback( double deltatime, vector< unsigned char > *message, void *controller ){
     if (((Controller *)controller)->dance_playing){
-        ((Controller *)controller)->current_dance->set_notes(message);
+        if ((message->at(0)>> 4) & 1)
+            ((Controller *)controller)->current_dance->set_notes(message);
     }
     else{
         send_note(((message->at(0)>> 4) & 1),0,message->at(1),127);

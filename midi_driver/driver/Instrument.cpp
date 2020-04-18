@@ -30,14 +30,14 @@ void Instrument::updateNote(bool bass,bool chord){
         return;
     if (bass && this->bassOn){
         send_note(0,this->FS_channel,this->dance->previousBass+this->pitch_transform,0);
-        usleep(100);
-        send_note(1,this->FS_channel,this->dance->bassNote+this->pitch_transform,this->velocity);
+        usleep(50);
+        send_note(1,this->FS_channel,this->dance->bassNote+this->pitch_transform,this->velocity-20);
     }
     if (chord && this->chordOn){
         send_note(0,this->FS_channel,this->dance->previousChord[0]+this->pitch_transform,0);
         send_note(0,this->FS_channel,this->dance->previousChord[1]+this->pitch_transform,0);
         send_note(0,this->FS_channel,this->dance->previousChord[2]+this->pitch_transform,0);
-        usleep(100);
+        usleep(50);
         send_note(1,this->FS_channel,this->dance->chordNotes[0]+this->pitch_transform,this->velocity-20);
         send_note(1,this->FS_channel,this->dance->chordNotes[1]+this->pitch_transform,this->velocity-20);
         send_note(1,this->FS_channel,this->dance->chordNotes[2]+this->pitch_transform,this->velocity-20);
@@ -79,7 +79,7 @@ void Instrument::arrive_and_wait(){
     unique_lock<mutex> lk(cv_m);
     synchronised.wait(lk, []{return Instrument::threads_finished;});
     Instrument::threads_waiting -=1;
-    Instrument::threads_finished = Instrument::threads_waiting;
+    //Instrument::threads_finished = Instrument::threads_waiting;
 }
 
 void Instrument::run() {
@@ -105,6 +105,7 @@ void Instrument::run() {
         d=d+1;
         if (d==loop_size){
             d=0;
+            Instrument::threads_finished = false;
             arrive_and_wait();
         }
     }
