@@ -25,7 +25,7 @@ Instrument::Instrument(std::string csv_file, int tempo, VirtualHardwareControlle
 }
 
 
-void Instrument::updateNote(bool bass,bool chord){
+void Instrument::update_note(bool bass,bool chord){
     if (this->drumkit)
         return;
     if (bass && this->bassOn){
@@ -64,7 +64,7 @@ void Instrument::resize_midi_loops(){
 }
 
 
-void Instrument::setVirtualHardware(VirtualHardwareController* hw){
+void Instrument::set_virtual_hardware(VirtualHardwareController* hw){
     this->hardware = hw;
 }
 

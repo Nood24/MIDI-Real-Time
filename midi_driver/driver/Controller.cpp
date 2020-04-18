@@ -1,4 +1,4 @@
-#//
+//
 // Created by Cameron Bennett on 11/03/2020.
 //
 #include "../../rtmidi/RtMidi.h"
