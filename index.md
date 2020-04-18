@@ -30,6 +30,7 @@ See the FluidSynth homepage and github for more information:
 1. <http://www.fluidsynth.org/>
 1. <https://github.com/FluidSynth/fluidsynth>
 
+The One Man Ceilidh system uses a custom SoundFont file which is used to provide FluidSynth with the instruments that create or sound. The One Man Ceilidh soundFont can be seen at <https://github.com/Nood24/MIDI-Real-Time/tree/master/CustomSoundfonts>
 
 ---
 
