@@ -33,6 +33,7 @@
 #include <unistd.h>
 #include "DanceSet.h"
 #include <cassert>
+#define SYNC_FREQUENCY 2
 
 using namespace std;
 
@@ -53,8 +54,9 @@ private:
 
 private:
     int total_loop_time;
+    int sync_frequency;
     void extract_from_csv(string filename);
-    static void arrive_and_wait();
+    static void arrive_and_wait(int total_threads);
     vector<int> timeDeltas, channels, onOff;
     static int threads_waiting;
     static bool threads_finished;

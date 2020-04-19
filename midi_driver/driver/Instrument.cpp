@@ -47,7 +47,7 @@ void Instrument::update_note(bool bass,bool chord){
 void Instrument::resize_midi_loops(){
     int n_loops = Instrument::longest_loop_time/this->total_loop_time;
     int time, channel, on;
-    for (int loop=1; loop<n_loops; loop++){
+    for (int loop=1; loop< n_loops; loop++){
         for (int idx=0; idx<this->size; idx++){
             time = this->timeDeltas[idx];
             channel = this->channels[idx];
@@ -57,10 +57,10 @@ void Instrument::resize_midi_loops(){
             this->onOff.push_back(on);
         }
     }
-    int total_time = 0;
-    for (int idx =0; idx<this->timeDeltas.size(); idx++){
-        total_time += this->timeDeltas[idx];
-    }
+    if (n_loops !=1)
+        this->sync_frequency = this->timeDeltas.size()/SYNC_FREQUENCY;
+    else
+        this->sync_frequency = this->timeDeltas.size();
 }
     
 
@@ -69,9 +69,9 @@ void Instrument::set_virtual_hardware(VirtualHardwareController* hw){
     this->hardware = hw;
 }
 
-void Instrument::arrive_and_wait(){
+void Instrument::arrive_and_wait(int total_threads){
     Instrument::threads_waiting +=1;
-    if (Instrument::threads_waiting == 4){
+    if (Instrument::threads_waiting == total_threads){
         Instrument::threads_finished = true;
         synchronised.notify_all();
         Instrument::threads_waiting -=1;
@@ -87,6 +87,7 @@ void Instrument::run() {
     int idx = 0;
     int drumnotes[3] = {52,59,52};
     int loop_size = this->timeDeltas.size();
+    int total_threads;
     while(this->hardware->playing || d%loop_size!=0){
         idx = d%loop_size;
         usleep(this->timing_factor*this->timeDeltas[idx]);
@@ -103,10 +104,17 @@ void Instrument::run() {
             this->chordOn = this->onOff[idx];
         }
         d=d+1;
-        if (d==loop_size){
-            d=0;
+        
+        if (d%this->sync_frequency==0){
+            if (d==loop_size){
+                d=0;
+                total_threads = 4;
+            }
+            else{
+                total_threads = 3;
+            }
             Instrument::threads_finished = false;
-            arrive_and_wait();
+            arrive_and_wait(total_threads);
         }
     }
 }
