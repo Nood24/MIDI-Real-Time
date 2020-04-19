@@ -13,3 +13,4 @@ This folder contains the Schematic and PCB design layout for the hardware in add
 Software
 ORCAD 17.2 was used for the design of the circuit schematic and PCB layout of this project
 
+The hardware could not be completed due to the preferred components not arriving on time, and unforeseen circumstances (COVID-19).
