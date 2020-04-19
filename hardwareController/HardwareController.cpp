@@ -10,6 +10,7 @@
 // Button 2 song right
 // Button 3 start/stop song
 // Button 4 redundancy 
+// Button 5 redundancy 
 //
 //*****************************************//
 
@@ -130,6 +131,9 @@ void processInput(int input){
     }
     else if(input == 4){
         cout << "\nButton 4 is placeholder\n";
+    }
+    else if(input == 5){
+        cout << "\nButton 5 is placeholder\n";
     }
     else{
         cout << "\nInvalid Input\n" << input;
