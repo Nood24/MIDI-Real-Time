@@ -60,8 +60,8 @@ pinMode(light3, OUTPUT);   //Set LED3 as an output
 pinMode(button4, INPUT);   //Set button4 as an input
 pinMode(light4, OUTPUT);   //Set LED4 as an output
 
-pinMode(button5, INPUT);   //Set button4 as an input
-pinMode(light5, OUTPUT);   //Set LED4 as an output	
+pinMode(button5, INPUT);   //Set button5 as an input
+pinMode(light5, OUTPUT);   //Set LED5 as an output	
 
 //set initial state to 0 
 digitalWrite(light1, LOW);
