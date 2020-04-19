@@ -63,13 +63,13 @@ digitalWrite(light1, LOW);
 digitalWrite(light2, LOW);
 digitalWrite(light3, LOW);
 digitalWrite(light4, LOW);
-digitalRead(button1) == LOW;
+//digitalRead(button1) == LOW;
 while(1)
 {	
 	//When button1 is pressed digitalRead returns LOW
 	if (digitalRead(button1) == LOW)
-	//Loop to Keep LED1 on until another button is pressed
-{	state = 1;	
+{	
+	state = 1;	
 	newState = true;
 	processInput(state);
 	cout << state << "\n";
