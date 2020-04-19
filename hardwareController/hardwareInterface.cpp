@@ -68,8 +68,8 @@ while(1)
 {	
 	//When button1 is pressed digitalRead returns LOW
 	if (digitalRead(button1) == LOW)
-	//Loop to Keep LED1 on until another button is pressed
-{	state = 1;	
+{	
+	state = 1;	
 	newState = true;
 	processInput(state);
 	cout << state << "\n";
