@@ -9,7 +9,7 @@
 // Button 1 song left
 // Button 2 song right
 // Button 3 start/stop song
-// Button 4 redundency 
+// Button 4 redundancy 
 //
 //*****************************************//
 
