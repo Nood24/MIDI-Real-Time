@@ -25,9 +25,9 @@ Instrument::Instrument(std::string csv_file, int tempo, VirtualHardwareControlle
 }
 
 
-void Instrument::updateNote(bool bass,bool chord){
+void Instrument::update_note(bool bass,bool chord){
     if (this->drumkit)
-        return;
+	return;
     if (bass && this->bassOn){
         send_note(0,this->FS_channel,this->dance->previousBass+this->pitch_transform,0);
         usleep(50);
@@ -62,9 +62,10 @@ void Instrument::resize_midi_loops(){
         total_time += this->timeDeltas[idx];
     }
 }
+    
 
 
-void Instrument::setVirtualHardware(VirtualHardwareController* hw){
+void Instrument::set_virtual_hardware(VirtualHardwareController* hw){
     this->hardware = hw;
 }
 
@@ -79,7 +80,6 @@ void Instrument::arrive_and_wait(){
     unique_lock<mutex> lk(cv_m);
     synchronised.wait(lk, []{return Instrument::threads_finished;});
     Instrument::threads_waiting -=1;
-    //Instrument::threads_finished = Instrument::threads_waiting;
 }
 
 void Instrument::run() {
@@ -116,7 +116,7 @@ void Instrument::extract_from_csv(string filename){
     string strdelta, strchannel, stron;
 
     ifstream csvfile;
-    csvfile.open(filename);
+    csvfile.open(filename);    
     assert(csvfile.is_open());
     this->total_loop_time = 0;
     

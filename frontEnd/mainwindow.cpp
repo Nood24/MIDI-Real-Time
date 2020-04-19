@@ -11,8 +11,6 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-
-
     ui->setupUi(this);
     QPixmap pix(":/images/images/OneManCeilidh.jpg");
     int w = ui->OMC_logo->width();

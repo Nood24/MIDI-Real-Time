@@ -1,6 +1,6 @@
 // Let Catch provide main():
-
 #define CATCH_CONFIG_MAIN
+
 #include "catch2.hpp"
 #include "../midi_driver/driver/Instrument.h"
 #include "mock_mainwindow.h"
@@ -226,7 +226,7 @@ TEST_CASE( "Create Instrument" ) {
     REQUIRE( true );
     Instrument* piano = new Instrument("./CSVFiles/gaygordons/piano.csv", 175,virtualHardware,0, 0, 1,current_dance);
     REQUIRE( true );
-    deleteFluidSynth();
+    delete_fluidsynth();
     REQUIRE( true );
 
 }
@@ -252,7 +252,7 @@ TEST_CASE( "Get current Dance Name" ) {
     REQUIRE( true );
     Instrument* piano = new Instrument("./CSVFiles/gaygordons/piano.csv", 175,virtualHardware,0, 0, 1,current_dance);
     REQUIRE( true );
-    deleteFluidSynth();
+    delete_fluidsynth();
     REQUIRE( true );
 
 }
@@ -272,7 +272,7 @@ TEST_CASE( "Create a Synth" ) {
 TEST_CASE( "Create and delete a Synth" ) {
     fluid_synth_init();
     REQUIRE( true );
-    deleteFluidSynth();
+    delete_fluidsynth();
     REQUIRE( true );
 }
 
@@ -282,7 +282,7 @@ TEST_CASE( "Play a Note" ) {
     fluid_synth_init();
     REQUIRE( true );
     cout << "Playing 3 second note!\n";
-    playNoteOfLength(0,60,3);
+    play_note_of_length(0,60,3);
     REQUIRE( true );
 }
 
@@ -291,15 +291,15 @@ TEST_CASE( "Change Instrument" ) {
     REQUIRE( true );
     cout << "Change Instrument!\n";
     REQUIRE( true );
-    changeInstrument(0, 0, 20);
+    change_instrument(0, 0, 20);
     REQUIRE( true );
     void changeInstrument(int channel, int bank, int instrument);
     REQUIRE( true );
     cout << "Playing 3 second note!\n";
     REQUIRE( true );
-    playNoteOfLength(0,60,3);
+    play_note_of_length(0,60,3);
     REQUIRE( true );
-    deleteFluidSynth();
+    delete_fluidsynth();
     REQUIRE( true );
 }
 
