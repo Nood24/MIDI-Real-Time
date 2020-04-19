@@ -5,7 +5,7 @@
 #include "Controller.h"
 
 //MOVE TO PARAMETERS.H FILE
-#define DEFAULT_DANCE "gaygordons"
+#define DEFAULT_DANCE "Gay Gordons"
 #define INSTALL_PATH "./CSVFiles/"
 #define USB_PORT 1
 
