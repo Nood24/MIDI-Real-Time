@@ -48,5 +48,9 @@ script:
   - g++ --version
   - export CC=gcc-7
   - export CXX=g++-7
-  - cd buid_and_run
+  - cd build_and_run
+  - make
+  - cd ..
+  - cd tests
+  - qmake
   - make

@@ -8,6 +8,7 @@
 #include <iostream>
 #include "Instrument.h"
 #include <cassert>
+//#include <experimental/barrier>
 
 using namespace std;
 
@@ -15,12 +16,7 @@ class Instrument;
 
 class DanceSet {
 public:
-    DanceSet(string dance, int tempo, string file_location, VirtualHardwareController* hw) {
-       this->dance_name = dance;
-       this->tempo = tempo;
-       this->file_location = file_location;
-       this->hardware = hw;
-    }
+    DanceSet(string dance, int tempo, string file_location, VirtualHardwareController* hw);
     void start_dance();
     VirtualHardwareController * hardware;
     void set_notes(std::vector<unsigned char>* message);
@@ -35,6 +31,7 @@ public:
     int bassNote = 48;
     int previousBass = 48;
     bool checkEqual(int *first, int *second);
+    void free_instruments();
 private:
     string dance_name;
     int tempo;
@@ -46,5 +43,6 @@ private:
     Instrument* piano;
     void setChordNote(int note);
     string file_location;
+    void resize_midi_loops();
 };
 #endif

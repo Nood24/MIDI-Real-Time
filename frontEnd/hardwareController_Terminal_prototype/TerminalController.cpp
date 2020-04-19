@@ -13,7 +13,7 @@
 //
 //*****************************************//
 
-
+/*
 #include "TerminalController.h"
 #include <iostream>
 using namespace std;
@@ -173,7 +173,7 @@ bool TerminalController::IsSongPlaying(){
 
 //--------------------------------------------------
 
-void TerminalController::runThread(MainWindow& window, TerminalController& controller,VirtualHardwareController* virtualController){
+void TerminalController::runThread(MainWindow& window, TerminalController& controller,VirtualHardwareController* virtualController, Controller* MidiController){
      cout << "hello";
      std::thread t1(&TerminalController::run, &controller, std::ref(window),std::ref(virtualController) );
      t1.detach();
@@ -181,9 +181,9 @@ void TerminalController::runThread(MainWindow& window, TerminalController& contr
 
 //--------------------------------------------------
 void TerminalController::run(MainWindow& window,VirtualHardwareController* virtualController){
-    this->virtualController = virtualController;
-    songPlaying = true;
-    virtualController->playing = this->songPlaying;
+    //this->virtualController = virtualController;
+    //songPlaying = false;
+    //virtualController->playing = this->songPlaying;
     this->songIndex = 0;
     printSystemState();
     int input; 
@@ -196,5 +196,5 @@ void TerminalController::run(MainWindow& window,VirtualHardwareController* virtu
         window.setPlayButton(songPlaying);
         virtualController->playing = this->songPlaying;
     }
-
 }
+*/

@@ -7,14 +7,10 @@
 #include "hardwareController_Terminal_prototype/TerminalController.h"
 #include <string>
 
-using namespace std;
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-
-
     ui->setupUi(this);
     QPixmap pix(":/images/images/OneManCeilidh.jpg");
     int w = ui->OMC_logo->width();
@@ -66,11 +62,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->playButton->setPixmap(pix3.scaled(w*1.3,h*1.3,Qt::KeepAspectRatio));
 
     this->setWindowTitle(
-            QApplication::translate("toplevel", "One Man Ceilidh"));
+                QApplication::translate("toplevel", "One Man Ceilidh"));
 
 }
 
-void MainWindow::setPlayButton(bool playButtonState){
+
+void MainWindow::set_play_button(bool playButtonState, bool text_red){
     int w = ui->OMC_logo->width();
     int h = ui->OMC_logo->height();
     if (playButtonState){
@@ -85,31 +82,33 @@ void MainWindow::setPlayButton(bool playButtonState){
     }
 
     QPalette pal = palette();
-
-    pal.setColor(QPalette::Background, Qt::white);
+    
+    if (text_red){
+        pal.setColor(QPalette::Background, Qt::white);
+        pal.setColor(QPalette::WindowText, Qt::red);
+    }
+    else{
+        pal.setColor(QPalette::Background, Qt::white);
+        pal.setColor(QPalette::WindowText, Qt::black);
+    }
     this->setAutoFillBackground(true);
     this->setPalette(pal);
     this->show();
 
-    // set black background
-
 }
 
-void MainWindow::setSongs(char* leftSong, char* rightSong, char* selectedSong){
-    ui->right_song->setText(rightSong);
-    ui->left_song->setText(leftSong);
-    ui->playingSongName->setText(selectedSong);
+void MainWindow::set_songs(string leftSong, string selectedSong, string rightSong){
+    ui->right_song->setText(QString::fromStdString(rightSong));
+    ui->left_song->setText(QString::fromStdString(leftSong));
+    cout << "selectsong:"<<selectedSong<<endl;
+    ui->playingSongName->setText(QString::fromStdString(selectedSong));
 }
 
-void MainWindow::controllerInit()
-{
-    //HardwareController controller;
-    //controller.runThread(this);
-}
 
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    QApplication::quit();
 }
 

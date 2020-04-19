@@ -41,6 +41,10 @@ const int light3 = 12;
 const int button4 = 6;
 //LED4: Physical pin 21, wiringPi 13, BCM GPIO9.
 const int light4 = 13; 
+// Switch5: Physical pin 24, wiringPi 10, BCM GPIO8.
+const int button5 = 10;
+//LED5: Physical pin 23, wiringPi 14, BCM GPIO11.
+const int light5 = 14; 	
 
 
 wiringPiSetup();           //Setup the Pi Library
@@ -56,6 +60,8 @@ pinMode(light3, OUTPUT);   //Set LED3 as an output
 pinMode(button4, INPUT);   //Set button4 as an input
 pinMode(light4, OUTPUT);   //Set LED4 as an output
 
+pinMode(button5, INPUT);   //Set button5 as an input
+pinMode(light5, OUTPUT);   //Set LED5 as an output	
 
 //set initial state to 0 
 digitalWrite(light1, LOW);
@@ -63,13 +69,14 @@ digitalWrite(light1, LOW);
 digitalWrite(light2, LOW);
 digitalWrite(light3, LOW);
 digitalWrite(light4, LOW);
-digitalRead(button1) == LOW;
+digitalWrite(light5, LOW);	
+//digitalRead(button1) == LOW;
 while(1)
 {	
 	//When button1 is pressed digitalRead returns LOW
 	if (digitalRead(button1) == LOW)
-	//Loop to Keep LED1 on until another button is pressed
-{	state = 1;	
+{	
+	state = 1;	
 	newState = true;
 	processInput(state);
 	cout << state << "\n";
@@ -78,6 +85,7 @@ while(1)
 		digitalWrite(light2, LOW);
 		digitalWrite(light3, LOW);
 		digitalWrite(light4, LOW);
+		digitalWrite(light5, LOW);
 	}while(digitalRead(button1)== LOW);
 	digitalWrite(light1,LOW);
 }
@@ -93,7 +101,7 @@ while(1)
 		digitalWrite(light1, LOW);
 		digitalWrite(light3, LOW);
 		digitalWrite(light4, LOW);
-	
+		digitalWrite(light5, LOW);	
 	}while(digitalRead(button2) == LOW);
 	digitalWrite(light2,LOW);
 }
@@ -110,8 +118,7 @@ while(1)
 		digitalWrite(light1, LOW);
 		digitalWrite(light2, LOW);
 		digitalWrite(light4, LOW);
-	       
-	
+		digitalWrite(light5, LOW);	
 	}while(digitalRead(button3) == LOW);
 	digitalWrite(light3,LOW);
 }
@@ -128,9 +135,26 @@ while(1)
 		digitalWrite(light1, LOW);
 		digitalWrite(light2, LOW);
 		digitalWrite(light3, LOW);
+		digitalWrite(light5, LOW);
 	}while(digitalRead(button4) == LOW);
 	digitalWrite(light4,LOW);
 }
+//When button5 is pressed digitalRead returns LOW
+	else if (digitalRead(button5) == LOW)
+{	
+        state = 5;
+	newState = true;
+	processInput(state);
+	cout << state << "\n";
+	do{	
+		digitalWrite(light5, HIGH);
+		digitalWrite(light1, LOW);
+		digitalWrite(light2, LOW);
+		digitalWrite(light3, LOW);
+		digitalWrite(light4, LOW);
+	}while(digitalRead(button5) == LOW);
+	digitalWrite(light5,LOW);
+}	
     }
 return 0; 
 }

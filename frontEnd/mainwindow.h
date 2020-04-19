@@ -7,6 +7,8 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+using namespace std;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -15,9 +17,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void controllerInit();
-    void setSongs(char* leftSong, char* rightSong, char* selectedSong);
-    void setPlayButton(bool playButtonState);
-
+    void set_songs(string leftSong, string selectedSong, string rightSong);
+    void set_play_button(bool playButtonState, bool text_red=false);
 
 private:
     Ui::MainWindow *ui;

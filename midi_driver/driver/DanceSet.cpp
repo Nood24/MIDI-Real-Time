@@ -8,26 +8,46 @@
 
 using namespace std;
 
+DanceSet::DanceSet(string dance, int tempo, string file_location, VirtualHardwareController* hw) {
+    this->dance_name = dance;
+    this->tempo = tempo;
+    this->file_location = file_location;
+    this->hardware = hw;
+}
+
 void DanceSet::load_instruments() {
     fluid_synth_init();
     this->instruments.clear();
     //See instruments https://musical-artifacts.com/artifacts/738
-    Instrument* piano = new Instrument(this->file_location + "piano.csv", this->tempo,this->hardware,0, 0, 1,this);
-    Instrument* accordion = new Instrument(this->file_location + "Accordion.csv", this->tempo, this->hardware, 1, 1, 9,this,-12);
-    Instrument* drums = new Instrument(this->file_location + "Drums.csv", this->tempo,this->hardware,2, 0, 118,this);
-    Instrument* bass = new Instrument(this->file_location + "Bass.csv", this->tempo, this->hardware, 3, 0, 34,this);
-   
-    this->instruments.push_back(accordion);
+    Instrument* piano = new Instrument(this->file_location + "Piano.csv", this->tempo,this->hardware,0, 0, 0,this);
+    Instrument* accordion = new Instrument(this->file_location + "Accordion.csv", this->tempo, this->hardware, 1, 1, 1,this,0,75);
+    Instrument* drums = new Instrument(this->file_location + "Drums.csv", this->tempo,this->hardware,2, 1, 3,this,0,90,true);
+    Instrument* bass = new Instrument(this->file_location + "Bass.csv", this->tempo, this->hardware, 3, 1, 4,this,-12);
+    
     this->instruments.push_back(piano);
+    this->instruments.push_back(accordion);
     this->instruments.push_back(drums);
     this->instruments.push_back(bass);
+    this->resize_midi_loops();
+}
 
+void DanceSet::resize_midi_loops(){
+    for (int i=0; i < this->instruments.size();i++){
+        this->instruments[i]->resize_midi_loops();
+    }
 }
 
 void DanceSet::wait_loop_end(){
-    for (int i=0;i<4;i++){
+    for (int i=0; i < this->instruments.size();i++){
         this->instruments[i]->join();
     }
+}
+
+void DanceSet::free_instruments(){
+    for (int i=0;i< this->instruments.size();i++){
+        delete this->instruments[i];
+    }
+    Instrument::longest_loop_time = 0;
 }
 
 void DanceSet::setChordNote(int note){
@@ -39,7 +59,7 @@ void DanceSet::setChordNote(int note){
 }
 
 bool DanceSet::checkEqual(int *first, int *second){
-    for (int i=0; i<4; i++){
+    for (int i=0; i<3; i++){
         if (first[i] != second[i])
             return 0;
     }
@@ -63,31 +83,15 @@ void DanceSet::set_notes(std::vector< unsigned char >* message){
     }
     
     if (this->previousBass!=this->bassNote || !checkEqual(this->previousChord,this->chordNotes)){
-       cout<<"update \n";
-       for (int i=0; i<4; i++){
-         instruments[i]->updateNote(this->previousBass!=this->bassNote, this->previousChord!=this->chordNotes);
-       } 
+        for (int i=0; i<4; i++){
+            instruments[i]->update_note(this->previousBass!=this->bassNote, !checkEqual(this->previousChord,this->chordNotes));
+        }
     }
 }
 
 void DanceSet::start_dance(){
-    while (true){
-        if (!this->hardware->playing_ready){
-            this->hardware->playing_ready = true;
-            cout << "\nThe song is now ready\n";
-        }
-
-        if(this->hardware->playing){
-            load_instruments();
-            for (int i=0; i<4; i++){
-                this->instruments[i]->start();
-            }
-            this->hardware->playing_ready = false;
-            for (int i=0; i<4; i++){
-
-                this->instruments[i]->join();
-            }
-        }
+    for (int i=0; i<4; i++){
+        this->instruments[i]->start();
     }
 }
 
