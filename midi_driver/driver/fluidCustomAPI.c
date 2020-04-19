@@ -30,13 +30,16 @@ void fluid_synth_init(){
     fluid_settings_setstr(settings,"audio.driver","alsa");
     fluid_settings_setint(settings,"audio.periods",4);
     fluid_settings_setnum(settings,"synth.gain",1);
+    fluid_settings_setstr(settings, "audio.sample-format", "soxr-vhq");
+    fluid_settings_setint(settings, "synth.audio-channels", 2);
+    fluid_settings_setint(settings, "synth.chorus.active", 1);
     fluid_settings_setint(settings,"synth.min-note-length", 55);
     fluid_settings_setint(settings,"synth.sample-rate", 44100);
 
     /* create the synth, driver and sequencer instances */
     synth = new_fluid_synth(settings);
     /* load a SoundFont */
-    sf_id = fluid_synth_sfload(synth, "../CustomSoundfonts/CeilidhSoundfont.sf2", 1);
+    sf_id = fluid_synth_sfload(synth, "../CustomSoundfonts/OneManCeilidhSoundfont.sf2", 1);
 
     sequencer = new_fluid_sequencer2(0);
     /* register the synth with the sequencer */

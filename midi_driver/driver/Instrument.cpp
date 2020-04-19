@@ -27,17 +27,17 @@ Instrument::Instrument(std::string csv_file, int tempo, VirtualHardwareControlle
 
 void Instrument::update_note(bool bass,bool chord){
     if (this->drumkit)
-        return;
+	return;
     if (bass && this->bassOn){
         send_note(0,this->FS_channel,this->dance->previousBass+this->pitch_transform,0);
-        usleep(100);
-        send_note(1,this->FS_channel,this->dance->bassNote+this->pitch_transform,this->velocity);
+        usleep(50);
+        send_note(1,this->FS_channel,this->dance->bassNote+this->pitch_transform,this->velocity-20);
     }
     if (chord && this->chordOn){
         send_note(0,this->FS_channel,this->dance->previousChord[0]+this->pitch_transform,0);
         send_note(0,this->FS_channel,this->dance->previousChord[1]+this->pitch_transform,0);
         send_note(0,this->FS_channel,this->dance->previousChord[2]+this->pitch_transform,0);
-        usleep(100);
+        usleep(50);
         send_note(1,this->FS_channel,this->dance->chordNotes[0]+this->pitch_transform,this->velocity-20);
         send_note(1,this->FS_channel,this->dance->chordNotes[1]+this->pitch_transform,this->velocity-20);
         send_note(1,this->FS_channel,this->dance->chordNotes[2]+this->pitch_transform,this->velocity-20);
@@ -62,6 +62,7 @@ void Instrument::resize_midi_loops(){
         total_time += this->timeDeltas[idx];
     }
 }
+    
 
 
 void Instrument::set_virtual_hardware(VirtualHardwareController* hw){
@@ -79,7 +80,6 @@ void Instrument::arrive_and_wait(){
     unique_lock<mutex> lk(cv_m);
     synchronised.wait(lk, []{return Instrument::threads_finished;});
     Instrument::threads_waiting -=1;
-    Instrument::threads_finished = Instrument::threads_waiting;
 }
 
 void Instrument::run() {
@@ -105,6 +105,7 @@ void Instrument::run() {
         d=d+1;
         if (d==loop_size){
             d=0;
+            Instrument::threads_finished = false;
             arrive_and_wait();
         }
     }
@@ -115,7 +116,8 @@ void Instrument::extract_from_csv(string filename){
     string strdelta, strchannel, stron;
 
     ifstream csvfile;
-    csvfile.open(filename);
+    csvfile.open(filename);    
+    assert(csvfile.is_open());
     this->total_loop_time = 0;
     
     while(csvfile.good()){
