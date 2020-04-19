@@ -63,7 +63,7 @@ digitalWrite(light1, LOW);
 digitalWrite(light2, LOW);
 digitalWrite(light3, LOW);
 digitalWrite(light4, LOW);
-digitalRead(button1) == LOW;
+//digitalRead(button1) == LOW;
 while(1)
 {	
 	//When button1 is pressed digitalRead returns LOW
