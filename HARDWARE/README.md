@@ -1,13 +1,14 @@
 # Hardware
 
 The hardware for this project consisted of a Raspberry Pi model 3 B+ and a set of custom made pedals. The pedals work by sending a signal to the Raspberry Pi through the GPIO pins when a button is pressed. Each button controlls a different state on the Raspberry Pi. 
+Power was supplied to the pedals through the 3.3v pin of the Raspberry Pi and the buttons interfaced with the GPIO pins. The buttons on the Foootpedal were pulled up usng 10k resistors and 1k resistors were used to provide protection to the GPIO pins. Each button returned a different state, which was used to control the song to be played.
 
 ## Working Mode for Pedals
 
-State 1 was configured for changing to the previous song, 
-State 2 changes to the next song
-State 3 starts or stops the current song
-States 4&5 were added for redundancy
+Button 1 was configured for changing to the previous song, 
+Button 2 changes to the next song
+Button 3 starts or stops the current song
+Buttons 4&5 were added for redundancy
 
 ## Overview
 This folder contains the Schematic and PCB design layout for the hardware in addition to the code initially written for the hardware.
