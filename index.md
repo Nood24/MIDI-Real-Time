@@ -260,7 +260,7 @@ Finally when a song is set to pause the instruments will reach the end of a tune
 
 ## A Note on the Effects of Covid-19 on the Project.
 
-Covid-19 caused the cancellation of the hardware foot peddles that were planned to be used to control the project. The system is controlled through the terminal and not through pedals because of this. If peddles became available they would replace the virtual hardware object that has been created to replace the foot pedals. (Code shown below). The main task here is replacing current get input function that gets an input from the terminal with code that gets an input from the foot pedals. A start had been made to this functionality 
+Covid-19 caused the cancellation of the hardware foot pedals that were planned to be used to control the project. The system is controlled through the terminal and not through pedals because of this. If peddles became available they would replace the virtual hardware object that has been created to replace the foot pedals. (Code shown below). The main task here is replacing current get input function that gets an input from the terminal with code that gets an input from the foot pedals. A start had been made to this functionality 
 
 The code for running the pedals has been written in https://github.com/Nood24/MIDI-Real-Time/blob/master/hardwareController/hardwareInterface.cpp. While this interface is not fully implemented it could provide a blueprint for the design of a class which gets inputs from the hardware.  
 
