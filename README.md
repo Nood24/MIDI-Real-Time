@@ -19,7 +19,7 @@ If you have any questions please feel free to message us via twitter @OneManCeil
 *  Neil Wood: neilwood1997@gmail.com	
     *  Toolset, front end, fluidsynth, RtMidi, Testing and CI. 
 *   Cameron Bennett:Cameron.b97.cb@gmail.com
-    * Backend, processing MIDI, creating dances and playing songs.
+    * Backend - control flow, processing MIDI, thread management, instrument arrangements and promotion videos.
 *  Seun Ajijola: sajijola@gmail.com
     *  Hardware.
 
