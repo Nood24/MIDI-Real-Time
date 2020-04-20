@@ -288,6 +288,16 @@ void VirtualHardwareController::set_state(bool state){
 
 ---
 
+##Latency
+
+While the system feels extremely responsive when played, no formal measurement of latency has been made. This is because of the difficulties of measuring the time difference between a mechanical keypress and an audio output. Ideally, a high framerate camera (>200 fps) could be used to quickly gain a value for this metric. Unfortunately, no such camera has become available, and therefore it has not been able to make such a measurement. 
+
+However, a lot of thought has been put into the software to help reduce latency. Fluidsynth settings have been set to an optimal balance of performance and audio out quality and the ALSA audio driver has been used to keep latency low. The result of this is that the Once Man Ceilidh team are confident that the system meets the real time constraints of the environment, and that audio from the accordion will reach an audience at an imperceivable time difference to the FluidSynth output. (For more details see the FluidSynth wiki at <https://github.com/FluidSynth/fluidsynth/wiki/LowLatency>) 
+
+
+
+---
+
 ## Conclusion
 
 The One Man Ceilidh team have had good fun working on this project and we hope you do too! If you have any questions feel free to drop us a message on twitter @OneManCeilidh https://twitter.com/OneManCeilidh.
