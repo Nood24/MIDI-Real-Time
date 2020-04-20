@@ -2,5 +2,5 @@ This folder contains the source codes initially meant for the hardware. The proj
 ```
 ./executable
 ```
-on the command line
+on the command line from this directory
 
