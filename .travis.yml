@@ -1,0 +1,56 @@
+sudo: required
+
+os:
+  - linux
+
+# Enable C++ 7 support
+language: cpp
+dist: Bionic
+matrix:
+  include:
+    # works on Precise and Trusty
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      env:
+         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+
+
+
+# Compiler selection
+
+before_install:
+  - eval "${MATRIX_EVAL}"
+  - sudo apt-get install libtool
+  - sudo apt-get install automake
+  - sudo apt-get install autoconf
+  - sudo apt-get install libasound2-dev
+  - sudo apt-get install fluidsynth
+  - sudo apt-get install libfluidsynth-dev
+
+
+
+#install:
+#  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
+#  - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
+  
+  
+  # Go to the Root directory  
+
+# Build steps
+script:
+  - pwd
+  - ls
+  - g++ --version
+  - export CC=gcc-7
+  - export CXX=g++-7
+  - cd build_and_run
+  - make
+  - cd ..
+  - cd tests
+  - qmake
+  - make

@@ -1,0 +1,79 @@
+Date and Time : 02/28/20 19:14:05
+
+--------------------------------------------------
+Checking Schematic: SCHEMATIC1
+--------------------------------------------------
+Checking Electrical Rules 
+WARNING(ORCAP-1829): Possible pin type conflict GND  Power Connected to Bidirectional
+                    SCHEMATIC1, PAGE2  (5.10, 3.20) 
+WARNING(ORCAP-1829): Possible pin type conflict U1,GND  Power Connected to Bidirectional
+                    SCHEMATIC1, PAGE2  (1.90, 3.70) 
+WARNING(ORCAP-1829): Possible pin type conflict U1,GND  Power Connected to Bidirectional
+                    SCHEMATIC1, PAGE2  (3.50, 3.50) 
+WARNING(ORCAP-1829): Possible pin type conflict U1,GND  Power Connected to Bidirectional
+                    SCHEMATIC1, PAGE2  (1.90, 4.50) 
+WARNING(ORCAP-1829): Possible pin type conflict U1,GND  Power Connected to Bidirectional
+                    SCHEMATIC1, PAGE2  (3.50, 3.90) 
+WARNING(ORCAP-1829): Possible pin type conflict U1,GND  Power Connected to Bidirectional
+                    SCHEMATIC1, PAGE2  (1.90, 5.20) 
+WARNING(ORCAP-1829): Possible pin type conflict LCD2,VSS  Power Connected to Bidirectional
+                    SCHEMATIC1, PAGE2  (5.40, 3.00) 
+WARNING(ORCAP-1829): Possible pin type conflict U1,GND  Power Connected to Bidirectional
+                    SCHEMATIC1, PAGE2  (3.50, 4.90) 
+WARNING(ORCAP-1829): Possible pin type conflict U1,GND  Power Connected to Bidirectional
+                    SCHEMATIC1, PAGE2  (3.50, 4.20) 
+WARNING(ORCAP-1829): Possible pin type conflict U1,GND  Power Connected to Bidirectional
+                    SCHEMATIC1, PAGE2  (3.50, 4.70) 
+WARNING(ORCAP-1829): Possible pin type conflict LCD2,RW  Bidirectional Connected to Power
+                    SCHEMATIC1, PAGE2  (6.60, 2.90) 
+WARNING(ORCAP-1829): Possible pin type conflict LCD2,LED-  Power Connected to Bidirectional
+                    SCHEMATIC1, PAGE2  (6.60, 1.50) 
+
+Checking For Single Node Nets
+
+Checking For Unconnected Bus Nets
+
+Checking Physical Rules 
+
+
+Checking Pins and Pin Connections
+
+--------------------------------------------------
+Checking Schematic: SCHEMATIC1
+--------------------------------------------------
+
+INFO(ORCAP-2242): Checking Incorrect Pin Group Assignment
+
+Report for Invalid References
+
+Report for Duplicate References
+
+--------------------------------------------------
+Checking Entire Design: FOOTPEDAL1 
+--------------------------------------------------
+
+Checking Power Pin Visibility  
+
+Checking Normal Convert View Sync  
+INFO(ORCAP-36105): Checking Missing Pin Numbers  
+
+Checking Device with Zero pins  
+INFO(ORCAP-36101): Checking Missing PCB Footprint Property  
+
+Checking Name Property for Hierarchical Instances  
+
+INFO(ORCAP-2211): Check High Speed Properties Syntax
+
+INFO(ORCAP-2212): Check Power Ground Mismatch
+QUESTION(ORCAP-1589): Net has two or more aliases - possible short? LCD2,VSS  VSS  GND
+                    SCHEMATIC1, PAGE2  (5.40, 3.00) 
+QUESTION(ORCAP-1589): Net has two or more aliases - possible short? LCD2,LED-  LED-  GND
+                    SCHEMATIC1, PAGE2  (6.60, 1.50) 
+QUESTION(ORCAP-1589): Net has two or more aliases - possible short? LCD2,LED+  LED+  P5V
+                    SCHEMATIC1, PAGE2  (6.60, 1.60) 
+QUESTION(ORCAP-1589): Net has two or more aliases - possible short? LCD2,VCC  VCC  P5V
+                    SCHEMATIC1, PAGE2  (5.40, 2.80) 
+
+Reporting Unused Refdes in multiple part packages
+Part	                       Quantity	                       Reference
+-----------------------------------------------------------------------------------------

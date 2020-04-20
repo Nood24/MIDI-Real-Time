@@ -1,38 +1,56 @@
-# MIDI-Real-Time
-Real Time Project
+# One Man Ceiidh
 
-A University of Glasgow ENG5220: Real Time Embedded Programming (2019-20) project.
-
-This project aims to use the MIDI signal from the playing of a single accordion to produce the sound of a full ceilidh band. 
+A University of Glasgow ENG5220: Real Time Embedded Programming (2019-20) project that aims to allow a single accordion player to perform a full ceilidh solo by generating the backing music in real time as they play.
  
-The system is made up of a custom pedal box, a Rasperry Pi 3B+ and an LCD display. The Pedals and LCD display allow the system to be controlled in a hands free environment and the pi will provide the procesing of the accordion MIDI signal into an AUX output of a full ceilidh band.
+The system is made up of a Raspberry Pi 3B+ with a normal monitor and keyboard. The keyboard and monitor allow the system to be controlled the pi provides the processing of the accordion MIDI signal into an AUX output of a full ceilidh band. An overview of the system software is shown in the UML at the bottom of this README.
 
-![High level system architecture](/Documentation/systemArchitecture.PNG)
+You can get up this system on a Raspberry Pi or Ubuntu computer. A list of project dependencies is kept at the bottom of this README which aims to help you set up you're environment and get started. 
 
-Authors:
+![One Man Ceilidh Front End](/other/images/Screenshot%20from%202020-04-15%2009-17-10.png)
 
-Neil Wood: neilwood1997@gmail.com
-Seun Ajijola: sajijola@gmail.com
-Cameron Bennett:Cameron.b97.cb@gmail.com
+Please check out our wiki page for a detailed overview of the project or help getting started. https://nood24.github.io/MIDI-Real-Time/?fbclid=IwAR27X-9Kugiw643k3CEA-yfcTT6ZXq6-MGSo7AEuBK4x8Z-nUWYBc6VSuKA
 
-Twitter: https://twitter.com/OneManCeilidh
+If you have any questions please feel free to message us via twitter @OneManCeilidh https://twitter.com/OneManCeilidh.
 
-Dependancies:
+---
 
-RTMidi Dependancies:
+## Authors:
 
-sudo apt-get install libtool
+*  Neil Wood: neilwood1997@gmail.com	
+    *  Toolset, front end, fluidsynth, RtMidi, Testing and CI. 
+*   Cameron Bennett:Cameron.b97.cb@gmail.com
+    * Backend, processing MIDI, creating dances and playing songs.
+*  Seun Ajijola: sajijola@gmail.com
+    *  Hardware.
 
-sudo apt-get install automake
+Project Twitter: https://twitter.com/OneManCeilidh
 
-sudo apt-get install autoconf
+Project Wiki Page: https://nood24.github.io/MIDI-Real-Time/?fbclid=IwAR27X-9Kugiw643k3CEA-yfcTT6ZXq6-MGSo7AEuBK4x8Z-nUWYBc6VSuKA
 
-Other:
 
-sudo apt-get install libasound2-dev : Allows RTMIDI to interacvt with ALSA.
+ ---
+ 
+## One Man Ceilidh UML Diagram: Shows the system's software architecture. 
+ 
+ ![One Man Ceilidh UML](/other/images/UML.png)
+ 
+ ---
 
-sudo apt-get install fluidsynth : Synth MIDI into analogue output.
+## Project Dependencies:
 
-sudo apt-get install libfluidsynth-dev: Allows use of fluidsynth API.
+RTMidi Dependencies:
 
-sudo apt-get install wiringpi: Used to interface with pi GPIO pins
+* sudo apt-get install libtool
+* sudo apt-get install automake
+* sudo apt-get install autoconf
+
+FluidSynth Dependancies:
+
+* sudo apt-get install libasound2-dev : Allows RTMIDI to interact with ALSA.
+* sudo apt-get install fluidsynth : Synth MIDI into analogue output.
+* sudo apt-get install libfluidsynth-dev: Allows use of fluidsynth API.
+
+Other Dependancies:
+
+* Qt 5, Qmake: Support front end and build the project. 
+ 
