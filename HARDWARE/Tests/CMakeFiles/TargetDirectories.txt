@@ -1,0 +1,3 @@
+/home/isaiah/MIDI-Real-Time/hardwareController/Tests/CMakeFiles/rebuild_cache.dir
+/home/isaiah/MIDI-Real-Time/hardwareController/Tests/CMakeFiles/executeTests.dir
+/home/isaiah/MIDI-Real-Time/hardwareController/Tests/CMakeFiles/edit_cache.dir
