@@ -12,7 +12,7 @@ Buttons 4&5 were added for redundancy
 
 ## Overview
 This folder contains the Schematic and PCB design layout for the hardware in addition to the code initially written for the hardware.
-The hardware could not be completed due to the preferred components not arriving on time, and unforeseen circumstances (COVID-19).
+The hardware could not be completed due to the preferred components not arriving on time, and unforeseen circumstances (COVID-19) preventing group testing and completion of the case.
 
 A Demo for the hardware can be found Below:
 https://drive.google.com/open?id=1KOdL7dBLpbYbbtoLG0HIcY_gDxDBb9kd
