@@ -16,11 +16,8 @@ Three open source tools have been used to create this project. These tools are F
 
 ### RtMidi
 
-<<<<<<< HEAD
-RtMidi is an open source project providing an API that allows systems to interface with Midi input and outputs. One Man Ceilidh used this software to receieve midi input from the accordion. 
-=======
 RtMidi is an open source project providing an API that allows systems to interface with Midi input and outputs. One Man Ceilidh used this software to receive midi input from the accordion. 
->>>>>>> origin/master
+
 
 See the RtMidi git for more information:
 
